@@ -3,37 +3,46 @@
 <head>
     <meta charset="utf-8">
     
-    <title>HelloWorld | kikita &amp; Maps</title>
+    <title>为影像数据去除无效值 | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="Hello World ！
-我的个人博客 kikita &amp;amp; Maps 上线了，记录点见闻感触，累积点技术知识，只为让自己的生活鲜活积极。
+    <meta name="description" content="在使用栅格数据时，黑边和白边问题比较困扰我们，╮(╯-╰)╭ ，丑丑地如下所示：
 
-今天中午换了个新主题 hueman，慢慢摸索学习 Hexo，还是很有趣的。
+那如何处理这些问题呢？方法不是唯一的，我把 ArcMap 中最常用的几种方式列举一下，帮你给数据“化妆”，或者更确切的说是“整容”：
 
-还是那句话，I walk slowly, but I never walk backward.">
+
+Option 1  栅格计算器在去黑边之前最先需要了解的是黑边的像元值是什么？ 可以使用 Identify 工具 查查看。  例如这份数据是 0。
+
+
+这时，你也许会想到设置图层">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HelloWorld">
-<meta property="og:url" content="http://www.kikitamap.com/2016/03/01/HelloWorld/index.html">
+<meta property="og:title" content="为影像数据去除无效值">
+<meta property="og:url" content="http://www.kikitamap.com/2016/03/02/为影像数据去除无效值/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="Hello World ！
-我的个人博客 kikita &amp;amp; Maps 上线了，记录点见闻感触，累积点技术知识，只为让自己的生活鲜活积极。
+<meta property="og:description" content="在使用栅格数据时，黑边和白边问题比较困扰我们，╮(╯-╰)╭ ，丑丑地如下所示：
 
-今天中午换了个新主题 hueman，慢慢摸索学习 Hexo，还是很有趣的。
+那如何处理这些问题呢？方法不是唯一的，我把 ArcMap 中最常用的几种方式列举一下，帮你给数据“化妆”，或者更确切的说是“整容”：
 
-还是那句话，I walk slowly, but I never walk backward.">
-<meta property="og:image" content="http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg">
-<meta property="og:updated_time" content="2016-03-01T07:08:17.923Z">
+
+Option 1  栅格计算器在去黑边之前最先需要了解的是黑边的像元值是什么？ 可以使用 Identify 工具 查查看。  例如这份数据是 0。
+
+
+这时，你也许会想到设置图层">
+<meta property="og:image" content="http://img.blog.csdn.net/20160201174054625">
+<meta property="og:updated_time" content="2016-03-02T07:41:23.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HelloWorld">
-<meta name="twitter:description" content="Hello World ！
-我的个人博客 kikita &amp;amp; Maps 上线了，记录点见闻感触，累积点技术知识，只为让自己的生活鲜活积极。
+<meta name="twitter:title" content="为影像数据去除无效值">
+<meta name="twitter:description" content="在使用栅格数据时，黑边和白边问题比较困扰我们，╮(╯-╰)╭ ，丑丑地如下所示：
 
-今天中午换了个新主题 hueman，慢慢摸索学习 Hexo，还是很有趣的。
+那如何处理这些问题呢？方法不是唯一的，我把 ArcMap 中最常用的几种方式列举一下，帮你给数据“化妆”，或者更确切的说是“整容”：
 
-还是那句话，I walk slowly, but I never walk backward.">
+
+Option 1  栅格计算器在去黑边之前最先需要了解的是黑边的像元值是什么？ 可以使用 Identify 工具 查查看。  例如这份数据是 0。
+
+
+这时，你也许会想到设置图层">
     
 
     
@@ -152,36 +161,90 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/碎碎念/">碎碎念</a>
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-HelloWorld" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-为影像数据去除无效值" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        HelloWorld
+        为影像数据去除无效值
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/03/01/HelloWorld/" class="article-date">
-    <time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time>
+            <a href="/2016/03/02/为影像数据去除无效值/" class="article-date">
+    <time datetime="2016-03-02T07:24:00.000Z" itemprop="datePublished">2016-03-02</time>
 </a>
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p><strong>Hello World ！</strong></p>
-<p>我的个人博客 kikita &amp; Maps 上线了，记录点见闻感触，累积点技术知识，只为让自己的生活鲜活积极。</p>
-<p><img src="http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg" alt="开始的样子"></p>
-<p>今天中午换了个新主题 hueman，慢慢摸索学习 Hexo，还是很有趣的。</p>
+            <p>在使用栅格数据时，黑边和白边问题比较困扰我们，╮(╯-╰)╭ ，丑丑地如下所示：</p>
+<p><img src="http://img.blog.csdn.net/20160201174054625" alt="这里写图片描述"></p>
+<p>那如何处理这些问题呢？方法不是唯一的，我把 ArcMap 中最常用的几种方式列举一下，帮你给数据“化妆”，或者更确切的说是“整容”：</p>
 <p><br></p>
-<p>还是那句话，<em>I walk slowly, but I never walk backward.</em> </p>
+<p><br></p>
+<h1 id="Option-1-栅格计算器"><a href="#Option-1-栅格计算器" class="headerlink" title="Option 1  栅格计算器"></a>Option 1  栅格计算器</h1><p>在去黑边之前最先需要了解的是黑边的像元值是什么？ 可以使用 Identify 工具<img src="http://img.blog.csdn.net/20160201175818492" alt="这里写图片描述"> 查查看。  例如这份数据是 0。</p>
+<p><img src="http://img.blog.csdn.net/20160201175738451" alt="这里写图片描述"></p>
+<blockquote>
+<p>这时，你也许会想到设置图层背景值的色彩可以吧？</p>
+<p><img src="http://img.blog.csdn.net/20160201181110700" alt="这里写图片描述"></p>
+<p>如果仅为了显示使用，是可以解决问题的，但传统意义上的去黑边，我们一般理解成栅格数据的处理，也就是从存储上修改特定值（本例中是 0）值为 Nodata。</p>
+</blockquote>
+<p>单波段数据处理起来常常相对容易些，最常用的工具就是 <strong>栅格计算器/Raster Calculator</strong> 了。Raster Calculator 可以通过输入的Python语法的表达式，对当前数据框内的栅格图层进运算。它是个非常实用的栅格数据处理工具，如果你想 Dive In ，点 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/tools/spatial-analyst-toolbox/how-raster-calculator-works.htm" target="_blank" rel="external"><strong>这里</strong></a>了解 Raster Calculator 的工作原理。</p>
+<p>例如这个需求中仅需要一个简单表达式，使用到SetNull函数，如下所示：</p>
+<p><img src="http://img.blog.csdn.net/20160202100521847" alt="这里写图片描述"></p>
+<blockquote>
+<p> 其中，表达式是 <strong>SetNull(“RasterLayer”  ==  0 , “RasterLayer” )</strong></p>
+</blockquote>
+<p>这样执行工具之后，所有的 0 值变成了 Nodata，彻底去了黑边。</p>
+<p><br></p>
+<p><br></p>
+<h1 id="Option-2-影像分析窗口"><a href="#Option-2-影像分析窗口" class="headerlink" title="Option 2  影像分析窗口"></a>Option 2  影像分析窗口</h1><p>多波段数据同样会受到黑边的困扰，而且现实情况往往没有单波段数据那么理想，仅通过一个表达式就可以搞定。例如，我们常用的影像底图数据，通常有三个波段，通过包含RGB三个波段的一组值来表示像元值，例如 (0,255,129)。我一般会根据需要处理的数据量的多少给出不同的处理方法建议：</p>
+<p>同样第一步需要确认黑边值是什么？本例中是 (0,0,0)</p>
+<p><img src="http://img.blog.csdn.net/20160202103049729" alt="这里写图片描述"></p>
+<p><br></p>
+<p>ArcMap的 Windows 菜单中有 Image Analysis 。在 Image Analysis 窗口中的 Processing 部分可以对当前数据框中的图层赋予函数或函数链，从而对栅格数据实时处理。</p>
+<p><img src="http://img.blog.csdn.net/20160202104230098" alt="这里写图片描述"></p>
+<p>在弹出的窗口中，在 fx行右键插入函数，例如这个需求中会使用到 Mask Function。</p>
+<p><img src="http://img.blog.csdn.net/20160202115040077" alt="这里写图片描述"></p>
+<p>设置 Mask Function，(0,0,0) 组合是无效值。为什么选择 All 而不是 Any？ 这个答案很显见，同时都为0的像元值才是无效值，否则不是，例如（1，255，0）是有效的。或者说各个波段的0值是and关系，而不是or。</p>
+<p><img src="http://img.blog.csdn.net/20160202115853565" alt="这里写图片描述"></p>
+<p>这样带有函数的新栅格图层会自动加入 ArcMap 的 TOC，看起来万事大吉，然而这里需要说明下，这个图层需要Export到硬盘上的某个位置，它目前还是个临时数据，当layer被移除掉，这个结果就不复存在。</p>
+<p><img src="http://img.blog.csdn.net/20160202151625645" alt="这里写图片描述"></p>
+<p>所以，最后重要的一步，导出数据。</p>
+<p><img src="http://img.blog.csdn.net/20160202152154459" alt="这里写图片描述"></p>
+<p><br></p>
+<p>(￣ˇ￣) <strong>这种方法，还适用于具有多种无效值的情况</strong>。例如，除了(0,0,0) 还包含 (255,255,255) ：</p>
+<p><img src="http://img.blog.csdn.net/20160202160314003" alt="这里写图片描述"></p>
+<p>我们需要做的仅是继续增加栅格函数。在 Function Template Editor 中函数们顺序相接，像个环环相接的链条，所以称为 ”函数链/ Function Chain“，咦，好像跑题了。请继续看如何设置无效值：</p>
+<p><img src="http://img.blog.csdn.net/20160202161443589" alt="这里写图片描述"></p>
+<p>这样就实现了去掉两组无效值。</p>
+<p><br></p>
+<p><br></p>
+<h1 id="Option-3-镶嵌数据集"><a href="#Option-3-镶嵌数据集" class="headerlink" title="Option 3  镶嵌数据集"></a>Option 3  镶嵌数据集</h1><p>那么摆在你面前的数据不是一个，而是“很多”呢？凡事保证质量之后，重复工作多了之后就同时需要保证效率，那么这种方法适用于“很多”、“大量”……</p>
+<p>ArcGIS 的镶嵌数据集是个理想与实用兼备的影像数据管理模型，我们用它来“处理”大量栅格数据也是个不错的选择。</p>
+<p>在地理数据库中创建镶嵌数据集，并将数据添加到镶嵌数据集中，之后：</p>
+<blockquote>
+<p>在”之后“之前的预备动作，此文中不赘述，但是你可以看<a href="http://blog.csdn.net/kikitamoon/article/details/40039903" target="_blank" rel="external"><strong>这篇</strong></a>了解这些内容。</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160202171117222" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160202171131331" alt="这里写图片描述"></p>
+<p>在镶嵌数据集中可以使用工具 Define Mosaic Dataset Nodata 工具，对数据的无效值进行定义。</p>
+<p><img src="http://img.blog.csdn.net/20160202171615911" alt="这里写图片描述"></p>
+<p>从而批量去除了无效值。</p>
+<p>镶嵌数据集本身也支持栅格函数，类似影像数据窗口中函数模板的设置，同样可以设置函数链来实现一些复杂的要求。</p>
+<p><img src="http://img.blog.csdn.net/20160202172231445" alt="这里写图片描述"></p>
+<p>有关镶嵌数据集函数，也可以参考<a href="http://blog.csdn.net/kikitamoon/article/details/41673535" target="_blank" rel="external">这篇</a>。</p>
+<p><br></p>
+<p>常见的操作一般就这几种，总结下，单波段优先考虑栅格计算器；多波段可以使用影像分析窗口；如果数据量较大，建议使用镶嵌数据集。</p>
+<p>ArcGIS Desktop 虽然不是专业做影像数据处理的平台，但是拥有的这些功能能很大程度上解决影像处理的常见问题。写这一篇是因为不少用户遇到类似问题，集中总结下比较有意义，希望给大家一些思路，下次遇到此类的问题时，自己动手试试吧。</p>
 
         </div>
         <footer class="article-footer">
@@ -189,7 +252,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 
 
 
-    <a data-url="http://www.kikitamap.com/2016/03/01/HelloWorld/" data-id="cilajcelv000034ivwixv6nb2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://www.kikitamap.com/2016/03/02/为影像数据去除无效值/" data-id="cilajceml000634iv07226b12" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -256,7 +319,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/01/HelloWorld/" data-title="HelloWorld" data-url="http://www.kikitamap.com/2016/03/01/HelloWorld/"></div>
+    <div class="ds-thread" data-thread-key="2016/03/02/为影像数据去除无效值/" data-title="为影像数据去除无效值" data-url="http://www.kikitamap.com/2016/03/02/为影像数据去除无效值/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -320,16 +383,12 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         
 <nav id="article-nav">
     
-        <a href="/2016/03/02/你所不知的有趣投影方法/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            你所不知的有趣投影方法
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
+        <a href="/2016/03/02/你所不知的有趣投影方法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">你所不知的有趣投影方法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
