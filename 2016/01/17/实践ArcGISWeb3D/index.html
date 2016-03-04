@@ -3,25 +3,40 @@
 <head>
     <meta charset="utf-8">
     
-    <title>你所不知的有趣投影方法 | kikita &amp; Maps</title>
+    <title>实践ArcGISWeb3D | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Mapping,projection" />
+        <meta name="keywords" content="" />
     
-    <meta name="description" content="高斯克吕格/Gauss Kruger、兰伯特/Lambert、墨卡托/Mercator……这些是业内人士耳熟能详的 投影方法，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。
-ArcGIS中提供了众多的坐标系统定义信息，有些 投影坐标系一直静静存在，只是没有被关注，今天我们一起翻几个牌子">
+    <meta name="description" content="ArcGIS 产品家族的 Web 3D 功能众多用户期待已久，从 ArcGIS 10.3.1 版本开始，Esri 放了个大招，千呼万唤始出来的 Web 3D 功能，终于不再犹抱琵琶半遮面了。 那到底如何将创建和发布3D场景呢？ 下面就把今天的测试过程记录下。
+
+测试环境硬件
+
+处理器：Intel Core i7 4710MQ @ 2.50GHz
+内存：16G
+显卡：NVIDIA GeForce G">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你所不知的有趣投影方法">
-<meta property="og:url" content="http://www.kikitamap.com/2016/02/04/你所不知的有趣投影方法/index.html">
+<meta property="og:title" content="实践ArcGISWeb3D">
+<meta property="og:url" content="http://www.kikitamap.com/2016/01/17/实践ArcGISWeb3D/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="高斯克吕格/Gauss Kruger、兰伯特/Lambert、墨卡托/Mercator……这些是业内人士耳熟能详的 投影方法，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。
-ArcGIS中提供了众多的坐标系统定义信息，有些 投影坐标系一直静静存在，只是没有被关注，今天我们一起翻几个牌子">
-<meta property="og:image" content="http://img.blog.csdn.net/20160203115028046">
-<meta property="og:updated_time" content="2016-03-03T09:33:55.061Z">
+<meta property="og:description" content="ArcGIS 产品家族的 Web 3D 功能众多用户期待已久，从 ArcGIS 10.3.1 版本开始，Esri 放了个大招，千呼万唤始出来的 Web 3D 功能，终于不再犹抱琵琶半遮面了。 那到底如何将创建和发布3D场景呢？ 下面就把今天的测试过程记录下。
+
+测试环境硬件
+
+处理器：Intel Core i7 4710MQ @ 2.50GHz
+内存：16G
+显卡：NVIDIA GeForce G">
+<meta property="og:image" content="http://img.blog.csdn.net/20160116212543218">
+<meta property="og:updated_time" content="2016-03-04T03:24:48.773Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你所不知的有趣投影方法">
-<meta name="twitter:description" content="高斯克吕格/Gauss Kruger、兰伯特/Lambert、墨卡托/Mercator……这些是业内人士耳熟能详的 投影方法，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。
-ArcGIS中提供了众多的坐标系统定义信息，有些 投影坐标系一直静静存在，只是没有被关注，今天我们一起翻几个牌子">
+<meta name="twitter:title" content="实践ArcGISWeb3D">
+<meta name="twitter:description" content="ArcGIS 产品家族的 Web 3D 功能众多用户期待已久，从 ArcGIS 10.3.1 版本开始，Esri 放了个大招，千呼万唤始出来的 Web 3D 功能，终于不再犹抱琵琶半遮面了。 那到底如何将创建和发布3D场景呢？ 下面就把今天的测试过程记录下。
+
+测试环境硬件
+
+处理器：Intel Core i7 4710MQ @ 2.50GHz
+内存：16G
+显卡：NVIDIA GeForce G">
     
 
     
@@ -144,72 +159,103 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-你所不知的有趣投影方法" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-实践ArcGISWeb3D" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        你所不知的有趣投影方法
+        实践ArcGISWeb3D
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/02/04/你所不知的有趣投影方法/" class="article-date">
-    <time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time>
+            <a href="/2016/01/17/实践ArcGISWeb3D/" class="article-date">
+    <time datetime="2016-01-17T02:45:37.000Z" itemprop="datePublished">2016-01-17</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapping/">Mapping</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/projection/">projection</a></li></ul>
-
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p><a href="http://baike.baidu.com/view/311590.htm" target="_blank" rel="external">高斯克吕格/Gauss Kruger</a>、<a href="http://baike.baidu.com/view/1351534.htm" target="_blank" rel="external">兰伯特/Lambert</a>、<a href="http://baike.baidu.com/view/301981.htm" target="_blank" rel="external">墨卡托/Mercator</a>……这些是业内人士耳熟能详的 <a href="http://desktop.arcgis.com/en/arcmap/latest/map/projections/what-are-map-projections.htm" target="_blank" rel="external">投影方法</a>，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。</p>
-<p>ArcGIS中提供了众多的坐标系统定义信息，有些 <a href="http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm" target="_blank" rel="external">投影坐标系</a>一直静静存在，只是没有被关注，今天我们一起翻几个牌子。</p>
+            <p>ArcGIS 产品家族的 Web 3D 功能众多用户期待已久，从 ArcGIS 10.3.1 版本开始，Esri 放了个大招，千呼万唤始出来的 Web 3D 功能，终于不再犹抱琵琶半遮面了。 那到底如何将创建和发布3D场景呢？ 下面就把今天的测试过程记录下。</p>
 <p><br></p>
-<p>准备示例数据，世界大洲及格网数据，当前是地理坐标系 WGS1984，首次拖拽到 ArcMap看起来是我们最熟悉的这个样子：</p>
-<p><img src="http://img.blog.csdn.net/20160203115028046" alt="这里写图片描述"></p>
-<p>下面我们变换不同的投影方法，看看世界发生了什么变化。</p>
-<p><br><br><br></p>
-<h1 id="埃托夫投影-Aitoff-projection"><a href="#埃托夫投影-Aitoff-projection" class="headerlink" title="埃托夫投影/Aitoff projection"></a>埃托夫投影/Aitoff projection</h1><p>将世界投影到<strong>长短轴为2：1的椭圆</strong>上，有关这个投影方法的说明，戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/aitoff.htm" target="_blank" rel="external"><strong>这里</strong></a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204100735323" alt="这里写图片描述"></p>
+<h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><p><strong>硬件</strong></p>
+<ul>
+<li>处理器：Intel Core i7 4710MQ @ 2.50GHz</li>
+<li>内存：16G</li>
+<li>显卡：NVIDIA GeForce GT 730M</li>
+</ul>
+<p><strong>OS</strong></p>
+<ul>
+<li>Windows  10  Pro</li>
+</ul>
+<p><strong>软件</strong></p>
+<ul>
+<li>ArcGIS Pro 1.1.1    <strong>（必要）</strong></li>
+<li>ArcGIS for Server 10.3.1   <strong>（必要）</strong><br>包括：<ul>
+<li>Portal for ArcGIS </li>
+<li>ArcGIS Web Adpter (IIS)</li>
+<li>ArcGIS Data Store</li>
+</ul>
+</li>
+<li>ArcGIS for Desktop 10.3.1</li>
+<li>CityEgnine 2015.2</li>
+</ul>
 <p><br></p>
-<h1 id="等距方位投影-Azimuthal-equidistant-projection"><a href="#等距方位投影-Azimuthal-equidistant-projection" class="headerlink" title="等距方位投影/Azimuthal equidistant projection"></a>等距方位投影/Azimuthal equidistant projection</h1><p>这是一种<strong>平面投影</strong>，由纬度和经度确定的一个点作为平面与椭球的切点，详情戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/azimuthal-equidistant.htm" target="_blank" rel="external">这里</a>。</p>
-<p><strong>当切点是本初子午线和赤道交点时</strong>，我们看到的世界是这样，大陆好像散开的拼图：</p>
-<p><img src="http://img.blog.csdn.net/20160204102008292" alt="这里写图片描述"></p>
-<p><strong>当以北极为切点时</strong>，我们看到的世界是这样：</p>
-<p><img src="http://img.blog.csdn.net/20160204102435150" alt="这里写图片描述"></p>
-<p>为什么有种莫名的熟悉感？联合国的Logo是这样吧，灵感来自这里：</p>
-<p><img src="http://img.blog.csdn.net/20160204102544166" alt="这里写图片描述"></p>
 <p><br></p>
-<h1 id="柏哥斯星状投影-Berghaus-Star-Projection"><a href="#柏哥斯星状投影-Berghaus-Star-Projection" class="headerlink" title="柏哥斯星状投影/Berghaus Star Projection"></a>柏哥斯星状投影/Berghaus Star Projection</h1><p>这种投影方法很有趣，让人一见倾心。此方法通常中心在北极，是对中央半球使用等距方位投影，而地球的另一半被分割为五个三角形，从而形成了一个围绕圆心的星形。详情戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/berghaus-star.htm" target="_blank" rel="external">这里</a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204103811171" alt="这里写图片描述"></p>
-<p>这种投影方法被 <a href="http://www.aag.org/" target="_blank" rel="external">美国地理学家协会(AGG)</a> 采用作为 Logo。</p>
-<p><img src="http://img.blog.csdn.net/20160204104028616" alt="这里写图片描述"></p>
+<h1 id="不可不知的先决条件"><a href="#不可不知的先决条件" class="headerlink" title="不可不知的先决条件"></a>不可不知的先决条件</h1><p><strong>1</strong>.  首先确保自己的环境满足系统要求，这是非常重要的、不可忽略的条件之一，详情参考如下文档：</p>
+<p>  <strong>ArcGIS for Server 系统要求</strong><br>  <a href="http://server.arcgis.com/zh-cn/server/latest/install/windows/arcgis-for-server-system-requirements.htm" target="_blank" rel="external">http://server.arcgis.com/zh-cn/server/latest/install/windows/arcgis-for-server-system-requirements.htm</a></p>
+<p>   <strong>ArcGIS Pro 系统要求</strong><br>   <a href="http://pro.arcgis.com/zh-cn/pro-app/get-started/arcgis-pro-system-requirements.htm" target="_blank" rel="external">http://pro.arcgis.com/zh-cn/pro-app/get-started/arcgis-pro-system-requirements.htm</a></p>
 <p><br></p>
-<h1 id="彭纳投影-Bonne-Projection"><a href="#彭纳投影-Bonne-Projection" class="headerlink" title="彭纳投影/Bonne Projection"></a>彭纳投影/Bonne Projection</h1><p>这个投影方法，博主同样喜欢。伪圆锥投影，所有的纬线为同心圆弧，并且投影变换后是个大大的心形。</p>
-<p>喜欢研究算法的同学，戳<a href="https://en.wikipedia.org/wiki/Bonne_projection" target="_blank" rel="external">这里</a>看公式。</p>
-<p><img src="http://img.blog.csdn.net/20160204104631674" alt="这里写图片描述"></p>
+<p><strong>2</strong>. ArcGIS 的 Scene Service 是一种新的 Web 服务类型，这种服务来自于 ArcGIS Pro，并且要求创建和发布 Scene Service 的<strong>ArcGIS Pro是1.1或将来的更高版本</strong>。  也就是说， 目前传统的ArcGIS for Desktop 是不能创建和发布Scene Service的。</p>
 <p><br></p>
-<h1 id="温克尔三重投影-Winkel-tripel-projection"><a href="#温克尔三重投影-Winkel-tripel-projection" class="headerlink" title="温克尔三重投影/Winkel tripel projection"></a>温克尔三重投影/Winkel tripel projection</h1><p>这可能是我们最常见的世界地图挂图的一种投影方法，详情戳<a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/winkel-tripel.htm" target="_blank" rel="external">这里</a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204105327787" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160204105538334" alt="这里写图片描述"></p>
+<p><strong>3</strong>. 从 <strong>ArcGIS for Server 10.3.1</strong> 版本才开始了Scene Service 的支持。也就是，略早的 10.3 版本也是不可以的哦。为了发布3D数据（Multipatch）和2D数据作为门户中的托管场景图层，<strong>必要的安装组件有 Portal for ArcGIS，ArcGIS Data Store</strong> 。 其中，ArcGIS Data Store 用于存储 Scene Service 中所使用的场景图层切片缓存。</p>
 <p><br></p>
-<h1 id="古蒂等面积投影-Goode-homolosine-projection"><a href="#古蒂等面积投影-Goode-homolosine-projection" class="headerlink" title="古蒂等面积投影/Goode homolosine projection"></a>古蒂等面积投影/Goode homolosine projection</h1><p>这种投影方法最小化整个地球的变形，是一种不连续的伪圆柱等积投影，详情戳<a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/goodes-homolosine.htm" target="_blank" rel="external">这里</a>，还有<a href="https://en.wikipedia.org/wiki/Goode_homolosine_projection" target="_blank" rel="external">这里</a>。</p>
-<p>这种投影方法有两个版本，大陆和海洋。</p>
-<p>Land:<br><img src="http://img.blog.csdn.net/20160204110539288" alt="这里写图片描述"></p>
-<p>Ocean:<br><img src="http://img.blog.csdn.net/20160204110548713" alt="这里写图片描述"></p>
+<p><strong>4</strong> 将 ArcGIS Server 与门户联合；并且将 ArcGIS Server 指定为门户的托管服务器。</p>
+<p><img src="http://img.blog.csdn.net/20160116212543218" alt="这里写图片描述"></p>
+<p><strong>具体如何配置？</strong> 参考帮助文档，这里不赘述，虽然略有繁琐但有章可依：</p>
+<p><strong>联合 ArcGIS Server 站点与门户</strong><br><a href="http://server.arcgis.com/zh-cn/server/latest/administer/windows/federate-an-arcgis-server-site-with-your-portal.htm" target="_blank" rel="external">http://server.arcgis.com/zh-cn/server/latest/administer/windows/federate-an-arcgis-server-site-with-your-portal.htm</a></p>
+<p><strong>配置托管服务器</strong><br><a href="http://server.arcgis.com/zh-cn/server/latest/administer/windows/configure-hosting-server-for-portal.htm" target="_blank" rel="external">http://server.arcgis.com/zh-cn/server/latest/administer/windows/configure-hosting-server-for-portal.htm</a></p>
 <p><br></p>
-<h1 id="“上帝视角”-The-World-From-Space"><a href="#“上帝视角”-The-World-From-Space" class="headerlink" title="“上帝视角”/The World From Space"></a>“上帝视角”/The World From Space</h1><p>最后说一种 ArcGIS 自带的命名为 “The_World_From_Space” 的平面坐标系（WKID: 102038），使用了正射投影（Orthographic Projection）方法。投影变换后，像是在太空遥看这个蓝色星球。</p>
-<p><img src="http://img.blog.csdn.net/20160204111434263" alt="这里写图片描述"></p>
-<p>这个坐标系的默认参数是 Longitude_Of_Center: -72.5333333334；Latitude_Of_Center: 42.5333333333，因此北美大陆位居中央。</p>
-<p><img src="http://img.blog.csdn.net/20160204111650287" alt="这里写图片描述"></p>
-<p>修改下参数，调整下切点位置，把我们心中美丽的中国转过来~</p>
-<p><img src="http://img.blog.csdn.net/20160204114444479" alt="这里写图片描述"></p>
 <p><br></p>
-<p>投影变换是不是也挺有意思的？ 让我们真正发现了“数学之美”。春节临近，祝大家新春愉快喽！</p>
+<h1 id="创建和发布Scene-Service-的过程"><a href="#创建和发布Scene-Service-的过程" class="headerlink" title="创建和发布Scene Service 的过程"></a>创建和发布Scene Service 的过程</h1><p><br></p>
+<p><strong>1. 打开 ArcGIS Pro ，创建场景，加入场景数据。其中建筑物模型为 File Geodatabase 中的 Multipatch Feature Class。</strong></p>
+<p>   <img src="http://img.blog.csdn.net/20160117094645043" alt="这里写图片描述"></p>
+<p><br></p>
+<p><strong>2. 确保连接并激活 Portal，且自己的账户有创建内容、发布托管要素和发布托管场景的权限。</strong></p>
+<pre><code>&gt; 这里需要说明下，目前，只用 Portal for ArcGIS 才支持发布 Multipatch 数据源的 Scene Service。 ArcGIS Online 暂不支持。如果大家的 ArcGIS Pro 是60天试用版本的许可，默认激活的门户是ArcGIS Online，需要添加并切换到一个可用的Portal。
+</code></pre><p>   <img src="http://img.blog.csdn.net/20160117095515339" alt="这里写图片描述"></p>
+<p><br></p>
+<p><strong>3. 确保ArcGIS Pro 中场景的打开方式是 Global View。如果是 Local View ，也可以切换。</strong></p>
+<p>   <img src="http://img.blog.csdn.net/20160117102209200" alt="这里写图片描述"></p>
+<p><br></p>
+<p><strong>4. 分享场景，分析服务，确保没有 Error，如果有，需要事先修复。</strong></p>
+<p>  <img src="http://img.blog.csdn.net/20160117102833162" alt="这里写图片描述"></p>
+<p><br></p>
+<p><strong>5. 等待完成，确保Job目录中所有任务全部成功完成。</strong></p>
+<p>  <img src="http://img.blog.csdn.net/20160117103404271" alt="这里写图片描述"></p>
+<p>  根据数据量的不同，带宽的不同，硬件配置的不同，整个发布服务的过程时间长短不一。</p>
+<p>  我的这个测试中共89个精细程度不一的建筑物模型，发布全过程大约耗时1分钟，供参考。</p>
+<p>  <img src="http://img.blog.csdn.net/20160117104133951" alt="这里写图片描述"></p>
+<p><br></p>
+<p><br></p>
+<h1 id="Web-前端访问服务"><a href="#Web-前端访问服务" class="headerlink" title="Web 前端访问服务"></a>Web 前端访问服务</h1><p>ArcGIS Scene Viewer 需要支持 WebGL 的桌面 Web 浏览器，WebGL 是用于渲染 3D 图形的 web 技术标准。 </p>
+<p>点 <strong><a href="get.webgl.org">这里</a></strong> 测试浏览器是否启用了 WebGL，请打开 get.webgl.org； 要解决与 WebGL 相关的问题，请访问 WebGL <a href="http://get.webgl.org/troubleshooting/" target="_blank" rel="external"><strong>疑难解答</strong></a>。</p>
+<p>ArcGIS Scene Viewer 支持这些 web 浏览器：<strong>Chrome，Firefox，Internet Explorer 11，Safari</strong>。我这里使用的是 Chrome 是 Version 47.0.2526.111 m (64-bit)。</p>
+<p><br></p>
+<p>好像还不错哦</p>
+<p><img src="http://img.blog.csdn.net/20160117105659303" alt="这里写图片描述"></p>
+<p>表示树木的 Feature Layer 可以在 Web 端修改渲染</p>
+<p><img src="http://img.blog.csdn.net/20160117105852973" alt="这里写图片描述"></p>
+<p>再凑近看看细节</p>
+<p><img src="http://img.blog.csdn.net/20160117105734693" alt="这里写图片描述"></p>
+<p>再换换底图，做几个Slide</p>
+<p><img src="http://img.blog.csdn.net/20160117110003999" alt="这里写图片描述"></p>
+<p><br></p>
+<p><br></p>
+<p>刚好这个周末比较清闲，可以用比较连续的时间做了测试，效果还算令人满意，后面我会再做些大数据量的测试，有空再更新。</p>
 
         </div>
         <footer class="article-footer">
@@ -217,7 +263,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 
 
 
-    <a data-url="http://www.kikitamap.com/2016/02/04/你所不知的有趣投影方法/" data-id="cild3od490007coivsm55i5lr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://www.kikitamap.com/2016/01/17/实践ArcGISWeb3D/" data-id="cild3od470004coiv4c9z7nhu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -284,7 +330,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/02/04/你所不知的有趣投影方法/" data-title="你所不知的有趣投影方法" data-url="http://www.kikitamap.com/2016/02/04/你所不知的有趣投影方法/"></div>
+    <div class="ds-thread" data-thread-key="2016/01/17/实践ArcGISWeb3D/" data-title="实践ArcGISWeb3D" data-url="http://www.kikitamap.com/2016/01/17/实践ArcGISWeb3D/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -356,22 +402,16 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         
 <nav id="article-nav">
     
-        <a href="/2016/03/01/HelloWorld/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/02/02/为影像数据去除无效值/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            HelloWorld
+            为影像数据去除无效值
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
-    
-        <a href="/2016/02/02/为影像数据去除无效值/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">为影像数据去除无效值</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
     
 </nav>
 
