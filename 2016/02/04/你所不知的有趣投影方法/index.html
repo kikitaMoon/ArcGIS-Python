@@ -17,7 +17,7 @@ ArcGIS中提供了众多的坐标系统定义信息，有些 投影坐标系一�
 <meta property="og:description" content="高斯克吕格/Gauss Kruger、兰伯特/Lambert、墨卡托/Mercator……这些是业内人士耳熟能详的 投影方法，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。
 ArcGIS中提供了众多的坐标系统定义信息，有些 投影坐标系一直静静存在，只是没有被关注，今天我们一起翻几个牌子">
 <meta property="og:image" content="http://img.blog.csdn.net/20160203115028046">
-<meta property="og:updated_time" content="2016-03-03T09:33:55.061Z">
+<meta property="og:updated_time" content="2016-03-04T10:47:42.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你所不知的有趣投影方法">
 <meta name="twitter:description" content="高斯克吕格/Gauss Kruger、兰伯特/Lambert、墨卡托/Mercator……这些是业内人士耳熟能详的 投影方法，它们各有适用场景以确保投影后某类或某几类变形最小，其最终要义就是最大程度地精确表示位置。然而，这一篇中不是对这些投影方法进行阐述，而是传递一些新奇特的投影玩法。
@@ -170,44 +170,44 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 <p>ArcGIS中提供了众多的坐标系统定义信息，有些 <a href="http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm" target="_blank" rel="external">投影坐标系</a>一直静静存在，只是没有被关注，今天我们一起翻几个牌子。</p>
 <p><br></p>
 <p>准备示例数据，世界大洲及格网数据，当前是地理坐标系 WGS1984，首次拖拽到 ArcMap看起来是我们最熟悉的这个样子：</p>
-<p><img src="http://img.blog.csdn.net/20160203115028046" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160203115028046" alt=""></p>
 <p>下面我们变换不同的投影方法，看看世界发生了什么变化。</p>
 <p><br><br><br></p>
 <h1 id="埃托夫投影-Aitoff-projection"><a href="#埃托夫投影-Aitoff-projection" class="headerlink" title="埃托夫投影/Aitoff projection"></a>埃托夫投影/Aitoff projection</h1><p>将世界投影到<strong>长短轴为2：1的椭圆</strong>上，有关这个投影方法的说明，戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/aitoff.htm" target="_blank" rel="external"><strong>这里</strong></a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204100735323" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204100735323" alt=""></p>
 <p><br></p>
 <h1 id="等距方位投影-Azimuthal-equidistant-projection"><a href="#等距方位投影-Azimuthal-equidistant-projection" class="headerlink" title="等距方位投影/Azimuthal equidistant projection"></a>等距方位投影/Azimuthal equidistant projection</h1><p>这是一种<strong>平面投影</strong>，由纬度和经度确定的一个点作为平面与椭球的切点，详情戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/azimuthal-equidistant.htm" target="_blank" rel="external">这里</a>。</p>
 <p><strong>当切点是本初子午线和赤道交点时</strong>，我们看到的世界是这样，大陆好像散开的拼图：</p>
-<p><img src="http://img.blog.csdn.net/20160204102008292" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204102008292" alt=""></p>
 <p><strong>当以北极为切点时</strong>，我们看到的世界是这样：</p>
-<p><img src="http://img.blog.csdn.net/20160204102435150" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204102435150" alt=""></p>
 <p>为什么有种莫名的熟悉感？联合国的Logo是这样吧，灵感来自这里：</p>
-<p><img src="http://img.blog.csdn.net/20160204102544166" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204102544166" alt=""></p>
 <p><br></p>
 <h1 id="柏哥斯星状投影-Berghaus-Star-Projection"><a href="#柏哥斯星状投影-Berghaus-Star-Projection" class="headerlink" title="柏哥斯星状投影/Berghaus Star Projection"></a>柏哥斯星状投影/Berghaus Star Projection</h1><p>这种投影方法很有趣，让人一见倾心。此方法通常中心在北极，是对中央半球使用等距方位投影，而地球的另一半被分割为五个三角形，从而形成了一个围绕圆心的星形。详情戳 <a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/berghaus-star.htm" target="_blank" rel="external">这里</a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204103811171" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204103811171" alt=""></p>
 <p>这种投影方法被 <a href="http://www.aag.org/" target="_blank" rel="external">美国地理学家协会(AGG)</a> 采用作为 Logo。</p>
-<p><img src="http://img.blog.csdn.net/20160204104028616" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204104028616" alt=""></p>
 <p><br></p>
 <h1 id="彭纳投影-Bonne-Projection"><a href="#彭纳投影-Bonne-Projection" class="headerlink" title="彭纳投影/Bonne Projection"></a>彭纳投影/Bonne Projection</h1><p>这个投影方法，博主同样喜欢。伪圆锥投影，所有的纬线为同心圆弧，并且投影变换后是个大大的心形。</p>
 <p>喜欢研究算法的同学，戳<a href="https://en.wikipedia.org/wiki/Bonne_projection" target="_blank" rel="external">这里</a>看公式。</p>
-<p><img src="http://img.blog.csdn.net/20160204104631674" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204104631674" alt=""></p>
 <p><br></p>
 <h1 id="温克尔三重投影-Winkel-tripel-projection"><a href="#温克尔三重投影-Winkel-tripel-projection" class="headerlink" title="温克尔三重投影/Winkel tripel projection"></a>温克尔三重投影/Winkel tripel projection</h1><p>这可能是我们最常见的世界地图挂图的一种投影方法，详情戳<a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/winkel-tripel.htm" target="_blank" rel="external">这里</a>。</p>
-<p><img src="http://img.blog.csdn.net/20160204105327787" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20160204105538334" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204105327787" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20160204105538334" alt=""></p>
 <p><br></p>
 <h1 id="古蒂等面积投影-Goode-homolosine-projection"><a href="#古蒂等面积投影-Goode-homolosine-projection" class="headerlink" title="古蒂等面积投影/Goode homolosine projection"></a>古蒂等面积投影/Goode homolosine projection</h1><p>这种投影方法最小化整个地球的变形，是一种不连续的伪圆柱等积投影，详情戳<a href="http://desktop.arcgis.com/zh-cn/desktop/latest/guide-books/map-projections/goodes-homolosine.htm" target="_blank" rel="external">这里</a>，还有<a href="https://en.wikipedia.org/wiki/Goode_homolosine_projection" target="_blank" rel="external">这里</a>。</p>
 <p>这种投影方法有两个版本，大陆和海洋。</p>
-<p>Land:<br><img src="http://img.blog.csdn.net/20160204110539288" alt="这里写图片描述"></p>
-<p>Ocean:<br><img src="http://img.blog.csdn.net/20160204110548713" alt="这里写图片描述"></p>
+<p>Land:<br><img src="http://img.blog.csdn.net/20160204110539288" alt=""></p>
+<p>Ocean:<br><img src="http://img.blog.csdn.net/20160204110548713" alt=""></p>
 <p><br></p>
 <h1 id="“上帝视角”-The-World-From-Space"><a href="#“上帝视角”-The-World-From-Space" class="headerlink" title="“上帝视角”/The World From Space"></a>“上帝视角”/The World From Space</h1><p>最后说一种 ArcGIS 自带的命名为 “The_World_From_Space” 的平面坐标系（WKID: 102038），使用了正射投影（Orthographic Projection）方法。投影变换后，像是在太空遥看这个蓝色星球。</p>
-<p><img src="http://img.blog.csdn.net/20160204111434263" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204111434263" alt=""></p>
 <p>这个坐标系的默认参数是 Longitude_Of_Center: -72.5333333334；Latitude_Of_Center: 42.5333333333，因此北美大陆位居中央。</p>
-<p><img src="http://img.blog.csdn.net/20160204111650287" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204111650287" alt=""></p>
 <p>修改下参数，调整下切点位置，把我们心中美丽的中国转过来~</p>
-<p><img src="http://img.blog.csdn.net/20160204114444479" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160204114444479" alt=""></p>
 <p><br></p>
 <p>投影变换是不是也挺有意思的？ 让我们真正发现了“数学之美”。春节临近，祝大家新春愉快喽！</p>
 
@@ -217,7 +217,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 
 
 
-    <a data-url="http://www.kikitamap.com/2016/02/04/你所不知的有趣投影方法/" data-id="cild61bog000fmsivvpf1fxcf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://www.kikitamap.com/2016/02/04/你所不知的有趣投影方法/" data-id="cildmldna001i7givuoukn7im" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -360,7 +360,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            HelloWorld
+            Hello World ！
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
@@ -391,7 +391,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                             <a href="/2016/03/01/HelloWorld/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="HelloWorld" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
     
     
 </a>
@@ -399,7 +399,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
-                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">HelloWorld</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
                             <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
                         </div>
                     </li>
@@ -489,7 +489,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -499,7 +499,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/Geodata/" style="font-size: 20px;">Geodata</a> <a href="/tags/Mapping/" style="font-size: 10px;">Mapping</a> <a href="/tags/Raster/" style="font-size: 10px;">Raster</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/projection/" style="font-size: 10px;">projection</a>
+            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/Geodata/" style="font-size: 15px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 10px;">License</a> <a href="/tags/Mapping/" style="font-size: 17.5px;">Mapping</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Raster/" style="font-size: 10px;">Raster</a> <a href="/tags/Web/" style="font-size: 12.5px;">Web</a> <a href="/tags/projection/" style="font-size: 10px;">projection</a>
         </div>
     </div>
 
@@ -535,7 +535,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 

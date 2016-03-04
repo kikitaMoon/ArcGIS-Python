@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>地统计分析笔记——探索数据 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geodata,Geoprocessing" />
+    
+    <meta name="description" content="在执行地统计分析之前，浏览、熟悉、检查自己的数据是至关重要的。绘制和检查数据是地统计分析过程中的必要阶段，我们可以从这些工作中获得一些先验知识，指导后续的工作。
+
+Stage 1     绘制数据通过ArcMap的图层渲染方案绘制数据，我们可以获得对数据的第一印象。
+例如，使用单一符号渲染了解采样点的疏密分布，通过分类渲染了解采样点高值低值的分布，等等。
+
+
+Stage 2  检查数据绘制数据后，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地统计分析笔记——探索数据">
+<meta property="og:url" content="http://www.kikitamap.com/2015/11/27/地统计分析笔记-探索数据/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="在执行地统计分析之前，浏览、熟悉、检查自己的数据是至关重要的。绘制和检查数据是地统计分析过程中的必要阶段，我们可以从这些工作中获得一些先验知识，指导后续的工作。
+
+Stage 1     绘制数据通过ArcMap的图层渲染方案绘制数据，我们可以获得对数据的第一印象。
+例如，使用单一符号渲染了解采样点的疏密分布，通过分类渲染了解采样点高值低值的分布，等等。
+
+
+Stage 2  检查数据绘制数据后，">
+<meta property="og:image" content="http://img.blog.csdn.net/20151119225027520">
+<meta property="og:updated_time" content="2016-03-04T10:52:15.607Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地统计分析笔记——探索数据">
+<meta name="twitter:description" content="在执行地统计分析之前，浏览、熟悉、检查自己的数据是至关重要的。绘制和检查数据是地统计分析过程中的必要阶段，我们可以从这些工作中获得一些先验知识，指导后续的工作。
+
+Stage 1     绘制数据通过ArcMap的图层渲染方案绘制数据，我们可以获得对数据的第一印象。
+例如，使用单一符号渲染了解采样点的疏密分布，通过分类渲染了解采样点高值低值的分布，等等。
+
+
+Stage 2  检查数据绘制数据后，">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-地统计分析笔记-探索数据" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        地统计分析笔记——探索数据
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/11/27/地统计分析笔记-探索数据/" class="article-date">
+    <time datetime="2015-11-27T10:19:41.000Z" itemprop="datePublished">2015-11-27</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geodata/">Geodata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>在执行地统计分析之前，浏览、熟悉、检查自己的数据是至关重要的。绘制和检查数据是地统计分析过程中的必要阶段，我们可以从这些工作中获得一些先验知识，指导后续的工作。</p>
+<p><br></p>
+<h1 id="Stage-1-绘制数据"><a href="#Stage-1-绘制数据" class="headerlink" title="Stage 1     绘制数据"></a>Stage 1     绘制数据</h1><p>通过ArcMap的图层渲染方案绘制数据，我们可以获得对数据的第一印象。</p>
+<p>例如，使用单一符号渲染了解采样点的疏密分布，通过分类渲染了解采样点高值低值的分布，等等。</p>
+<p><img src="http://img.blog.csdn.net/20151119225027520" alt=""></p>
+<p><br></p>
+<h1 id="Stage-2-检查数据"><a href="#Stage-2-检查数据" class="headerlink" title="Stage 2  检查数据"></a>Stage 2  检查数据</h1><p>绘制数据后，使用 <strong>探索性空间数据分析 (Exploratory Spatial Data Analysis，ESDA)</strong> 工具来执行数据探索的第二阶段。这些工具提供了一种比绘制数据更加量化的方式来检查数据，有助于我们更深入地了解正在研究的现象，有助于我们对插值模型的构建方式做出更加正确的决策。</p>
+<p>ESDA 工具包括：</p>
+<p><img src="http://img.blog.csdn.net/20151119230810237" alt=""></p>
+<p><br></p>
+<h2 id="Ⅰ-是否服从正态分布？"><a href="#Ⅰ-是否服从正态分布？" class="headerlink" title="Ⅰ 是否服从正态分布？"></a>Ⅰ 是否服从正态分布？</h2><h3 id="Histogram-直方图"><a href="#Histogram-直方图" class="headerlink" title="Histogram/直方图"></a>Histogram/直方图</h3><p><img src="http://img.blog.csdn.net/20151119112414845" alt=""></p>
+<p>直方图用于显示感兴趣数据集的频率分布并计算汇总统计数据，如何解读图形和统计信息呢？</p>
+<ul>
+<li>如果数据服从正态分布，则平均值（mean）与中值（median）类似，偏度（skewness）应接近零，并且峰度（kurtosis）应接近 3。<ul>
+<li>平均值即为数据的算数平均值。平均值提供分布中心的测量值。 中位数与累积比例 0.5 对应。如果数据以升序排列，50%的值位于中间值之下，50% 的值位于中间值之上。中间值提供了分布中心的另一个测量值。 第一和第三分位数分别与累积比例 0.25 和 0.75 对应。如果数据以升序排列，则 25% 的值位于第一分位数之下，25% 的值位于第三分位数之上。第一和第三分位数是分位数的特殊情况。</li>
+<li>偏度系数是分布对称度的测量值。对于对称的分布，偏度系数为零。如果分布具有较长的大值右尾部，则为正偏分布；如果分布具有较长的小值左尾部，则为负偏分布。对于正偏分布，平均值大于中间值；对负偏分布，平均值小于中间值。</li>
+<li>峰度取决于分布尾部的大小，提供分布产生异常值可能性的衡量指标。正态分布的峰度等于三。具有较厚尾部的分布被称为高峰态，其峰度大于三。具有较薄尾部的分布被称为低峰态，其峰度值小于三。</li>
+</ul>
+</li>
+<li>数据的方差，通常对过高值或过低值很敏感。标准差为方差的平方根，它描述了数据在平均值周围的分散程度。方差和标准差越小，测量值聚类相对于平均值就越紧密。</li>
+</ul>
+<p><br></p>
+<h3 id="Normal-QQPlots-正态QQ图"><a href="#Normal-QQPlots-正态QQ图" class="headerlink" title="Normal QQPlots/正态QQ图"></a>Normal QQPlots/正态QQ图</h3><p><img src="http://img.blog.csdn.net/20151119130620467" alt=""></p>
+<p>正态 QQ 图上的点可指示数据集的单变量分布的正态性。如果数据是正态分布的，点将落在 45 度参考线上。如果数据不是正态分布的，点将会偏离参考线。</p>
+<p><br></p>
+<h3 id="General-QQPlots-普通QQ图"><a href="#General-QQPlots-普通QQ图" class="headerlink" title="General QQPlots/普通QQ图"></a>General QQPlots/普通QQ图</h3><p>普通 QQ 图用于评估两个数据集的分布的相似程度。这些图的创建和所述的正态 QQ 图的过程类似，不同之处在于第二个数据集不一定要服从正态分布，使用任何数据集均可。如果两个数据集具有相同的分布，普通 QQ 图中的点将落在 45 度直线上。</p>
+<p><br></p>
+<p><br></p>
+<blockquote>
+<p><strong>### 有关数据变换</strong></p>
+<p>Geostatistical Analyst 中的一些插值方法要求数据呈正态分布。如果数据偏斜（分布不均衡），则可能需要将数据变换为正态分布。</p>
+<p><strong>Box-Cox 变换（又称幂变换）</strong><br>如果在某一部分研究区域中计数值很小，这一区域的变异性就小于计数值更大的另一区域的变异性。在这种情况下，平方根变换将<strong>有助于使整个研究区域内的方差更加恒定</strong>，通常还会使数据呈正态分布。平方根变换是 Box-Cox 变换中 λ = ½ 时的特例。</p>
+<p><strong>对数变换</strong><br>对数变换实际上是 Box-Cox 变换中 λ = 0 时的特例。对数变换<strong>通常用于呈正偏分布的数据</strong>。其中有些值非常大，如果这些大值位于研究区域中，对数变换有助于使方差更加恒定和归一化数据。</p>
+<p>例如数据如下分布：<br><img src="http://img.blog.csdn.net/20151122160655648" alt=""></p>
+<p>变换前后对比：<br><img src="http://img.blog.csdn.net/20151122163827274" alt=""></p>
+<p><strong>反正弦变换</strong><br>反正弦变换<strong>可用于表示比例或百分比的数据</strong>。通常在数据为比例形式时，方差在接近 0 和 1 时最小，接近 0.5 时最大。反正弦变换有助于使整个研究区域内的方差更加恒定，通常还会使数据呈正态分布。</p>
+</blockquote>
+<p><br></p>
+<h2 id="Ⅱ-是否存在异常值？"><a href="#Ⅱ-是否存在异常值？" class="headerlink" title="Ⅱ 是否存在异常值？"></a>Ⅱ 是否存在异常值？</h2><p>全局异常值是相对于数据集中的所有值而言具有非常高值或非常低值的已测量采样点。<br>局部异常值是一个已测量采样点，其值处于整个数据集的正常值域范围内，但查看周围点时，其值则显得异常高或异常低。</p>
+<p>如果异常值是现象中的真实异常情况，那么这可能是研究和理解现象的最重要的位置点。如果异常值是由数据输入过程中的错误所导致的，那么在创建表面之前应该对其进行校正或移除。</p>
+<h3 id="Histogram-直方图-1"><a href="#Histogram-直方图-1" class="headerlink" title="Histogram/直方图"></a>Histogram/直方图</h3><p>如果在直方图的最左侧（极小值）或最右侧（极大值）能够看到一个孤立的条，可能表明这个条所表示的点是异常值。这种条越孤立于直方图的主条组，点是异常值的概率就越大。</p>
+<p><br></p>
+<h3 id="Voronoi-图"><a href="#Voronoi-图" class="headerlink" title="Voronoi 图"></a>Voronoi 图</h3><p>Voronoi 图是由采样点形成的泰森多边形地图。</p>
+<p><img src="http://img.blog.csdn.net/20151122175401018" alt=""></p>
+<p>在查看 Voronoi 图时，检查附近是否有面符号色彩差别很大的值。</p>
+<p>例如，下图中红色面明显异于周围值。</p>
+<p><img src="http://img.blog.csdn.net/20151122175650643" alt=""></p>
+<p><br></p>
+<h3 id="Semivariogram-Covariance-Cloud-半变异函数-协方差云"><a href="#Semivariogram-Covariance-Cloud-半变异函数-协方差云" class="headerlink" title="Semivariogram/Covariance Cloud / 半变异函数/协方差云"></a>Semivariogram/Covariance Cloud / 半变异函数/协方差云</h3><p>半变异函数/协方差云工具可以用来检查数据集中空间自相关的局部特征以及查找局部异常值。</p>
+<p><img src="http://img.blog.csdn.net/20151122193737210" alt=""></p>
+<p>云中的每个点表示数据集中的一对点，x 轴表示各位置间的距离，y 轴表示这些位置上的值的差值平方。半变异函数中的每个点都表示一个位置对，而不是地图上的单个位置。因此云中点的数量会随着数据集中点的数量的增加而快速增加。如果数据集中存在 n 个点，则半变异函数/协方差云中将显示 n*(n-1)/2 个点。因此，不建议使用点数超过几千个的数据集。如果数据集包含几千个点，那么应使用子集要素工具来随机选择点，然后在半变异函数/协方差云中使用子集。</p>
+<p>“半变异函数/协方差云”工具对检测局部异常值特别有用。它们显示为互相接近的点（x 轴上的低值），但在 y 轴上却是高值，表明组成点对的两个点的值有很大差异。这与所期望的结果正相反，即互相接近的点有相似的值。</p>
+<p><br></p>
+<h2 id="Ⅲ-是否存在趋势？"><a href="#Ⅲ-是否存在趋势？" class="headerlink" title="Ⅲ 是否存在趋势？"></a>Ⅲ 是否存在趋势？</h2><h3 id="Trend-Analyst-趋势分析"><a href="#Trend-Analyst-趋势分析" class="headerlink" title="Trend Analyst / 趋势分析"></a>Trend Analyst / 趋势分析</h3><p>“趋势分析”工具提供数据的三维透视图。采样点的位置绘制在 x,y 平面上，z值表示感兴趣的属性值。趋势分析工具将散点图投影到 x,z 平面和 y,z 平面上，通过多项式曲线对每个投影进行了拟合。</p>
+<p><img src="http://img.blog.csdn.net/20151122200316850" alt=""></p>
+<p>浏览图形垂直墙面上的粗线。这些线表示趋势。一条趋势线沿 x 轴（通常表示纵向趋势），另一条显示沿 y 轴的趋势（通常表示纬度趋势）。如果经过投影点的曲线是平的，则不存在趋势；如果多项式曲线具有确切的模式（如下图的蓝线和绿线），这表明数据中存在某种趋势。</p>
+<p>另外，检查趋势时更改多项式的阶非常有用；检查不同于标准 N–S 和 E–W 方向的趋势非常有帮助，可以通过旋转趋势轴检查数据。</p>
+<p><br></p>
+<h2 id="Ⅳ-是否空间自相关？"><a href="#Ⅳ-是否空间自相关？" class="headerlink" title="Ⅳ 是否空间自相关？"></a>Ⅳ 是否空间自相关？</h2><p>我们可通过检查不同的位置的采样数据对来探索数据的空间自相关，仍然使用前面提到过的ESDA工具半变异函数云。</p>
+<p><br></p>
+<h3 id="Semivariogram-Covariance-Cloud-半变异函数-协方差云-1"><a href="#Semivariogram-Covariance-Cloud-半变异函数-协方差云-1" class="headerlink" title="Semivariogram/Covariance Cloud / 半变异函数/协方差云"></a>Semivariogram/Covariance Cloud / 半变异函数/协方差云</h3><p>如果存在空间相关性，则距离较近的点对（在 x 轴的最左侧）应具有较小的差值（在 y 轴上的值较小）。随着各个点之间的距离越来越大（点在 x 轴上向右移动），通常，差值的平方也应随之增大（在 y 轴上向上移动）。通常，平方差超过某个距离后就会保持不变。超过这个距离的位置对被视为不相关。</p>
+<p>如果半变异函数中的点对构成一条水平的直线，那么数据中可能不存在空间自相关，因而对数据进行插值也就失去了意义。</p>
+<p>地统计方法的基本假设是，对于任意两个彼此间的距离和方向都相近的位置，其差值的平方也应相近。这种关系称为<strong>平稳性</strong>。空间自相关可能仅依赖于两个位置之间的距离，这被称为<strong>各向同性</strong>。如果事物在某些方向上比在其他方向上更相似，也就是半变异函数和协方差中都存在这种方向性影响，它被称为<strong>各向异性</strong>。</p>
+<p><img src="http://img.blog.csdn.net/20151122203416191" alt=""></p>
+<p><br></p>
+<h3 id="交叉协方差云"><a href="#交叉协方差云" class="headerlink" title="交叉协方差云"></a>交叉协方差云</h3><p>“交叉协方差云”工具可用于研究两个数据集之间的交叉相关。交叉协方差云显示了两个数据集间的所有位置对的经验交叉协方差，并且将其作为两位置间距离的函数对其进行绘制，与上面的工具类似，该工具也提供具有搜索方向功能的协方差表面。</p>
+<p><img src="http://img.blog.csdn.net/20151122205141845" alt=""></p>
+<p><br></p>
+<p>对数据有了第一印象，并且用 ESDA 工具对数据做了检查，我们已经对待研究的数据有了一些先验知识，那么下面就可以选择插值方法来创建表面了，下一篇继续。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2015/11/27/地统计分析笔记-探索数据/" data-id="cildmldmv000r7giv658bq8s2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/11/27/地统计分析笔记-探索数据/" data-title="地统计分析笔记——探索数据" data-url="http://www.kikitamap.com/2015/11/27/地统计分析笔记-探索数据/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/12/06/如何在ArcGISforDesktop中实现批量任务/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            如何在ArcGIS for Desktop中实现批量任务
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/11/27/连不上ArcGISLicenseManager的一点常用诊断方法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">“连不上ArcGIS License Manager” 的一点常用诊断方法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/你所不知的有趣投影方法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/你所不知的有趣投影方法/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/为影像数据去除无效值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/为影像数据去除无效值/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/17/实践ArcGISWeb3D/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160116212543218)" alt="实践 ArcGIS Web 3D" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/01/17/实践ArcGISWeb3D/" class="title">实践 ArcGIS Web 3D</a></p>
+                            <p class="item-date"><time datetime="2016-01-17T02:45:37.000Z" itemprop="datePublished">2016-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20151217114733326)" alt="Trubleshooting：Shapefile 乱码与字符截断问题" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="title">Trubleshooting：Shapefile 乱码与字符截断问题</a></p>
+                            <p class="item-date"><time datetime="2015-12-21T05:00:00.000Z" itemprop="datePublished">2015-12-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/Geodata/" style="font-size: 15px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 10px;">License</a> <a href="/tags/Mapping/" style="font-size: 17.5px;">Mapping</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Raster/" style="font-size: 10px;">Raster</a> <a href="/tags/Web/" style="font-size: 12.5px;">Web</a> <a href="/tags/projection/" style="font-size: 10px;">projection</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>
