@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Web Mercator 公开的小秘密 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Projection" />
+    
+    <meta name="description" content="网上已经有好多作者都不吝笔墨，写了好多有关 Web Mercator这个坐标系的前世今生。多搜罗多摄入，我们会得到很多有用的信息。今天讨论到 3758，3857，102100，900913…… 这些ID又一石激起千层浪，看来整理总结下还是有点必要。
+
+Web Mercator 如何定义？
+ 我们知道，地理数据的坐标系一般有两大类，一是地理坐标系(GCS)，是经纬度单位的椭球坐标系；二是投影坐标系(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Mercator 公开的小秘密">
+<meta property="og:url" content="http://www.kikitamap.com/2015/05/29/WebMercator公开的小秘密/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="网上已经有好多作者都不吝笔墨，写了好多有关 Web Mercator这个坐标系的前世今生。多搜罗多摄入，我们会得到很多有用的信息。今天讨论到 3758，3857，102100，900913…… 这些ID又一石激起千层浪，看来整理总结下还是有点必要。
+
+Web Mercator 如何定义？
+ 我们知道，地理数据的坐标系一般有两大类，一是地理坐标系(GCS)，是经纬度单位的椭球坐标系；二是投影坐标系(">
+<meta property="og:image" content="http://img.blog.csdn.net/20150528211737974">
+<meta property="og:updated_time" content="2016-03-07T02:58:18.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Mercator 公开的小秘密">
+<meta name="twitter:description" content="网上已经有好多作者都不吝笔墨，写了好多有关 Web Mercator这个坐标系的前世今生。多搜罗多摄入，我们会得到很多有用的信息。今天讨论到 3758，3857，102100，900913…… 这些ID又一石激起千层浪，看来整理总结下还是有点必要。
+
+Web Mercator 如何定义？
+ 我们知道，地理数据的坐标系一般有两大类，一是地理坐标系(GCS)，是经纬度单位的椭球坐标系；二是投影坐标系(">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-WebMercator公开的小秘密" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Web Mercator 公开的小秘密
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/05/29/WebMercator公开的小秘密/" class="article-date">
+    <time datetime="2015-05-29T01:44:56.000Z" itemprop="datePublished">2015-05-29</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Projection/">Projection</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>网上已经有好多作者都不吝笔墨，写了好多有关 Web Mercator这个坐标系的前世今生。多搜罗多摄入，我们会得到很多有用的信息。今天讨论到 3758，3857，102100，900913…… 这些ID又一石激起千层浪，看来整理总结下还是有点必要。</p>
+<p><br></p>
+<h1 id="Web-Mercator-如何定义？"><a href="#Web-Mercator-如何定义？" class="headerlink" title="Web Mercator 如何定义？"></a>Web Mercator 如何定义？</h1><p><br></p>
+<p> 我们知道，地理数据的坐标系一般有两大类，一是地理坐标系(GCS)，是经纬度单位的椭球坐标系；二是投影坐标系(PCS)，是平面直角坐标系。</p>
+<p>投影坐标系（PCS）的定义一般会包含两方面的定义信息：<br>（1）基准面/Datum — 与GCS相应<br>（2）投影方法/Projection Method</p>
+<p><br></p>
+<h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p><strong>Web Mercator 是一个投影坐标系统，其基准面是 WGS 1984 。</strong></p>
+<p><br></p>
+<p>那么，第一个问题，<em>WGS 1984 是什么？</em></p>
+<p>“ 世界大地坐标系是美国国防部制图局（Defence Mapping Agency， DMA）为统一世界大地坐标系统，实现全球测量标准的一致性，定义用于制图、大地、导航的坐标基准。它包括标准地球坐标框架、用于处理原始观测数据的标准椭球参考面（即基准和参考椭球）和定义标准海平面的重力等势面（大地水准面）。……”（摘自《大地坐标系统及其应用》）</p>
+<p>在上面一段中可以知道，定义一个坐标系绝对是一个复杂浩大的数学工程。 我们经常听说的 WGS 1984 （或 WGS 84）就是其中一个世界大地坐标系统。我们经常使用的 GPS 的坐标参考系统也是它。</p>
+<p>WGS 1984 的具体定义参数：</p>
+<blockquote>
+<p>GCS_WGS_1984<br>WKID: 4326 Authority: EPSG</p>
+<p>Angular Unit: Degree (0.0174532925199433)<br>Prime Meridian: Greenwich (0.0)<br>Datum: D_WGS_1984<br>  Spheroid: WGS_1984<br>    Semimajor Axis: 6378137.0<br>    Semiminor Axis: 6356752.314245179<br>    Inverse Flattening: 298.257223563</p>
+</blockquote>
+<p>通过参数描述，我们知道 WGS 1984 是一个长半轴(a)为6378137，短半轴（b）为6356752.314245179 的椭球体，扁率(f)为298.257223563，f=(a-b)/a 。</p>
+<p><img src="http://img.blog.csdn.net/20150528211737974" alt="这里写图片描述"></p>
+<p><br></p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p><strong>Web Mercator 坐标系使用的投影方法不是严格意义的墨卡托投影，而是一个被 EPSG（European Petroleum Survey Group）称为</strong>伪墨卡托<strong>的投影方法，这个伪墨卡托投影方法的大名是 Popular Visualization Pseudo Mercator，PVPM。</strong> 看起来就觉得这个投影方法不是很严谨的样子，大众化的？受欢迎的？可视化伪墨卡托投影……</p>
+<p>因为这个坐标系统是 Google Map 最先使用的，或者更确切地说，是Google 最先发明的。在投影过程中，将表示地球的参考椭球体近似的作为正球体处理（正球体半径 R = 椭球体半长轴 a）。这也是为什么在 ArcGIS 中我们经常看到这个坐标系叫 <strong>WGS 1984 Web Mercator (Auxiliary Sphere)</strong>。Auxiliary Sphere 就是在告知你，这个坐标在投影过程中，将椭球体近似为正球体做投影变换，虽然基准面是WGS 1984 椭球面。</p>
+<p><img src="http://img.blog.csdn.net/20150528211907842" alt="这里写图片描述"></p>
+<p>后来，Web Mercator 在 Web 地图领域被广泛使用，这个坐标系就名声大噪。尽管这个坐标系由于精度问题一度不被GIS专业人士接受，但最终 EPSG 还是给了 WKID:3857。</p>
+<p>下面放一张在 EPSG 官网上找到的3857坐标的具体参数介绍，供参考：</p>
+<p><img src="http://img.blog.csdn.net/20150528180842720" alt="这里写图片描述"></p>
+<p><br></p>
+<p><br></p>
+<h1 id="Web-Mercator-的阴暗面"><a href="#Web-Mercator-的阴暗面" class="headerlink" title="Web Mercator 的阴暗面"></a>Web Mercator 的阴暗面</h1><p><br></p>
+<p>Web Mercator 无论是来自Google程序员的谬误，还是为了简化换算的有意为之，现在它都已经名正言顺的成为了 Web 底图的最受欢迎平面坐标系。</p>
+<p>问题又来了，<strong>为什么这么受欢迎的坐标系还会受到GIS大咖的诟病？</strong></p>
+<p>拒绝给这个坐标系分配 坐标系ID 的原话是这样的：</p>
+<p><strong>“</strong> The projected coordinate reference system originally lacked an official spatial reference identifier (SRID), and the Geodesy subcommittee of the OGP’s Geomatics committee (also known as EPSG) refused to provide it with one, declaring “We have reviewed the coordinate reference system used by Microsoft, Google, etc. and believe that it is technically flawed. We will not devalue the EPSG dataset by including such inappropriate geodesy and cartography.”  <strong>”</strong></p>
+<p>这不是EPSG 冷酷无情无理取闹，从技术角度看是有原因的。简而言之，主要原因在于基准面被篡改后，本来是等角投影的Mercator坐标变换算法，不再等角了，而是近似等角，也就是出现角度变形。这种变形势必影响了坐标的精度，如下是某位GIS专家给出的概要说明（闪亮的最后一条）：</p>
+<p><img src="http://img.blog.csdn.net/20150528231421817" alt="这里写图片描述"></p>
+<p>如果你想进一步关心细节，想知道这位专家对 Web Mercator 的 dark side 的深入见解，点<a href="http://hydrometronics.com/downloads/Web%20Mercator%20-%20Non-Conformal,%20Non-Mercator%20%28notes%29.pdf" target="_blank" rel="external">这里</a>看看。</p>
+<p><br></p>
+<p><br></p>
+<h1 id="不再混乱的-ID"><a href="#不再混乱的-ID" class="headerlink" title="不再混乱的 ID"></a>不再混乱的 ID</h1><p><br></p>
+<p>也是由于GIS专业人士的质疑，这个坐标系的ID经历了曲折的过程，好多做Web开发的朋友都感到困惑。简单地顺一下：</p>
+<p><strong>OpenLayers:900913</strong>     由于得不到官方的认证ID，Google为Web Mercator 任性地制定了这个ID，自娱自乐，也祝大家玩的开心……下面可不是我编的。</p>
+<blockquote>
+<p>i think 900913 is great.<br>9-g<br>0-o<br>0-o<br>9-g<br>1-l<br>3-e<br>get it? 900913 is equal to google. THAT’S AMAZING ! =-)</p>
+</blockquote>
+<p><strong>EPSG:3785</strong>  这是 EPSG 在 2008 年给 Web Mercator 设立的WKID，但是这个坐标系的基准面是正圆球，不是WGS 1984。 存在了一段时间后被弃用。</p>
+<p><strong>EPSG:3857</strong>  EPSG为 Web Wercator 最终设立的WKID，也就是现在我们常用的Web 地图的坐标系，并且给定官方命名 “<strong>WGS 84 / Pseudo-Mercator</strong>“。</p>
+<p><strong>ESRI:102113</strong>   Esri内部使用ID，与 EPSG:3785 相应。已被弃用。</p>
+<p><strong>ESRI:102100</strong>   Esri内部使用ID，与 EPSG:3857 相应。</p>
+<p>因此，细心地话，会发现在 ArcGIS Server 的REST 服务页面中，Web Mercator 的空间参考会记做： <strong>102100(3857)</strong></p>
+<p><img src="http://img.blog.csdn.net/20150528234841686" alt="这里写图片描述"></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>这些东西其实一直都是公开的，博主没有生产这些小秘密，只是小秘密的搬运工。</p>
+<p><br></p>
+<p>我把自己看过的资源放在下面，共享之，文中提到的已经做链接了地，下面就不重复列举：</p>
+<p><a href="http://en.wikipedia.org/wiki/Web_Mercator" target="_blank" rel="external">http://en.wikipedia.org/wiki/Web_Mercator</a></p>
+<p><a href="http://blogs.esri.com/esri/arcgis/2014/09/25/what-does-the-nga-web-mercator-advisory-mean-for-esri-defense-and-intelligence-users/" target="_blank" rel="external">http://blogs.esri.com/esri/arcgis/2014/09/25/what-does-the-nga-web-mercator-advisory-mean-for-esri-defense-and-intelligence-users/</a></p>
+<p><a href="http://blogs.esri.com/esri/arcgis/2012/03/05/mercators-500th-birthday/" target="_blank" rel="external">http://blogs.esri.com/esri/arcgis/2012/03/05/mercators-500th-birthday/</a></p>
+<p><a href="http://www.sharpgis.net/post/2008/05/15/SphericalWeb-Mercator-EPSG-code-3785" target="_blank" rel="external">http://www.sharpgis.net/post/2008/05/15/SphericalWeb-Mercator-EPSG-code-3785</a></p>
+<p><a href="http://crschmidt.net/blog/archives/243/google-projection-900913/" target="_blank" rel="external">http://crschmidt.net/blog/archives/243/google-projection-900913/</a></p>
+<p><a href="http://forums.esri.com/Thread.asp?c=93&amp;f=984&amp;t=288607" target="_blank" rel="external">http://forums.esri.com/Thread.asp?c=93&amp;f=984&amp;t=288607</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2015/05/29/WebMercator公开的小秘密/" data-id="cilhizwg4001htoiv750yydny" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/05/29/WebMercator公开的小秘密/" data-title="Web Mercator 公开的小秘密" data-url="http://www.kikitamap.com/2015/05/29/WebMercator公开的小秘密/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/06/05/为Runner做一张有质感的图/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            为Runner做一张有质感的图
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/05/26/Linux下安装绿色版Oracle客户端备忘录/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Linux下安装绿色版Oracle客户端备忘录</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 14.29px;">ArcGIS Pro</a> <a href="/tags/Deployment/" style="font-size: 15.71px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 15.71px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.86px;">License</a> <a href="/tags/Linux/" style="font-size: 14.29px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 18.57px;">Mapping</a> <a href="/tags/Projection/" style="font-size: 11.43px;">Projection</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/Raster/" style="font-size: 11.43px;">Raster</a> <a href="/tags/Spatial-Statistics/" style="font-size: 15.71px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 11.43px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/你所不知的有趣投影方法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/你所不知的有趣投影方法/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/为影像数据去除无效值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/为影像数据去除无效值/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/17/实践ArcGISWeb3D/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160116212543218)" alt="实践 ArcGIS Web 3D" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/01/17/实践ArcGISWeb3D/" class="title">实践 ArcGIS Web 3D</a></p>
+                            <p class="item-date"><time datetime="2016-01-17T02:45:37.000Z" itemprop="datePublished">2016-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20151217114733326)" alt="Trubleshooting：Shapefile 乱码与字符截断问题" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="title">Trubleshooting：Shapefile 乱码与字符截断问题</a></p>
+                            <p class="item-date"><time datetime="2015-12-21T05:00:00.000Z" itemprop="datePublished">2015-12-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

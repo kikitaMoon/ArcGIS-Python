@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>空间统计（二）分析模式 B | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geoprocessing,Spatial Statistics" />
+    
+    <meta name="description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空间统计（二）分析模式 B">
+<meta property="og:url" content="http://www.kikitamap.com/2015/03/05/空间统计（二）分析模式-B/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+<meta property="og:image" content="http://img.blog.csdn.net/20150303103705851">
+<meta property="og:updated_time" content="2016-03-07T04:54:12.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空间统计（二）分析模式 B">
+<meta name="twitter:description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-空间统计（二）分析模式-B" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        空间统计（二）分析模式 B
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/03/05/空间统计（二）分析模式-B/" class="article-date">
+    <time datetime="2015-03-05T03:21:40.000Z" itemprop="datePublished">2015-03-05</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。</p>
+<p><img src="http://img.blog.csdn.net/20150303103705851" alt=""><br><br><br><br><br><br><br><br></p>
+<h1 id="Average-Nearest-Neighbor"><a href="#Average-Nearest-Neighbor" class="headerlink" title="Average Nearest Neighbor"></a>Average Nearest Neighbor</h1><p>平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1，则表现的模式为聚类。如果指数大于 1，则表现的模式趋向于扩散。</p>
+<p><img src="http://img.blog.csdn.net/20150303152059424" alt=""></p>
+<p>“平均最近邻”工具将返回五个值：观测的平均距离、期望的平均距离、最近邻指数、z 得分和 p 值。</p>
+<p>在HTML报告文件中可以更显见的了解数据的趋势：</p>
+<p><img src="http://img.blog.csdn.net/20150303163930384" alt=""></p>
+<blockquote>
+<p>可能的应用：</p>
+<ul>
+<li>评估竞争或领地：量化并比较固定研究区域中的多种植物种类或动物种类的空间分布；比较城市中不同类型的企业的平均最近邻距离。</li>
+<li>监视随时间变化的更改：评估固定研究区域中一种类型的企业的空间聚类中随时间变化的更改。</li>
+<li>将观测分布与控制分布进行比较：在木材分析中，如果给定全部可收获木材的分布，则您最好将已收获面积图案与可收获面积图案进行比较，以确定砍伐面积是否比期望面积更为聚类。</li>
+</ul>
+</blockquote>
+<p><br><br><br><br><br><br><br></p>
+<p>#Spatial Autocorrelation</p>
+<p>空间自相关 (Global Moran’s I) 工具同时根据要素位置和要素的属性值来度量空间自相关。在给定一组要素及相关属性的情况下，评估所表达的模式是聚类模式、离散模式还是随机模式。</p>
+<p>与平均最近邻工具类似，此工具将返回五个值：Moran’s I 指数、预期指数、方差、z 得分和 p 值。</p>
+<p><img src="http://img.blog.csdn.net/20150304103916681" alt=""></p>
+<p>在使用这个工具的时候，<strong>注意</strong>以下几点：</p>
+<ul>
+<li>输入要素的记录数至少30个，少于30结果不可靠。</li>
+<li>选择的适当的概念化空间关系，具体根据自己的数据参考前一篇。</li>
+</ul>
+<blockquote>
+<p>可能的应用</p>
+<ul>
+<li>通过查找距离（即空间自相关最强的位置对应的距离），可为各种空间分析方法确定合适的邻近距离。</li>
+<li>度量种族或民族分离随时间推移的总体趋势 - 分离程度是逐渐增强还是逐渐减弱？</li>
+<li>总结某种观点、疾病或趋势随空间和时间变化的传播情况 - 观点、疾病或趋势是保持隔离和集中，还是传播开并变得更加分散？</li>
+</ul>
+</blockquote>
+<p><br><br><br><br><br><br><br></p>
+<p>#Incremental Spatial Autocorrelation </p>
+<p>增量自相关工具会去测量一系列的空间自相关，并且可以创建 Z 得分折线图。Z 得分反映空间聚类的程度，峰值 Z 得分表示聚类最明显的距离。<br>这些峰值能做什么呢？我们可以将这些峰值作为其他工具（例如热点分析，将来会说到）的必要参数，例如距离范围，距离半径等等。</p>
+<p><img src="http://img.blog.csdn.net/20150304163215457" alt=""></p>
+<p>以下面的数据为例：</p>
+<p>我欲研究下面几个城市的人口分布情况：</p>
+<p><img src="http://img.blog.csdn.net/20150305091602522" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150305091759165" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150305091915238" alt=""></p>
+<p>第一个峰值位于大约 250000 处。当显示多个具有统计显著性的峰值时（例如，本示例数据中有两个峰值），聚类在这些距离处均很明显。选择与感兴趣的分析比例对应的峰值距离，我们通常选择第一个具有统计显著性的峰值。</p>
+<p><br><br><br><br><br><br><br></p>
+<p>#High/Low Clustering (Getis-Ord General G)</p>
+<p>高/低聚类 (General G) 统计的零假设规定被研究的要素值不存在空间聚类。当返回的 p 值较小且在统计学上显著，则可以拒绝零假设。如果零假设被拒绝，则 z 得分的符号将变得十分重要。如果 z 得分值为正数，则观测的 General G 指数会比期望的 General G 指数要大一些，表明属性的高值将在研究区域中聚类。如果 z 得分值为负数，则观测的 General G 指数会比期望的 General G 指数要小一些，表明属性的低值将在研究区域中聚类。</p>
+<p>当存在完全均匀分布的值并且要查找高值的异常空间峰值时，首选高/低聚类(Getis-Ord General G)工具。遗憾的是，高值和低值同时聚类时，它们倾向于彼此相互抵消。如果在高值和低值同时聚类时测量空间聚类，则使用空间自相关工具。</p>
+<p><img src="http://img.blog.csdn.net/20150305103225867" alt=""></p>
+<p>“高/低聚类”工具可返回五个值：General G 观测值、General G 期望值、方差、z 得分以及 p 值。</p>
+<p><img src="http://img.blog.csdn.net/20150305103306773" alt=""></p>
+<blockquote>
+<p>可能的应用：</p>
+<ul>
+<li>在访问急症室的次数中查找出现的异常峰值，可能表明在局部或区域的健康问题的爆发。</li>
+<li>比较在城市中不同种类零售业的空间模式，利用比较购物的方式来了解哪类行业充满竞争性（如汽车经销商）以及哪类行业拒绝竞争（如健康中心/健身房）。</li>
+<li>汇总空间现象聚类的程度以检查不同时期或不同位置的变化。例如，众所周知的城市及其人口聚类。使用高/低聚类分析时，可以随时间来比较某个城市的人口聚类的程度（城镇发展以及密集度的分析）。</li>
+</ul>
+</blockquote>
+<p><br><br><br><br><br><br><br></p>
+<p>#Multi-Distance Spatial Cluster Analysis (Ripley’s K Function) </p>
+<p>基于 Ripley’s K 函数的多距离空间聚类分析工具是另外一种分析事件点数据的空间模式的方法。Ripley’s K 函数可表明要素质心的空间聚集或空间扩散在邻域大小发生变化时是如何变化的。</p>
+<p>如果有兴趣研究要素的聚类/扩散如何相对于不同距离（不同的分析规模）进行变化，可以使用此工具。</p>
+<p><img src="http://img.blog.csdn.net/20150305105633321" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2015/03/05/空间统计（二）分析模式-B/" data-id="cilhizwfp000rtoiv9ozzhhyo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/03/05/空间统计（二）分析模式-B/" data-title="空间统计（二）分析模式 B" data-url="http://www.kikitamap.com/2015/03/05/空间统计（二）分析模式-B/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/03/06/NEW！获取-ArcGIS-Pro-与-ArcGIS-Desktop-60天试用许可/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/03/05/空间统计（二）分析模式-A/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">空间统计（二）分析模式 A</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 14.29px;">ArcGIS Pro</a> <a href="/tags/Deployment/" style="font-size: 15.71px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 15.71px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.86px;">License</a> <a href="/tags/Linux/" style="font-size: 14.29px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 18.57px;">Mapping</a> <a href="/tags/Projection/" style="font-size: 11.43px;">Projection</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/Raster/" style="font-size: 11.43px;">Raster</a> <a href="/tags/Spatial-Statistics/" style="font-size: 15.71px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 11.43px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/你所不知的有趣投影方法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/你所不知的有趣投影方法/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/为影像数据去除无效值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/为影像数据去除无效值/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/17/实践ArcGISWeb3D/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160116212543218)" alt="实践 ArcGIS Web 3D" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/01/17/实践ArcGISWeb3D/" class="title">实践 ArcGIS Web 3D</a></p>
+                            <p class="item-date"><time datetime="2016-01-17T02:45:37.000Z" itemprop="datePublished">2016-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20151217114733326)" alt="Trubleshooting：Shapefile 乱码与字符截断问题" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="title">Trubleshooting：Shapefile 乱码与字符截断问题</a></p>
+                            <p class="item-date"><time datetime="2015-12-21T05:00:00.000Z" itemprop="datePublished">2015-12-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>
