@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>镶嵌数据集工具小结（一）创建/删除镶嵌数据集 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geodata,Raster" />
+    
+    <meta name="description" content="在 ArcGIS 中，镶嵌数据集是用来批量管理、动态镶嵌大量栅格数据的推荐数据模型，在工具箱中有一系列用于操作镶嵌数据集的工具。如果希望了解什么是镶嵌数据集，可以预先看&amp;nbsp;帮助文档。平时接触到的问题可能散落在使用镶嵌数据集的各个环节，最近就以镶嵌数据集工具为索引，顺藤摸瓜。
+镶嵌数据集的工具箱位于： Data Management Tools\ Raster\ Mosaic dataset">
+<meta property="og:type" content="article">
+<meta property="og:title" content="镶嵌数据集工具小结（一）创建/删除镶嵌数据集">
+<meta property="og:url" content="http://www.kikitamap.com/2014/10/14/镶嵌数据集工具小结（一）创建-删除镶嵌数据集/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="在 ArcGIS 中，镶嵌数据集是用来批量管理、动态镶嵌大量栅格数据的推荐数据模型，在工具箱中有一系列用于操作镶嵌数据集的工具。如果希望了解什么是镶嵌数据集，可以预先看&amp;nbsp;帮助文档。平时接触到的问题可能散落在使用镶嵌数据集的各个环节，最近就以镶嵌数据集工具为索引，顺藤摸瓜。
+镶嵌数据集的工具箱位于： Data Management Tools\ Raster\ Mosaic dataset">
+<meta property="og:image" content="http://img.blog.csdn.net/20141014112445382">
+<meta property="og:updated_time" content="2016-03-09T08:31:37.065Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="镶嵌数据集工具小结（一）创建/删除镶嵌数据集">
+<meta name="twitter:description" content="在 ArcGIS 中，镶嵌数据集是用来批量管理、动态镶嵌大量栅格数据的推荐数据模型，在工具箱中有一系列用于操作镶嵌数据集的工具。如果希望了解什么是镶嵌数据集，可以预先看&amp;nbsp;帮助文档。平时接触到的问题可能散落在使用镶嵌数据集的各个环节，最近就以镶嵌数据集工具为索引，顺藤摸瓜。
+镶嵌数据集的工具箱位于： Data Management Tools\ Raster\ Mosaic dataset">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-镶嵌数据集工具小结（一）创建-删除镶嵌数据集" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        镶嵌数据集工具小结（一）创建/删除镶嵌数据集
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2014/10/14/镶嵌数据集工具小结（一）创建-删除镶嵌数据集/" class="article-date">
+    <time datetime="2014-10-14T09:40:56.000Z" itemprop="datePublished">2014-10-14</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geodata/">Geodata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raster/">Raster</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>在 ArcGIS 中，镶嵌数据集是用来批量管理、动态镶嵌大量栅格数据的推荐数据模型，在工具箱中有一系列用于操作镶嵌数据集的工具。如果希望了解什么是镶嵌数据集，可以预先看&nbsp;<a href="http://resources.arcgis.com/zh-cn/help/main/10.2/#/na/009t00000037000000/" target="_blank" rel="external"><strong>帮助文档</strong></a>。平时接触到的问题可能散落在使用镶嵌数据集的各个环节，最近就以镶嵌数据集工具为索引，顺藤摸瓜。</p>
+<p>镶嵌数据集的工具箱位于： <em><strong>Data Management Tools\ Raster\ Mosaic dataset</strong></em> 目录下，其中绝大部分工具在镶嵌数据集的右键菜单中也可以调用，下面就分类整理小结一下。</p>
+<p><strong>创建/删除镶嵌数据集类工具</strong></p>
+<p><img src="http://img.blog.csdn.net/20141014112445382" alt=""></p>
+<p>首先，我们可以使用 <strong><em>Create Mosaic Dataset</em></strong> 工具创建一个新的镶嵌数据集，这是所有与镶嵌数据集有关的操作的起点。</p>
+<p><br></p>
+<p><strong>也就是，先要做出一个空的盒子来容纳下面要加入的栅格数据。</strong></p>
+<p>创建镶嵌数据集要了解下面几点：</p>
+<ul>
+<li>需要ArcGIS 标准版或者高级版的许可。</li>
+<li>可以在有写权限的文件地理数据库、个人地理数据库或 ArcSDE 地理数据库中，创建镶嵌数据集。</li>
+<li>为镶嵌数据集命名，名称需要满足数据库规范。</li>
+<li>必须设置空间参考，这里也就是坐标系统。当我们访问镶嵌数据集的时候，这个空间参考就是整个镶嵌数据集的默认空间参考，镶嵌数据集的其他附加部分会依据这个空间参考创建，有关附加部分后面再说。如果将来往里添加的栅格数据的空间参考与镶嵌数据集默认空间参考不一致，也没有关系，数据会进行动态投影。这时你可能会问，什么是动态投影？举个例子来回答问题，例如创建了一个坐标系统为WGS1984的镶嵌数据集，但是后面添加的影像坐标系是Beijing1954的，那么在查看镶嵌数据集时，我们会看到影像数据自动变换到WGS1984坐标系中进行镶嵌显示。</li>
+<li>创建镶嵌数据集工具中还有几个可选参数可以根据需要配置，例如：波段数、位深等。如果没有要求，可以跳过，镶嵌数据集会按照默认设置创建。</li>
+</ul>
+<p><br></p>
+<p><strong>盒子有了，然后我们就可以往里放东西了。</strong></p>
+<p>接着使用工具 <strong><em>Add Rasters To Mosaic Dataset</em></strong> ，向镶嵌数据集加入内容。</p>
+<p>★ 这里需要了解，栅格数据本身实际是没有入库的，而是以非托管的形式在镶嵌数据集中进行管理。也就是，执行添加栅格数据操作之后，镶嵌数据集中存储了指向栅格数据位置的指针，而不是将实际的栅格数据存储在镶嵌数据集内。也因此，不要在添加栅格数据之后，就把原始数据删除或者移动了，否则镶嵌数据集就受到了影响。</p>
+<p>添加栅格数据有几个参数需要理解其意义：</p>
+<p>1）<strong>Raster Type</strong></p>
+<p>向镶嵌数据集添加栅格数据时，我们需要指定“栅格类型”。默认的栅格类型是“栅格数据集（Raster Dataset）”，是指ArcGIS支持的任何栅格格式。其他栅格类型则特定于产品（传感器、数据提供商或供应商）或关联的元数据信息。通过指定除了“栅格数据集”之外的栅格类型添加栅格数据时，元数据信息和栅格处理信息会被读取。</p>
+<p>举个例子说明下它们之间的区别：例如， 添加 QuickBird 标准场景时，<em>.imd文件定义了一个场景，它包含了栅格数据的元数据信息，指向了一个或者多个</em>.tif 文件。如果希望正确添加&nbsp;QuickBird 标准场景数据，那么需要选择&nbsp;QuickBird &nbsp;栅格类型，这种栅格类型会搜索 <em>.imd 和 </em>.tif 的组合从而保证数据信息的完整。如果我们以默认的“Raster Dataset”栅格类型添加这个数据，那就只能添加和识别 <em>.tif 文件，这样 </em>.imd 中所定义的元数据信息就丢失了。</p>
+<p>如果需要了解自己的栅格数据是否能被ArcGIS支持，那需要查看如下两个主题的帮助文档列表：</p>
+<p>√ <a href="http://resources.arcgis.com/zh-cn/help/main/10.2/index.html#//009t0000000v000000" target="_blank" rel="external">支持的栅格和影像数据格式列表</a></p>
+<p>√ <a href="http://resources.arcgis.com/zh-cn/help/main/10.2/index.html#//009t0000000q000000" target="_blank" rel="external">受支持的栅格数据集文件格式</a></p>
+<p>2）<strong>Input Data</strong></p>
+<p>镶嵌数据集支持通过如下几种方式的输入方法来添加栅格数据：</p>
+<ul>
+<li>数据集 — 可以输入ArcGIS支持的任何栅格、栅格目录或镶嵌数据集</li>
+<li>工作空间 — 用于选择一个包含多个栅格数据集的文件夹。该文件夹可包含子文件夹。它受“是否包括子文件”和“输入数据过滤器”参数的影响。</li>
+<li>文件 — 用于选择文件列表文件、影像服务定义 (.ISDef) 文件和栅格处理定义 (.RPDef) 文件。 文件列表检索器还将忽略与添加的栅格类型不对应的任何文件。</li>
+<li>服务 — 用于选择 WCS、地图、影像服务或 Web 服务图层文件。</li>
+</ul>
+<p>3）<strong>Update Cell Size Ranges/Update Boundary/Update Overviews</strong></p>
+<p>如果要多次使用“添加栅格至镶嵌数据集”工具将数据添加到镶嵌数据集中，建议取消选中“<strong>Update Cell Size Ranges</strong>”和“<strong>Update Boundary</strong>”，直到所有栅格数据全部添加完成。</p>
+<p>如果将栅格数据添加到已生成概视图（<strong>Overview</strong>）的镶嵌数据集中，则可以选择勾选“<strong>Update Overviews</strong>”，这样可在添加栅格数据的同时完成更新概视图。也可以稍后利用“构建金字塔（Build Overviews）”工具来完成。有关概视图后面的优化镶嵌数据集中再详细说明。</p>
+<p>4）其他几个可选参数（栅格金字塔、坐标系统、数据过滤、操作描述等等）不再啰嗦了，看看帮助都比较好理解，如下链接：</p>
+<p><a href="http://resources.arcgis.com/zh-cn/help/main/10.2/index.html#//001700000085000000" target="_blank" rel="external"><em>http://resources.arcgis.com/zh-cn/help/main/10.2/index.html#//001700000085000000</em></a></p>
+<p><br></p>
+<p><strong>如果发现盒子里的东西不需要了，或者放错了，需要丢出去呢。</strong></p>
+<p>如果需要从镶嵌数据集移除栅格数据，就可以使用 <strong>Remove Raster From Mosaic Dataset</strong> 工具 。同样需要了解的是，这个工具并没有真正的删除原始栅格数据，而仅是从镶嵌数据集中移除存储的栅格数据的指针，或者叫链接。</p>
+<ol>
+<li>移除栅格的操作是通过内部执行<strong>SQL</strong>语句实现的，在工具中，我们可以自行来写SQL语句中的 Where 语句。例如如果希望全部移除已添加的栅格数据，可以写成&nbsp;“OBJECTID&gt;=0”。</li>
+<li>在移除栅格数据的同时，可以选择配置是否移除<strong>Overview</strong>、<strong>Item Cache</strong>，以及是否更新像元大小范围、边界,是否标记受影响的概视图等。</li>
+<li>如果我们仅需要移除概视图，而不移除栅格数据，这个工具也可以满足，取消勾选“<strong>Remove Mosaic Dataset Items</strong>”选项即可。</li>
+</ol>
+<p><br></p>
+<p><strong>如果连盒子都不想要了，希望和里面的东西一起全部扔掉。</strong></p>
+<p>我们可以使用工具<strong>Delete Mosaic Dataset</strong>工具，默认会全部删除镶嵌数据集、概视图和项目缓存。如果不希望删除概视图或缓存时，也可以取消勾选相关参数。</p>
+<p><br></p>
+<p><br></p>
+<p>另外， 可以使用工具 <strong>Create Referenced Mosaic Dataset</strong> ，基于一个现有的镶嵌数据创建新的镶嵌数据集。</p>
+<p>Referenced Mosaic Dataset&nbsp;有一些自己的特点，可以解决一些实际问题。举几个例子，帮助理解为什么会有创建这种镶嵌数据集的需求。</p>
+<ul>
+<li>例如希望别人访问自己做好的镶嵌数据集，但是不希望别人更改已经定义好的一些属性和函数。也就是控制了修改数据的权限。 </li>
+<li>例如现有包含了全部数据的主镶嵌数据集，但是希望根据需要筛选出部分感兴趣的特定栅格，同时又不更改主镶嵌数据集。也就是为了感兴趣对象的过滤。</li>
+<li>同样，如果现有包含了全部数据的主镶嵌数据集，但是希望使用不同的函数创建出多种输出，例如根据红色波段和近红外波段的 NDVI 或全色锐化的镶嵌。</li>
+<li>再比如，现有覆盖范围广大的全国的镶嵌数据集，但是希望按省提供小范围的镶嵌数据集给相应人员。</li>
+</ul>
+<p>在地理数据库内外，均可创建&nbsp;Referenced Mosaic Dataset。而不像普通镶嵌数据集仅能在数据库中创建。</p>
+<p>在文件夹下而不是在地理数据库中创建，这种地理数据库的文件扩展名为 .amd，但是不会创建边界。加入ArcMap中，类似下面的样子：</p>
+<p><img src="http://img.blog.csdn.net/20141014173357140" alt=""></p>
+<p>另外，需要了解，我们无法对&nbsp;Referenced Mosaic Dataset&nbsp;构建概视图、计算像素大小范围、在栅格级别添加函数或添加新栅格数据。</p>
+<p>就到这里了，下一篇打算抽时间总结下镶嵌数据集的修改方面知识点。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2014/10/14/镶嵌数据集工具小结（一）创建-删除镶嵌数据集/" data-id="cilkmb1k40013mwiv467mp31i" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2014/10/14/镶嵌数据集工具小结（一）创建-删除镶嵌数据集/" data-title="镶嵌数据集工具小结（一）创建/删除镶嵌数据集" data-url="http://www.kikitamap.com/2014/10/14/镶嵌数据集工具小结（一）创建-删除镶嵌数据集/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/10/17/镶嵌数据集工具小结（二）镶嵌数据轮廓线与边界/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            镶嵌数据集工具小结（二）镶嵌数据轮廓线与边界
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2014/09/24/ArcGIS-系统要求知多少/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">ArcGIS 系统要求知多少</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 12.86px;">ArcGIS Pro</a> <a href="/tags/Deployment/" style="font-size: 15.71px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 20px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 17.14px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 11.43px;">License</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 15.71px;">Mapping</a> <a href="/tags/Projection/" style="font-size: 10px;">Projection</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/Raster/" style="font-size: 18.57px;">Raster</a> <a href="/tags/Spatial-Statistics/" style="font-size: 15.71px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/你所不知的有趣投影方法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/你所不知的有趣投影方法/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/为影像数据去除无效值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/为影像数据去除无效值/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/17/实践ArcGISWeb3D/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160116212543218)" alt="实践 ArcGIS Web 3D" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/01/17/实践ArcGISWeb3D/" class="title">实践 ArcGIS Web 3D</a></p>
+                            <p class="item-date"><time datetime="2016-01-17T02:45:37.000Z" itemprop="datePublished">2016-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20151217114733326)" alt="Trubleshooting：Shapefile 乱码与字符截断问题" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2015/12/21/Trubleshooting-Shapefile乱码与字符截断问题/" class="title">Trubleshooting：Shapefile 乱码与字符截断问题</a></p>
+                            <p class="item-date"><time datetime="2015-12-21T05:00:00.000Z" itemprop="datePublished">2015-12-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">50</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>
