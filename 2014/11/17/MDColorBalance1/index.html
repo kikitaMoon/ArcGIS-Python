@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>镶嵌数据集工具小结（七）色彩平衡与接缝线 Ⅰ | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geodata,Raster" />
+    
+    <meta name="description" content="镶嵌数据集的色彩平衡与接缝线  Ⅰ
+
+
+色彩平衡
+镶嵌数据集一般由多张影像组成的，各幅影像可能由于各种原因存在色彩差异，例如航摄时的天气、光线等原因。为了让整个镶嵌数据集看起来是无缝的一整张，而不是一片一片的，我们需要做的就是色彩校正，或者叫做色彩平衡（均衡）。也就是实现下面的效果：
+
+
+做色彩校正之前，需要检查原始数据的所有波段是不是满足下面几个条件：
+
+所有波段已经创建统计值（包括直方图）；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="镶嵌数据集工具小结（七）色彩平衡与接缝线 Ⅰ">
+<meta property="og:url" content="http://www.kikitamap.com/2014/11/17/MDColorBalance1/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="镶嵌数据集的色彩平衡与接缝线  Ⅰ
+
+
+色彩平衡
+镶嵌数据集一般由多张影像组成的，各幅影像可能由于各种原因存在色彩差异，例如航摄时的天气、光线等原因。为了让整个镶嵌数据集看起来是无缝的一整张，而不是一片一片的，我们需要做的就是色彩校正，或者叫做色彩平衡（均衡）。也就是实现下面的效果：
+
+
+做色彩校正之前，需要检查原始数据的所有波段是不是满足下面几个条件：
+
+所有波段已经创建统计值（包括直方图）；">
+<meta property="og:image" content="http://img.blog.csdn.net/20141111154935774">
+<meta property="og:updated_time" content="2016-03-09T06:05:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="镶嵌数据集工具小结（七）色彩平衡与接缝线 Ⅰ">
+<meta name="twitter:description" content="镶嵌数据集的色彩平衡与接缝线  Ⅰ
+
+
+色彩平衡
+镶嵌数据集一般由多张影像组成的，各幅影像可能由于各种原因存在色彩差异，例如航摄时的天气、光线等原因。为了让整个镶嵌数据集看起来是无缝的一整张，而不是一片一片的，我们需要做的就是色彩校正，或者叫做色彩平衡（均衡）。也就是实现下面的效果：
+
+
+做色彩校正之前，需要检查原始数据的所有波段是不是满足下面几个条件：
+
+所有波段已经创建统计值（包括直方图）；">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-MDColorBalance1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        镶嵌数据集工具小结（七）色彩平衡与接缝线 Ⅰ
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2014/11/17/MDColorBalance1/" class="article-date">
+    <time datetime="2014-11-17T03:38:05.000Z" itemprop="datePublished">2014-11-17</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geodata/">Geodata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raster/">Raster</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>镶嵌数据集的色彩平衡与接缝线  Ⅰ</p>
+<p><img src="http://img.blog.csdn.net/20141111154935774" alt=""></p>
+<p><br></p>
+<p><strong>色彩平衡</strong></p>
+<p>镶嵌数据集一般由多张影像组成的，各幅影像可能由于各种原因存在色彩差异，例如航摄时的天气、光线等原因。为了让整个镶嵌数据集看起来是无缝的一整张，而不是一片一片的，我们需要做的就是色彩校正，或者叫做色彩平衡（均衡）。也就是实现下面的效果：</p>
+<p><img src="http://img.blog.csdn.net/20141112153456546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<blockquote>
+<p>做色彩校正之前，需要检查原始数据的所有波段是不是满足下面几个条件：</p>
+<ul>
+<li>所有波段已经创建统计值（包括直方图）；</li>
+<li>所有栅格数据集具有相同的波段数；</li>
+<li>所有栅格数据集的像素类型和像素深度都相同（只支持 8 位无符号和 16 位无符号位深度）；</li>
+<li>所有栅格数据集都没有关联的色彩映射表。</li>
+</ul>
+</blockquote>
+<p><br></p>
+<p><br></p>
+<h1 id="Color-Balance-Mosaic-Dataset-工具用于实现镶嵌数据集的色彩平衡。"><a href="#Color-Balance-Mosaic-Dataset-工具用于实现镶嵌数据集的色彩平衡。" class="headerlink" title="Color Balance Mosaic Dataset 工具用于实现镶嵌数据集的色彩平衡。"></a><strong>Color Balance Mosaic Dataset</strong> 工具用于实现镶嵌数据集的色彩平衡。</h1><h2 id="Balance-Method"><a href="#Balance-Method" class="headerlink" title="Balance Method"></a><strong>Balance Method</strong></h2><p>工具提供了三种匀色的算法：</p>
+<p><strong>匀光/Dodging</strong></p>
+<p>这是传统的匀光摄影测量方法。 如果选择“匀光/Dodging”，需要同时选择<strong>目标颜色表面类型</strong> 。此方法会参照目标颜色来更改每个像素值，使图像均匀过渡到目标颜色。多数情况下，匀光平衡效果最佳。</p>
+<ul>
+<li>SINGLE_COLOR  — 所有像素都参照一个单色点（即，平均值）进行匀光处理。</li>
+<li>COLOR_GRID    — 所有像素都参照分布在整个镶嵌数据集中的多组点进行匀光处理。</li>
+<li>FIRST_ORDER   — 所有像素都参照从二维多项式倾斜平面获取的多个点进行匀光处理。与“颜色格网”表面相似。                           </li>
+<li>SECOND_ORDER  — 所有像素都参照从二维多项式抛物线/双曲线/椭圆表面获取的一组多点进行匀光处理。与“颜色格网”表面相似。</li>
+<li>THIRD_ORDER   — 所有像素都参照从三次表面获取的多个点进行匀光处理。</li>
+</ul>
+<p>PS：</p>
+<ul>
+<li>当栅格数量较少且地物类型较少时，单色表面会取得良好的效果。如果栅格数据较多或者地物类型较多时，这种方法输出颜色可能会变得模糊。</li>
+<li>如果有大量的栅格或区域含有大量的地面物体类型，这种方法会产生非常好的输出效果。</li>
+<li>First Order，Second Order, Third Oder 这三种方法与“颜色格网”表面相比，多项式阶表面的颜色变化通常更为平滑，并且使用的辅助表存储空间更少，但往往需要花费更长的时间进行处理。</li>
+</ul>
+<p><strong>直方图/Histogram</strong></p>
+<p>此方法将根据目标直方图更改各像素值。可基于所有栅格自动计算目标直方图，也可以指定一个目标栅格。<br>当镶嵌数据集中的所有栅格的直方图形状都相似时，直方图平衡会取得较好的效果。</p>
+<p><strong>标准差/Standard Deviation</strong></p>
+<p>此方法将根据标准差计算更改每个像素值。可基于所有栅格或指定的目标栅格自动计算标准差值。<br>当镶嵌数据集中的所有栅格的正态值具有相同的直方图分布时，标准差平衡的效果最好。</p>
+<h2 id="Target-Raster"><a href="#Target-Raster" class="headerlink" title="Target Raster"></a><strong>Target Raster</strong></h2><p>上面三种方法中所使用到的数值，既可以来源于镶嵌数据集自身，也可以来源于自己指定的目标栅格。</p>
+<p>不同的色彩平衡方法：</p>
+<ul>
+<li>使用匀光平衡时，得出的目标颜色取决于当时所选择的目标颜色表面类型。<ul>
+<li>对于 SINGLE_COLOR，将使用参照目标图像的平均值。</li>
+<li>对于 COLOR_GRID，会将参照目标图像重采样为适合的格网。</li>
+<li>对于 多项式阶表面，通过最小二乘拟合从参照目标图像获得多项式的系数。</li>
+</ul>
+</li>
+<li>使用直方图平衡时，将基于参照目标图像获得目标直方图。</li>
+<li>使用标准差平衡时，将基于参照目标图像获得目标标准差。</li>
+</ul>
+<h2 id="Block-Filed"><a href="#Block-Filed" class="headerlink" title="Block Filed"></a><strong>Block Filed</strong></h2><p>从镶嵌数据集的属性表中指定一个用于“分组”的字段，在执行计算和操作时，用于标识应被视为单一项目的多个项目。</p>
+<p><br><br><br></p>
+<p><strong>预处理选项</strong></p>
+<p><img src="http://img.blog.csdn.net/20141113163456859" alt=""></p>
+<p>在执行栅格数据集色彩平衡之前，工具会先执行预处理选项。</p>
+<h1 id="Exclude-Area-Raster"><a href="#Exclude-Area-Raster" class="headerlink" title="Exclude Area Raster "></a><strong>Exclude Area Raster </strong></h1><p>用于排除不能或者难于进行色彩校正的区域，例如：水、云和异常区域等。本质上就是创建一个掩膜，从而从镶嵌数据集色彩校正算法中排除一些像素。</p>
+<p>PS： 对镶嵌数据集进行色彩校正时，排除区域并不会经常用到。只有当存在较难校正的区域，且不希望因为这些问题区域产生偏差时，可创建排除区域。另外，像素分布中的极值（极低像素值和极高像素值）区域也可能成为色彩校正的问题区域。</p>
+<p><img src="http://img.blog.csdn.net/20141113165004331" alt=""></p>
+<p>那如何生成这个排除区域栅格呢？</p>
+<p>工具箱中提供 <strong>Generate Exclude Area</strong> 工具，下面就来看看这个工具。</p>
+<p><img src="http://img.blog.csdn.net/20141113170331149" alt=""></p>
+<p>通过输入数据选择 <strong>位深</strong> 和 <strong>生成</strong> 方法：</p>
+<p><strong>Pixel type：</strong></p>
+<p>此参数用于选择输入栅格数据集的像素深度。像素深度非常重要，因为需要对所有 8 位以上的像素深度调整色彩掩膜和直方图值。</p>
+<ul>
+<li>8_BIT  —  0 到 255 之间。这是默认值；</li>
+<li>11_BIT —  0 到 2047 之间；</li>
+<li>12_BIT —  0 到 4095 之间；</li>
+<li>16_BIT —  0 到 65535 之间。</li>
+</ul>
+<p><strong>Generate Method：</strong></p>
+<p>提供了两种方法：COLOR_MASK ，HISTOGRAM_PERCENTAGE</p>
+<ul>
+<li>COLOR_MASK — 可以设置要在输出中排除的最大颜色值。这是默认设置。</li>
+<li>HISTOGRAM_PERCENTAGE — 可以设置像素的最小和最大直方图百分比。</li>
+</ul>
+<p><strong>Stretch Type</strong></p>
+<p>如果我们指定的了拉伸类型，那么就意味着在色彩平衡的过程中，使用的是栅格数据拉伸后的值，而不是栅格数据的原始像元值。</p>
+<ul>
+<li>NONE — 不应用预拉伸。这是默认设置。</li>
+<li>ADAPTIVE — 自适应预拉伸。</li>
+<li>MINIMUM_MAXIMUM — 最小值-最大值预拉伸。</li>
+<li>STANDARD_DEVIATION — 标准差预拉伸。</li>
+</ul>
+<p><strong>Gamma</strong></p>
+<p>当选择了标准差拉伸或最小值-最大值拉伸时，可以额外的设置Gamma值。可通过应用 Gamma 拉伸来控制图像的整体亮度。<br>如果 Gamma 系数设置得太低，中间色调将太暗；而如果 Gamma 系数设置得太高，中间色调又会太亮。Gamma 系数不仅会改变图像的亮度，还会改变红绿蓝之间的比率。</p>
+<p>如果对色彩校正的不满意，我们也可以移除效果，镶嵌数据集的右键菜单中，Remove – Color Balancing。</p>
+<p><img src="http://img.blog.csdn.net/20141114142857968" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2014/11/17/MDColorBalance1/" data-id="cim4n1nzr007xisivpvfwfarp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+							'<a href="http://service.weibo.com/share/share.php?&title=' + encodedUrl + '" class="article-share-sina" target="_blank" title="΢��"></a>',
+							'<a href="http://share.renren.com/share/buttonshare.do?link=' + encodedUrl + '" class="article-share-renren" target="_blank" title="����"></a>',
+							'<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodedUrl + '" class="article-share-qq" target="_blank" title="QQ �ռ�"></a>',
+							'<a href="http://v.t.qq.com/share/share.php?url=' + encodedUrl + '" class="article-share-tencent" target="_blank" title="��Ѷ΢��"></a>',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2014/11/17/MDColorBalance1/" data-title="镶嵌数据集工具小结（七）色彩平衡与接缝线 Ⅰ" data-url="http://www.kikitamap.com/2014/11/17/MDColorBalance1/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/11/20/MDColorBalance2/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            镶嵌数据集工具小结（八）色彩平衡与接缝线 Ⅱ
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2014/11/11/MDProperties3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">镶嵌数据集工具小结（六）镶嵌数据集的属性 Ⅲ</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.36px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 17.27px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 16.36px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 15.45px;">Python</a> <a href="/tags/Raster/" style="font-size: 18.18px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15.45px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/insignificant/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_DSCN0827.JPG)" alt="渺小" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/21/insignificant/" class="title">渺小</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T10:36:17.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/FunnyProjections/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/FunnyProjections/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/RasterNodata/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/RasterNodata/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">132</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

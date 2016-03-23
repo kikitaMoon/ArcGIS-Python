@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>3D分析之3D要素工具箱 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="3D,Geoprocessing" />
+    
+    <meta name="description" content="整理有关 ArcGIS 10.1 3D分析工具箱中，3D Feature 工具箱中，各个工具的功能及注意事项。
+
+1. Add Z information （添加 Z 信息）
+各种几何类型的Z信息：
+Points - Z 值
+Multipoints - Z 最小值、Z 最大值、Z 平均值、点计数
+Polylines - Z 最小值、Z 最大值、Z 平均值、3D 长度、最小坡度、最大坡度、平均坡度、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D分析之3D要素工具箱">
+<meta property="og:url" content="http://www.kikitamap.com/2012/11/18/3D3DFeatures/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="整理有关 ArcGIS 10.1 3D分析工具箱中，3D Feature 工具箱中，各个工具的功能及注意事项。
+
+1. Add Z information （添加 Z 信息）
+各种几何类型的Z信息：
+Points - Z 值
+Multipoints - Z 最小值、Z 最大值、Z 平均值、点计数
+Polylines - Z 最小值、Z 最大值、Z 平均值、3D 长度、最小坡度、最大坡度、平均坡度、">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353133901_7409.png">
+<meta property="og:updated_time" content="2016-03-18T10:17:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3D分析之3D要素工具箱">
+<meta name="twitter:description" content="整理有关 ArcGIS 10.1 3D分析工具箱中，3D Feature 工具箱中，各个工具的功能及注意事项。
+
+1. Add Z information （添加 Z 信息）
+各种几何类型的Z信息：
+Points - Z 值
+Multipoints - Z 最小值、Z 最大值、Z 平均值、点计数
+Polylines - Z 最小值、Z 最大值、Z 平均值、3D 长度、最小坡度、最大坡度、平均坡度、">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-3D3DFeatures" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        3D分析之3D要素工具箱
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2012/11/18/3D3DFeatures/" class="article-date">
+    <time datetime="2012-11-18T13:50:43.000Z" itemprop="datePublished">2012-11-18</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D/">3D</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>整理有关 ArcGIS 10.1 3D分析工具箱中，3D Feature 工具箱中，各个工具的功能及注意事项。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353133901_7409.png" alt=""></p>
+<h1 id="1-Add-Z-information-（添加-Z-信息）"><a href="#1-Add-Z-information-（添加-Z-信息）" class="headerlink" title="1. Add Z information （添加 Z 信息）"></a><strong>1. Add Z information （添加 Z 信息）</strong></h1><p><img src="http://img.my.csdn.net/uploads/201211/17/1353134505_8295.png" alt=""></p>
+<p><strong>各种几何类型的Z信息：</strong></p>
+<p><strong>Points</strong> - Z 值</p>
+<p><strong>Multipoints</strong> - Z 最小值、Z 最大值、Z 平均值、点计数</p>
+<p><strong>Polylines</strong> - Z 最小值、Z 最大值、Z 平均值、3D 长度、最小坡度、最大坡度、平均坡度、折点计数</p>
+<p><strong>Polygons </strong>- Z 最小值、Z 最大值、Z 平均值、3D 长度、最小坡度、最大坡度、平均坡度、折点计数</p>
+<p><strong>Multipatches</strong>- Z 最小值、Z 最大值、表面面积、体积、最小坡度、最大坡度、平均坡度</p>
+<p><strong>关于坡度值：</strong></p>
+<p>坡度以百分比值或度数的形式返回</p>
+<p>最小坡度根据值最接近 0 或水平度的线段获得。</p>
+<p>最大坡度根据具有最大计算值的线段获得。</p>
+<p>平均坡度通过按 3D 长度对每条线段进行加权后对所有线段的坡度求平均值获得。这会导致较长线段对结果值的影响比较短线段更大。</p>
+<p>面要素的坡度值仅针对边要素计算，使用的方法与线段应用的方法一样。</p>
+<p><strong>关于体积：</strong></p>
+<p>只能对闭合多面体计算体积。非闭合多面体要素将返回值 0.0。</p>
+<p>在 Solaris 平台上，设计的局限性当前将使工具无法确定多面体是否闭合，因此假定所有多面体均为闭合多面体，将针对所有多面体计算体积测量。</p>
+<p><strong>关于噪点过滤器：</strong></p>
+<p>提供可用于在进行统计计算时排除一小部分要素的选项。此选项非常适用于获得准确的最大坡度估值，因为一小部分要素的坡度值通常较极端，可能使统计结果产生偏差。</p>
+<p>面积或长度选项中给出的值将被用于排除这部分要素。此参数不适用于点和多点要素。</p>
+<p>NO_FILTER —不使用任何噪点过滤器。这是默认设置。</p>
+<p>AREA &lt;…&gt; —对多面体要素类中的部分要素应用面积过滤器。面积 值为 0.001 表示系统将忽略多面体中面积小于 0.001 的部分。</p>
+<p>LENGTH &lt;…&gt; — 对线要素类或面要素类中的部分要素应用长度过滤器。长度值为 0.001 时表示系统将忽略长度小于 0.001 的那部分要素。</p>
+<h1 id="2-Buffer-3D（3D-缓冲区）"><a href="#2-Buffer-3D（3D-缓冲区）" class="headerlink" title="2. Buffer 3D（3D 缓冲区）"></a><strong>2. Buffer 3D（3D 缓冲区）</strong></h1><p><img src="http://img.my.csdn.net/uploads/201211/17/1353137315_6860.png" alt=""></p>
+<p>在点或线要素周围创建 3D 缓冲区。点输入将会生成<strong>球体</strong>，线输入将会生成<strong>圆柱</strong>要素。结果为Multipatch要素。</p>
+<p>提高缓冲<strong>质量</strong>会生成更平滑的 3D 要素，但处理时间将会更长。</p>
+<p>考虑指定一个<strong>简化值</strong>以提高复杂线要素（例如带有大量折点的曲线）的性能。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353137593_6042.png" alt=""></p>
+<h1 id="3-nbsp-Difference-3D（3D-差异）"><a href="#3-nbsp-Difference-3D（3D-差异）" class="headerlink" title="3.&nbsp;Difference 3D（3D 差异）"></a><strong>3.&nbsp;Difference 3D（3D 差异）</strong></h1><p><img src="http://img.my.csdn.net/uploads/201211/17/1353138434_8268.png" alt=""></p>
+<p>类似于2D中 Erase 工具。</p>
+<p>输入面必须是闭合的Multipatch，生成的结果不包含任何属性信息。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353138619_5986.png" alt=""></p>
+<p>参数 Output Table，勾选后，生成这样三列：</p>
+<blockquote>
+<p>Output_ID - 输出要素类的唯一 ID。<br>Minuend_ID - 主多面体的唯一 ID。<br>Subtrahend - 已从主多面体中减去的多面体要素的唯一 ID。</p>
+</blockquote>
+<h1 id="4-Enclose-Multipatch-（封闭多面体）"><a href="#4-Enclose-Multipatch-（封闭多面体）" class="headerlink" title="4. Enclose Multipatch （封闭多面体）"></a><strong>4. Enclose Multipatch （封闭多面体）</strong></h1><p>创建闭合多面体要素。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353139408_9481.png" alt=""></p>
+<p>Grid Size：<span style="font-family:'Comic Sans','Comic Sans MS',cursive,Courier,sans-serif; line-height:18px">用于构造闭合多面体要素的精度。此值使用输入要素的空间参考的线性单位定义。</span></p>
+<h1 id="5-nbsp-Feature-To-3D-By-Attribute（通过属性从要素转换到-3D）"><a href="#5-nbsp-Feature-To-3D-By-Attribute（通过属性从要素转换到-3D）" class="headerlink" title="5.&nbsp;Feature To 3D By Attribute（通过属性从要素转换到 3D）"></a><strong>5.&nbsp;Feature To 3D By Attribute（通过属性从要素转换到 3D）</strong></h1><p>从输入要素的属性中获得的Z值创建 3D 要素。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353140693_9059.png" alt=""></p>
+<p>此工具支持点、多点、线和面几何。</p>
+<p>各要素的高程都从在指定的字段中获得。</p>
+<p>对于线要素还可提供第二个高度字段。每条线的起点使用第一个高度，终点使用第二个高度。中间所有折点的高度都将根据两个端点连线的坡度进行内插。</p>
+<h1 id="6-Inside-3D（3D-内部）"><a href="#6-Inside-3D（3D-内部）" class="headerlink" title="6. Inside 3D（3D 内部）"></a><strong>6. Inside 3D（3D 内部）</strong></h1><p>用于识别3D 要素是否包含在闭合的多面体中。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353151402_4949.png" alt=""></p>
+<p>Input Feature 可以是：point、polyline、polygon、multipatch feature class；</p>
+<p>输出的表中包含：</p>
+<blockquote>
+<p><strong>Target_ID</strong> - 输入要素的唯一 ID。<br><strong>Status</strong> - 要素完全还是部分落入多面体内。</p>
+</blockquote>
+<p>如果勾选了 Complex Output Table ，生成的表中会多出来：<strong>Container_ID</strong> - 多面体的唯一 ID。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353159713_5510.png" alt=""></p>
+<h1 id="7-Intersect-3D（3D-相交）"><a href="#7-Intersect-3D（3D-相交）" class="headerlink" title="7. Intersect 3D（3D 相交）"></a><strong>7. Intersect 3D（3D 相交）</strong></h1><p>计算闭合多面体要素的交集。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353160223_9291.png" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353160251_1139.png" alt=""></p>
+<p><strong>注意：</strong></p>
+<p>如果只提供了一个输入要素类，将会计算该多面体数据集中各要素的相交情况；</p>
+<p>如果提供了两个要素，将会确定这两个数据集的要素的相交部分，同时忽略那些只存在于一个输入中相交情形。</p>
+<p><strong>输出类型：</strong></p>
+<p>SOLID — 创建交集闭合多面体。这是默认设置。</p>
+<p>SURFACE — 创建表示输入要素之间共享面的多面体表面。</p>
+<p>POLYLINE — 创建表示输入要素之间共享边的折线。</p>
+<h1 id="8-nbsp-Intersect-3D-Line-With-Multipatch（3D-线与多面体相交）"><a href="#8-nbsp-Intersect-3D-Line-With-Multipatch（3D-线与多面体相交）" class="headerlink" title="8.&nbsp;Intersect 3D Line With Multipatch（3D 线与多面体相交）"></a><strong>8.&nbsp;Intersect 3D Line With Multipatch（3D 线与多面体相交）</strong></h1><p><img src="http://img.my.csdn.net/uploads/201211/17/1353163730_1722.png" alt=""></p>
+<p>确定并返回线与多面体要素之间几何交集的数量。可选择性地将表示交集的点要素和表示在此类点分开的输入线的线要素写入输出要素类中。</p>
+<p>交点计数将在消息窗口中作为整数结果返回，并可在模型和脚本中用于建立后续操作的前提条件。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353163772_6425.png" alt=""></p>
+<h1 id="9-nbsp-Is-Closed-3D（是否为闭合-3D）"><a href="#9-nbsp-Is-Closed-3D（是否为闭合-3D）" class="headerlink" title="9.&nbsp;Is Closed 3D（是否为闭合 3D）"></a><strong>9.&nbsp;Is Closed 3D（是否为闭合 3D）</strong></h1><p>评估多面体要素是否是完全封闭的。</p>
+<p>将 IsClose 字段添加到现有Multipatch要素的属性表中。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353164375_7766.png" alt=""></p>
+<h1 id="10-Near-3D（3D-邻近）"><a href="#10-Near-3D（3D-邻近）" class="headerlink" title="10. Near 3D（3D 邻近）"></a><strong>10. Near 3D（3D 邻近）</strong></h1><p>计算每个输入要素到一个或多个邻近要素类中的最近要素的三维距离。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353165276_6715.png" alt=""></p>
+<p>在原输入数据的属性表中增加N多最邻近点的信息。</p>
+<h1 id="11-Union-3D（3D-联合）"><a href="#11-Union-3D（3D-联合）" class="headerlink" title="11. Union 3D（3D 联合）"></a><strong>11. Union 3D（3D 联合）</strong></h1><p>基于输入要素类对闭合的重叠多面体要素进行合并。</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353166100_5732.png" alt=""></p>
+<p>如果两个或多个多面体要素仅共享一条边或一个折点，则会发出一个警告，说明生成的要素不是简单要素，因此无法创建。</p>
+<p>如果组中包含的多面体没有共享的体积或空间，则会返回相同的消息。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2012/11/18/3D3DFeatures/" data-id="cim4n1nxy004visivdtk11njv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+							'<a href="http://service.weibo.com/share/share.php?&title=' + encodedUrl + '" class="article-share-sina" target="_blank" title="΢��"></a>',
+							'<a href="http://share.renren.com/share/buttonshare.do?link=' + encodedUrl + '" class="article-share-renren" target="_blank" title="����"></a>',
+							'<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodedUrl + '" class="article-share-qq" target="_blank" title="QQ �ռ�"></a>',
+							'<a href="http://v.t.qq.com/share/share.php?url=' + encodedUrl + '" class="article-share-tencent" target="_blank" title="��Ѷ΢��"></a>',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2012/11/18/3D3DFeatures/" data-title="3D分析之3D要素工具箱" data-url="http://www.kikitamap.com/2012/11/18/3D3DFeatures/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2012/11/18/3DFunctionalSurface/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            3D分析之Functional Surface工具箱
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2012/11/17/3DSupportedSurface/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">3D分析之ArcGIS 支持的表面类型</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.36px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 17.27px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 16.36px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 15.45px;">Python</a> <a href="/tags/Raster/" style="font-size: 18.18px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15.45px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/insignificant/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_DSCN0827.JPG)" alt="渺小" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/21/insignificant/" class="title">渺小</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T10:36:17.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/FunnyProjections/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/FunnyProjections/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/RasterNodata/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/RasterNodata/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">132</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

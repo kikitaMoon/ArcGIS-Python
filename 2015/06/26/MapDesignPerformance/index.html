@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>ArcGIS地图设计性能优化 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Mapping" />
+    
+    <meta name="description" content="制作一幅较高性能的地图检查如下方面是否注意到了 ？
+
+
+1 内容组织：
+· 空间参考/Spatial Reference在ArcMap中配置地图文档，要尽可能将所有数据与数据框使用相同的空间参考，特别是编辑或创建要提供服务的数据的时候。虽然ArcMap可以进行动态投影，但是这样做可以避免动态投影计算所造成的性能损耗。
+对于不同空间参考的数据，可以使用工具 Project 进行转换。
+· 连接与关联">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcGIS地图设计性能优化">
+<meta property="og:url" content="http://www.kikitamap.com/2015/06/26/MapDesignPerformance/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="制作一幅较高性能的地图检查如下方面是否注意到了 ？
+
+
+1 内容组织：
+· 空间参考/Spatial Reference在ArcMap中配置地图文档，要尽可能将所有数据与数据框使用相同的空间参考，特别是编辑或创建要提供服务的数据的时候。虽然ArcMap可以进行动态投影，但是这样做可以避免动态投影计算所造成的性能损耗。
+对于不同空间参考的数据，可以使用工具 Project 进行转换。
+· 连接与关联">
+<meta property="og:updated_time" content="2016-03-07T02:27:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArcGIS地图设计性能优化">
+<meta name="twitter:description" content="制作一幅较高性能的地图检查如下方面是否注意到了 ？
+
+
+1 内容组织：
+· 空间参考/Spatial Reference在ArcMap中配置地图文档，要尽可能将所有数据与数据框使用相同的空间参考，特别是编辑或创建要提供服务的数据的时候。虽然ArcMap可以进行动态投影，但是这样做可以避免动态投影计算所造成的性能损耗。
+对于不同空间参考的数据，可以使用工具 Project 进行转换。
+· 连接与关联">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-MapDesignPerformance" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        ArcGIS地图设计性能优化
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/06/26/MapDesignPerformance/" class="article-date">
+    <time datetime="2015-06-26T05:00:00.000Z" itemprop="datePublished">2015-06-26</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapping/">Mapping</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>制作一幅较高性能的地图检查如下方面是否注意到了 ？</p>
+<p><br></p>
+<p><br></p>
+<h1 id="1-内容组织："><a href="#1-内容组织：" class="headerlink" title="1 内容组织："></a><strong>1 内容组织：</strong></h1><p><br></p>
+<h2 id="·-空间参考-Spatial-Reference"><a href="#·-空间参考-Spatial-Reference" class="headerlink" title="· 空间参考/Spatial Reference"></a>· 空间参考/Spatial Reference</h2><p>在ArcMap中配置地图文档，要尽可能将所有数据与数据框使用相同的空间参考，特别是编辑或创建要提供服务的数据的时候。虽然ArcMap可以进行动态投影，但是这样做可以避免动态投影计算所造成的性能损耗。</p>
+<p>对于不同空间参考的数据，可以使用工具 Project 进行转换。</p>
+<h2 id="·-连接与关联-Join-amp-Relate"><a href="#·-连接与关联-Join-amp-Relate" class="headerlink" title="· 连接与关联/Join &amp; Relate"></a>· 连接与关联/Join &amp; Relate</h2><p>我们有时会通过Join表中的字段进行标注或符号化，也可能会通过Relate操作来执行查询等。然而，通过连接和关联访问数据可能会降低性能，需要执行额外的工作来维护连接。</p>
+<p>对于需要使用Join过来的字段内容，可以考虑导出数据，获得包含连接字段的新要素类。</p>
+<h2 id="·-索引-Index"><a href="#·-索引-Index" class="headerlink" title="· 索引/Index"></a>· 索引/Index</h2><p>这里说的索引包含空间索引和属性索引。空间索引在大多数情况下，ArcGIS 都会自动维护。如果遇到没有自动更新的情况，可以手动更新创建；如果数据源允许使用索引，则应为所有查询字段或渲染字段建立索引。</p>
+<p>有关创建删除索引，ArcToolbox有个工具箱 Index可以找到需要的工具。</p>
+<h2 id="·-数据简化-Data-Simplification"><a href="#·-数据简化-Data-Simplification" class="headerlink" title="· 数据简化/Data Simplification"></a>· 数据简化/Data Simplification</h2><p>如果需要使用小比例尺出图，无需展示非常详细细节，那就可以考虑简化、概化数据。如果将图层简化为具有更少的折点和线段，图层在小比例下将绘制得更快并且差别不大。此外，简化的数据可以提高查询和识别操作的性能。</p>
+<p>需要的工具在工具箱也可以找到，例如：Simplify Polyline、Simplify Polygon。</p>
+<h2 id="·-底图图层-Basemap"><a href="#·-底图图层-Basemap" class="headerlink" title="· 底图图层/Basemap"></a>· 底图图层/Basemap</h2><p>使用底图图层以优化绘制性能，底图图层支持本地硬盘缓存。我们可以把不经常更新的数据作为底图图层，例如衬托在业务数据下的数据图层、影像数据图层等。</p>
+<p>如何配置地图图层不啰嗦，点这里看<a href="http://desktop.arcgis.com/zh-cn/desktop/latest/map/working-with-layers/working-with-basemap-layers.htm" target="_blank" rel="external">帮助</a></p>
+<h2 id="·-隐藏图层或要素"><a href="#·-隐藏图层或要素" class="headerlink" title="· 隐藏图层或要素"></a>· 隐藏图层或要素</h2><p>通过设置图层属性中的可见比例尺范围（Scale Range）和定义查询（Query Defination）来避免绘制不必要的图层或者要素。</p>
+<h2 id="·-要素缓存-Feature-Cache"><a href="#·-要素缓存-Feature-Cache" class="headerlink" title="· 要素缓存/Feature Cache"></a>· 要素缓存/Feature Cache</h2><p>ArcMap 要素缓存可以将 ArcMap 当前地图显示中的要素临时存储到本地计算机的内存中。由于从本地内存中检索要素是一个非常快的操作，因此使用要素缓存通常可以提高性能。例如：绘制较大或复杂的数据集；标注、编辑和选择要素；为地图上的多个图层检索相同的要素；使用定义查询来绘制要素。</p>
+<h2 id="·-栅格数据金字塔-Pyramid"><a href="#·-栅格数据金字塔-Pyramid" class="headerlink" title="· 栅格数据金字塔/Pyramid"></a>· 栅格数据金字塔/Pyramid</h2><p>改善和缩短显示大型栅格数据集时间的最好方法是创建金字塔，目的在于提高显示速度及降低 CPU 使用率。ArcMap 使用合适的分辨率等级来快速绘制整个数据集。如果不使用金字塔，则必须从磁盘中读取整个数据集，然后将其重采样为更精细的大小。对于镶嵌数据集需要创建概视图（Overview）。</p>
+<h2 id="·-布局视图-Layout"><a href="#·-布局视图-Layout" class="headerlink" title="· 布局视图/Layout"></a>· 布局视图/Layout</h2><p>需要打印输出时，查看一下布局视图的数据框的边界。圆角拐角、背景和阴影会降低性能。消除这些影响并将这些属性设置为方形拐角可以提高布局视图中数据框的绘制性能。</p>
+<p><br></p>
+<p><br></p>
+<h1 id="2-地图符号"><a href="#2-地图符号" class="headerlink" title="2 地图符号"></a><strong>2 地图符号</strong></h1><p><br></p>
+<h2 id="·-标记符号-Marker-Symbol"><a href="#·-标记符号-Marker-Symbol" class="headerlink" title="· 标记符号/Marker Symbol"></a>· 标记符号/Marker Symbol</h2><p>尽可能使用简单样式标记，避免使用多层符号。</p>
+<p>使用图片标记符号来代替晕圈。</p>
+<p>尽可能使用简单形状。</p>
+<p>将标记符号的大小属性设置为小于 60 磅。</p>
+<p>尽可能不使用图片标记符号，特别是数据量较大的时候。当标记符号只有一种颜色时，.emf 文件所提供的性能要好于 .bmp、.png 或 .jpg/.jpeg 文件。但是，当标记符号有两种或更多种颜色时，.png 文件是性能更好的格式。</p>
+<p><br></p>
+<h2 id="·-线符号-Line-Symbol"><a href="#·-线符号-Line-Symbol" class="headerlink" title="· 线符号/Line Symbol"></a>· 线符号/Line Symbol</h2><p>如果要减少显示时间，简单线符号是最好的选择；制图线作为最常用的线符号，在使用更多选项时绘制得相对缓慢一些。</p>
+<p>使用多图层符号时，请避免将不同的符号类型混合在一起。</p>
+<p>谨慎使用偏移或虚线样式，因为它们会增加绘制时间。</p>
+<p>宽线和带有整饰的线（例如标记和箭头）绘制起来较慢。</p>
+<p><br></p>
+<h2 id="·-面符号-Fill-Symbol"><a href="#·-面符号-Fill-Symbol" class="headerlink" title="· 面符号/Fill Symbol"></a>· 面符号/Fill Symbol</h2><p>对面进行符号化处理时，没有轮廓的简单填充符号将绘制得最快。</p>
+<p>需要在面周围加上轮廓时，应尽量选择简单线符号，其他的线类型（例如制图线、标记线和混列线）会显著增加绘制时间。</p>
+<p>与其他符号相同，使用尽可能少的图层来构成填充符号。</p>
+<p>特别是带有掩膜图层的点密度填充符号绘制起来更慢，因此应尽量避免使用这种填充符号。</p>
+<p>使用线填充符号时，无论是填充还是轮廓，尽量使用简单线。</p>
+<p>当图片填充符号只有一种颜色时，.emf 文件所提供的性能要好于 .bmp、.png, 或.jpg/.jpeg 文件。但是，当标记符号有两种或更多种颜色时，.png 文件是性能更好的格式。</p>
+<p><br></p>
+<p><br></p>
+<h1 id="3-地图文本"><a href="#3-地图文本" class="headerlink" title="3 地图文本"></a><strong>3 地图文本</strong></h1><p><br></p>
+<h2 id="·-通用"><a href="#·-通用" class="headerlink" title="· 通用"></a><strong>· 通用</strong></h2><p>文本符号与其他类型的符号一样，ArcMap 需要做出的处理决策越少，地图的绘制速度就越快。一般来说，使用注记代替标注可以提高性能。</p>
+<p>尽可能地减小文本的大小。非常大的文本符号（例如那些大于 60 磅的文本符号）会增加绘制时间。</p>
+<p>符号越复杂，绘制速度越慢。因此，应尽可能少使用文本效果（例如，注释、牵引线、偏移、晕圈、背景和填充方式）。</p>
+<p>在文本周围使用阴影，不使用晕圈或掩膜。</p>
+<p><br></p>
+<h2 id="·-标注"><a href="#·-标注" class="headerlink" title="· 标注"></a><strong>· 标注</strong></h2><p>尽可能简化 SQL 查询和标注放置要求。如果标注文本存储在图层属性表中的单个字段中，绘制标注将非常快。</p>
+<p>标注表达式会减慢绘制速度。尽可能避免在绘制时使用标注表达式脚本进行条件判断，或格式化标注字符串，或将多个字段值串连到一个标注字符串中。</p>
+<p>尽量为 SQL 查询中的字段建立索引。</p>
+<p>谨慎使用标注和要素冲突权重。</p>
+<p>直线型标注的绘制速度要快于曲线型标注。</p>
+<p>设置标注的显示比例尺范围。地图被缩小时，需要绘制更多的标注，而这需要时间。检查某些标注在较小的比例下是否需要绘制。</p>
+<p>“Maplex 标注引擎”拥有比“标准标注引擎”更多的标注放置选项。高级放置决策可能会影响性能。</p>
+<p><br></p>
+<h2 id="·-注记"><a href="#·-注记" class="headerlink" title="· 注记"></a><strong>· 注记</strong></h2><p>使用 ArcMap 创建注记时，可以存储在地图文档的注记组中，或存储在Geodatabase的注记要素类中。</p>
+<p>一般情况下，应该将注记存储在地理数据库中，因为相比地图文档注记，ArcMap 可以更快地访问和显示地理数据库注记。这是推荐的方式。</p>
+<p>如果要创建一张地图并且注记文本只应用到当前地图上，那么可以将文本存储到地图文档的一个或多个注记组中。这种情况很少。如果删除了地图，则该注记也被删除，因为其存储在地图文档中。另外，每个添加到注记组的注记都会增大地图文档文件 (.mxd) 的大小。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2015/06/26/MapDesignPerformance/" data-id="cim4n1o0r009qisivb00kcj6j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+							'<a href="http://service.weibo.com/share/share.php?&title=' + encodedUrl + '" class="article-share-sina" target="_blank" title="΢��"></a>',
+							'<a href="http://share.renren.com/share/buttonshare.do?link=' + encodedUrl + '" class="article-share-renren" target="_blank" title="����"></a>',
+							'<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodedUrl + '" class="article-share-qq" target="_blank" title="QQ �ռ�"></a>',
+							'<a href="http://v.t.qq.com/share/share.php?url=' + encodedUrl + '" class="article-share-tencent" target="_blank" title="��Ѷ΢��"></a>',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/06/26/MapDesignPerformance/" data-title="ArcGIS地图设计性能优化" data-url="http://www.kikitamap.com/2015/06/26/MapDesignPerformance/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/07/07/PythonList/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Python列表常用操作
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/06/10/DeployAGSLMonLinux/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">在Linux上安装ArcGIS许可管理器备忘录</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.36px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 17.27px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 16.36px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 15.45px;">Python</a> <a href="/tags/Raster/" style="font-size: 18.18px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15.45px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/insignificant/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_DSCN0827.JPG)" alt="渺小" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/21/insignificant/" class="title">渺小</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T10:36:17.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/FunnyProjections/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/FunnyProjections/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/RasterNodata/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/RasterNodata/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">132</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>

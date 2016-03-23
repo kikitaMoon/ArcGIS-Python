@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>在ArcGIS中创建Python工具（三） | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geoprocessing,Python" />
+    
+    <meta name="description" content="从 ArcGIS 10.1 版本开始，我们可以创建 python工具箱 来自定义脚本工具，这种工具箱相比较上一篇提到的标准工具箱。有着独特的优势，具体二者的区别总结过，看这一篇。
+
+认识 Python工具箱Python 工具箱 (.pyt) 是一个简单的文本文件，可以在任何文本编辑器中或者任何 Python IDE 中创建、查看和编辑。要确保 ArcGIS 正确识别 Python 工具箱，工具箱类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在ArcGIS中创建Python工具（三）">
+<meta property="og:url" content="http://www.kikitamap.com/2015/09/10/CreatePythonTool3/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="从 ArcGIS 10.1 版本开始，我们可以创建 python工具箱 来自定义脚本工具，这种工具箱相比较上一篇提到的标准工具箱。有着独特的优势，具体二者的区别总结过，看这一篇。
+
+认识 Python工具箱Python 工具箱 (.pyt) 是一个简单的文本文件，可以在任何文本编辑器中或者任何 Python IDE 中创建、查看和编辑。要确保 ArcGIS 正确识别 Python 工具箱，工具箱类">
+<meta property="og:image" content="http://img.blog.csdn.net/20150910113422675">
+<meta property="og:updated_time" content="2016-03-04T10:52:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在ArcGIS中创建Python工具（三）">
+<meta name="twitter:description" content="从 ArcGIS 10.1 版本开始，我们可以创建 python工具箱 来自定义脚本工具，这种工具箱相比较上一篇提到的标准工具箱。有着独特的优势，具体二者的区别总结过，看这一篇。
+
+认识 Python工具箱Python 工具箱 (.pyt) 是一个简单的文本文件，可以在任何文本编辑器中或者任何 Python IDE 中创建、查看和编辑。要确保 ArcGIS 正确识别 Python 工具箱，工具箱类">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-CreatePythonTool3" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        在ArcGIS中创建Python工具（三）
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/09/10/CreatePythonTool3/" class="article-date">
+    <time datetime="2015-09-10T06:42:04.000Z" itemprop="datePublished">2015-09-10</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>从 ArcGIS 10.1 版本开始，我们可以创建 <strong>python工具箱</strong> 来自定义脚本工具，这种工具箱相比较上一篇提到的标准工具箱。有着独特的优势，具体二者的区别总结过，看<a href="http://blog.csdn.net/kikitamoon/article/details/48134445" target="_blank" rel="external">这一篇</a>。</p>
+<p><br></p>
+<h1 id="认识-Python工具箱"><a href="#认识-Python工具箱" class="headerlink" title="认识 Python工具箱"></a><strong>认识 Python工具箱</strong></h1><p>Python 工具箱 (.pyt) 是一个简单的文本文件，可以在任何文本编辑器中或者任何 Python IDE 中创建、查看和编辑。要确保 ArcGIS 正确识别 Python 工具箱，工具箱类的名称必须是 <strong><code>Toolbox</code></strong>。在 <strong><code>Toolbox</code></strong> 类的 <strong><code>__init__</code></strong> 方法中定义工具箱的属性，这些属性包括 alias、label 和 description，我们可以按照 <strong><a href="http://desktop.arcgis.com/en/desktop/latest/analyze/creating-tools/a-template-for-python-toolboxes.htm" target="_blank" rel="external">帮助文档</a></strong> 中的模板构建 Python 工具箱模板。</p>
+<p>如下代码中创建了包含一个工具（名为 Tool）的 Python 工具箱：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toolbox</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Define the toolbox (the name of the toolbox is the name of the</span><br><span class="line">        .pyt file)."""</span></span><br><span class="line">        self.label = <span class="string">"Toolbox"</span></span><br><span class="line">        self.alias = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># List of tool classes associated with this toolbox</span></span><br><span class="line">        self.tools = [Tool]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tool</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Define the tool (tool name is the name of the class)."""</span></span><br><span class="line">        self.label = <span class="string">"Tool"</span></span><br><span class="line">        self.description = <span class="string">""</span></span><br><span class="line">        self.canRunInBackground = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getParameterInfo</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Define parameter definitions"""</span></span><br><span class="line">        params = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> params</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isLicensed</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Set whether tool is licensed to execute."""</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">updateParameters</span><span class="params">(self, parameters)</span>:</span></span><br><span class="line">        <span class="string">"""Modify the values and properties of parameters before internal</span><br><span class="line">        validation is performed.  This method is called whenever a parameter</span><br><span class="line">        has been changed."""</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">updateMessages</span><span class="params">(self, parameters)</span>:</span></span><br><span class="line">        <span class="string">"""Modify the messages created by internal validation for each tool</span><br><span class="line">        parameter.  This method is called after internal validation."""</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self, parameters, messages)</span>:</span></span><br><span class="line">        <span class="string">"""The source code of the tool."""</span></span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h1 id="动手做做"><a href="#动手做做" class="headerlink" title="动手做做"></a><strong>动手做做</strong></h1><p>下面我就依据这个模板，写一个简单的脚本工具箱。需求是批量裁剪，我希望我只提供一个文件夹或者数据库等这样的<strong>工作空间</strong>和一个<strong>裁剪区域面</strong>，就可以批量完成工作空间内全部数据的裁剪工作，并且无视栅格还是矢量，一并裁剪。</p>
+<p>Let the scripting begin ……</p>
+<p><br></p>
+<h2 id="1-创建工具箱"><a href="#1-创建工具箱" class="headerlink" title="1 创建工具箱"></a>1 创建工具箱</h2><p>工具箱的name就是 .pyt 文件的名字，通常我们把工具添加到 ArcToolbox窗口中时会显示工具箱的 label。在 <strong><code>Toolbox</code></strong> 类的 <strong><code>__init__</code></strong> 方法中定义属性，例如： <strong><code>alias</code></strong>、<strong><code>label</code></strong> 和 <strong><code>description</code></strong>。</p>
+<p>工具作为<strong>类</strong>被添加至 .pyt 中，工具箱的 tools 属性必须设置为包含定义的所有工具<strong>类</strong>的<strong>列表</strong>。比如，需要做ATool，ATool，CTool三个工具，不是写三个脚本，而是创建三个<strong>类</strong>，然后将类名放入列表， <strong><code>self.tools = [ATool,ATool,CTool]</code></strong> 。</p>
+<p><br></p>
+<p>这里，我仅定义一个工具类 ClipWorkspace，来说明构建过程即可  ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span><br><span class="line">Source Name:   ClipWorkspace.pyt</span><br><span class="line">Author:        Kikita</span><br><span class="line">Description:   Python tool to clip spatial data in the same workspace by batch.</span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># The class name must be "Toolbox" ...</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toolbox</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    </span><br><span class="line">        self.label = <span class="string">"Clip Workspace Toolbox"</span></span><br><span class="line">        self.alias = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># List of tool classes associated with this toolbox</span></span><br><span class="line">        self.tools = [ClipWorkspace]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClipWorkspace</span><span class="params">(object)</span>:</span></span><br><span class="line">	……</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>在 ArcGIS Desktop 中已经可以看到这个工具箱的雏形：</p>
+<p><img src="http://img.blog.csdn.net/20150910113422675" alt=""></p>
+<p><br></p>
+<h2 id="2-定义工具"><a href="#2-定义工具" class="headerlink" title="2 定义工具"></a>2 定义工具</h2><p>下面就是完善工具内部的代码。我就以 ClipVectorWorkspace 为例。</p>
+<p><br></p>
+<p>每个工具类应至少包括 <strong><code>__init__</code></strong> 和 <strong><code>execute</code></strong> 方法。此外，还可以选择使用 <strong><code>getParameterInfo</code></strong>、<strong><code>isLicensed</code></strong>、<strong><code>updateParameters</code></strong> 和 <strong><code>updateMessages</code></strong> 方法向工具的行为中添加其他控制。</p>
+<p>工具类中的 <strong><code>__init__</code></strong> 方法是标准 Python 类初始化方法。对于 Python 工具箱中的工具，<strong><code>__init__</code></strong> 方法用于设置该工具的属性，例如工具的标注、描述、是否允许在后台运行等。</p>
+<p>下面的例子就创建了ClipVectorWorkspace这个工具：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClipWorkspace</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.label = <span class="string">"Clip Workspace"</span></span><br><span class="line">        self.description = <span class="string">"clip spatial data in the same workspace by batch."</span></span><br><span class="line">        self.canRunInBackground = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>有了工具的构造函数，我们继续看如何给工具定义参数。在 Python 工具箱 (.pyt) 中，可在工具类的 <strong><code>getParameterInfo</code></strong> 方法中创建 <strong><code>Parameter</code></strong> 对象，并设置对象的属性来定义工具参数。<strong><code>Parameter</code></strong>的属性中<strong><code>datatype</code></strong><br>包含的类型可以在帮助文档中查询，点<strong><a href="http://desktop.arcgis.com/zh-cn/desktop/latest/analyze/creating-tools/defining-parameter-data-types-in-a-python-toolbox.htm" target="_blank" rel="external">这里</a></strong>。</p>
+<p><br></p>
+<p>此示例中的参数就是输入工作空间（inWorkspace）、裁剪区域面（ClipArea）、输出工作空间（outWorkspace）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getParameterInfo</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Parameter Definitions</span></span><br><span class="line">    <span class="comment"># First parameter - Input Workspace</span></span><br><span class="line">    param0 = arcpy.Parameter(</span><br><span class="line">        displayName=<span class="string">"Input Workspace"</span>,</span><br><span class="line">        name=<span class="string">"inWorkspace"</span>,</span><br><span class="line">        datatype=<span class="string">"DEWorkspace"</span>,</span><br><span class="line">        parameterType=<span class="string">"Required"</span>,</span><br><span class="line">        direction=<span class="string">"Input"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Second parameter - Clip Area</span></span><br><span class="line">    param1 = arcpy.Parameter(</span><br><span class="line">        displayName=<span class="string">"Clip Area"</span>,</span><br><span class="line">        name=<span class="string">"CLipArea"</span>,</span><br><span class="line">        datatype=<span class="string">"DEFeatureClass"</span>,</span><br><span class="line">        parameterType=<span class="string">"Required"</span>,</span><br><span class="line">        direction=<span class="string">"Input"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Third parameter - Output Workspace</span></span><br><span class="line">    param2 = arcpy.Parameter(</span><br><span class="line">        displayName=<span class="string">"Output Workspace"</span>,</span><br><span class="line">        name=<span class="string">"outWorkspace"</span>,</span><br><span class="line">        datatype=<span class="string">"DEWorkspace"</span>,</span><br><span class="line">        parameterType=<span class="string">"Required"</span>,</span><br><span class="line">        direction=<span class="string">"Input"</span>)</span><br><span class="line"></span><br><span class="line">    params = [param0,param1,param2]</span><br><span class="line">    <span class="keyword">return</span> params</span><br></pre></td></tr></table></figure>
+<p><strong>PS</strong> : 在代码中，如果仔细看，或许你会疑惑，为何输出工作空间的方向是 input ，而不是 output？ 因为工具最终输出的为 Feature Class 或 Raster，输出工作空间也是作为输入参数传入工具使用的。如果不关心，也可以不在意这些细节…… 继续向下了解工具的构建过程。</p>
+<p><br></p>
+<p>下面就是工具的具体执行部分了，当然里面还加了些辅助了解工具执行状态的消息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self, parameters, messages)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""The source code of the tool."""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Get tool parameters</span></span><br><span class="line">    inWorkspace = parameters[<span class="number">0</span>].valueAsText</span><br><span class="line">    arcpy.AddMessage(<span class="string">"###Input Workspace is &#123;0&#125;"</span>.format(inWorkspace))</span><br><span class="line"></span><br><span class="line">    ClipArea = parameters[<span class="number">1</span>].valueAsText</span><br><span class="line">    arcpy.AddMessage(<span class="string">"###Clip Area is &#123;0&#125;"</span>.format(ClipArea))</span><br><span class="line"></span><br><span class="line">    outWorkspace =  parameters[<span class="number">2</span>].valueAsText</span><br><span class="line">    arcpy.AddMessage(<span class="string">"###Out Workspace is &#123;0&#125;"</span>.format(outWorkspace))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Clip Feature by Batch</span></span><br><span class="line">    arcpy.env.workspace = inWorkspace</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Clip Vector</span></span><br><span class="line">    FeatureClasses = arcpy.ListFeatureClasses()</span><br><span class="line">    arcpy.AddMessage(<span class="string">"Input Workspace contains &#123;0&#125;"</span>.format(FeatureClasses))</span><br><span class="line">    <span class="keyword">for</span> fc <span class="keyword">in</span> FeatureClasses:</span><br><span class="line">        arcpy.AddMessage(<span class="string">"&gt;&gt; Clipping  &#123;0&#125;"</span>.format(fc))</span><br><span class="line">        arcpy.Clip_analysis(fc,ClipArea, os.path.join(outWorkspace,fc))</span><br><span class="line">        arcpy.AddMessage(<span class="string">"&#123;0&#125; has been clipped."</span>.format(os.path.join(outWorkspace,fc)))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Clip Raster</span></span><br><span class="line">    Rasters = arcpy.ListRasters()</span><br><span class="line">    arcpy.AddMessage(<span class="string">"Input Workspace contains &#123;0&#125;"</span>.format(Rasters))</span><br><span class="line">    <span class="keyword">for</span> Raster <span class="keyword">in</span> Rasters:</span><br><span class="line">        arcpy.AddMessage(<span class="string">"&gt;&gt; Clipping  &#123;0&#125;"</span>.format(Raster))</span><br><span class="line">        arcpy.Clip_management(in_raster = Raster,</span><br><span class="line">                              rectangle = <span class="string">""</span>,</span><br><span class="line">                              out_raster = os.path.join(outWorkspace,Raster),</span><br><span class="line">                              in_template_dataset = ClipArea,</span><br><span class="line">                              nodata_value = <span class="string">""</span>,</span><br><span class="line">                              clipping_geometry = <span class="string">"ClippingGeometry"</span>,</span><br><span class="line">                              maintain_clipping_extent = <span class="string">"NO_MAINTAIN_EXTENT"</span>)</span><br><span class="line">        arcpy.AddMessage(<span class="string">"&#123;0&#125; has been clipped."</span>.format(os.path.join(outWorkspace,Raster)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>到这里，工具的核心部分已经完成，执行下试试。</p>
+<p><img src="http://img.blog.csdn.net/20150910140946657" alt=""></p>
+<p><br></p>
+<p>OK，应该是预期的结果：</p>
+<p><img src="http://img.blog.csdn.net/20150910141035909" alt=""></p>
+<p><br></p>
+<h2 id="3-完善"><a href="#3-完善" class="headerlink" title="3 完善"></a>3 完善</h2><p>我们发现不像标准工具箱中的脚本工具和脚本文件本身是散列存储的，python工具箱以及其中的所有工具的代码都在这一个pyt文件中，维护起来便利了不少。如果想在工具箱中继续添加工具，只要继续增加一个工具类即可。</p>
+<p>经过前两步的过程，工具已经可以拿去使用。如果为了工具更友好，还可以继续调整下代码，以便遇到异常的时候，让用户了解更详细的原因，这里就再往下进行了。工具分享给别人，最后只差要丰富下工具文档了，同样在 Python 工具的 Item Description 中编辑。</p>
+<p><img src="http://img.blog.csdn.net/20150910143720552" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.kikitamap.com/2015/09/10/CreatePythonTool3/" data-id="cim4n1o1r00bsisivmm463ub4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+							'<a href="http://service.weibo.com/share/share.php?&title=' + encodedUrl + '" class="article-share-sina" target="_blank" title="΢��"></a>',
+							'<a href="http://share.renren.com/share/buttonshare.do?link=' + encodedUrl + '" class="article-share-renren" target="_blank" title="����"></a>',
+							'<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodedUrl + '" class="article-share-qq" target="_blank" title="QQ �ռ�"></a>',
+							'<a href="http://v.t.qq.com/share/share.php?url=' + encodedUrl + '" class="article-share-tencent" target="_blank" title="��Ѷ΢��"></a>',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/09/10/CreatePythonTool3/" data-title="在ArcGIS中创建Python工具（三）" data-url="http://www.kikitamap.com/2015/09/10/CreatePythonTool3/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/09/30/TriptoGreece/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            给自己做个地图故事——Trip to Greece
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/09/02/CreatePythonTool2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">在ArcGIS中创建Python工具（二）</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.36px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 17.27px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 16.36px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 15.45px;">Python</a> <a href="/tags/Raster/" style="font-size: 18.18px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15.45px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/insignificant/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_DSCN0827.JPG)" alt="渺小" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/21/insignificant/" class="title">渺小</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T10:36:17.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/HelloWorld/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/bmiddle/6de45a4bjw1f1cx8l34wdj20vq0ien2c.jpg)" alt="Hello World ！" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/01/HelloWorld/" class="title">Hello World ！</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T04:45:39.000Z" itemprop="datePublished">2016-03-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/04/FunnyProjections/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160203115028046)" alt="你所不知的有趣投影方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/04/FunnyProjections/" class="title">你所不知的有趣投影方法</a></p>
+                            <p class="item-date"><time datetime="2016-02-04T05:00:00.000Z" itemprop="datePublished">2016-02-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/02/RasterNodata/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.blog.csdn.net/20160201174054625)" alt="为影像数据去除无效值" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/02/02/RasterNodata/" class="title">为影像数据去除无效值</a></p>
+                            <p class="item-date"><time datetime="2016-02-02T05:00:00.000Z" itemprop="datePublished">2016-02-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">132</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js" type="text/javascript"></script>
+
+    </div>
+</body>
+</html>
