@@ -3,31 +3,90 @@
 <head>
     <meta charset="utf-8">
     
-    <title>镶嵌数据集工具小结（九）计算像元大小范围 | kikita &amp; Maps</title>
+    <title>Hexo My Blog | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Geodata,Raster" />
+        <meta name="keywords" content="" />
     
-    <meta name="description" content="计算像元大小范围
+    <meta name="description" content="截止到今天，都做过什么？   备个忘……
 
-像元大小范围指的是，镶嵌数据集中的影像参加动态镶嵌的像元大小范围，也就是，动态镶嵌的过程中从栅格数据集中读取的像元大小的范围。
-在镶嵌数据集的属性表中，字段 LowPS 列和 HighPS 列定义镶嵌数据集从源栅格数据集中读取的像元大小的 实际范围。当我们向镶嵌数据集中添加栅格时，工具会根据源栅格数据分辨率、金字塔等级、金字塔选项中的设置 来计算属性表中 LowPS 与 Hig">
+安装Hexo [文档]
+
+选主题 Hueman [hexo-theme-hueman]
+
+搬运填内容 [CSDN]
+
+各种倒饬主题
+
+Banner图片、favicon
+Widget顺序
+weiboxiu,友链
+多说评论，国内Share
+自定义网页字体
+图床外链
+Goolge Analyst 
+
+
+
+
+在Mac上部署Hexo，多个终端一起更新博客
+
+欠倒饬">
 <meta property="og:type" content="article">
-<meta property="og:title" content="镶嵌数据集工具小结（九）计算像元大小范围">
-<meta property="og:url" content="http://www.kikitamap.com/2014/11/28/MDCellRange/index.html">
+<meta property="og:title" content="Hexo My Blog">
+<meta property="og:url" content="http://www.kikitamap.com/2016/03/27/WhatHasBeenDoneUntill327/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="计算像元大小范围
+<meta property="og:description" content="截止到今天，都做过什么？   备个忘……
 
-像元大小范围指的是，镶嵌数据集中的影像参加动态镶嵌的像元大小范围，也就是，动态镶嵌的过程中从栅格数据集中读取的像元大小的范围。
-在镶嵌数据集的属性表中，字段 LowPS 列和 HighPS 列定义镶嵌数据集从源栅格数据集中读取的像元大小的 实际范围。当我们向镶嵌数据集中添加栅格时，工具会根据源栅格数据分辨率、金字塔等级、金字塔选项中的设置 来计算属性表中 LowPS 与 Hig">
-<meta property="og:image" content="http://img.blog.csdn.net/20141127151918341">
-<meta property="og:updated_time" content="2016-03-09T01:54:30.000Z">
+安装Hexo [文档]
+
+选主题 Hueman [hexo-theme-hueman]
+
+搬运填内容 [CSDN]
+
+各种倒饬主题
+
+Banner图片、favicon
+Widget顺序
+weiboxiu,友链
+多说评论，国内Share
+自定义网页字体
+图床外链
+Goolge Analyst 
+
+
+
+
+在Mac上部署Hexo，多个终端一起更新博客
+
+欠倒饬">
+<meta property="og:updated_time" content="2016-03-28T01:07:45.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="镶嵌数据集工具小结（九）计算像元大小范围">
-<meta name="twitter:description" content="计算像元大小范围
+<meta name="twitter:title" content="Hexo My Blog">
+<meta name="twitter:description" content="截止到今天，都做过什么？   备个忘……
 
-像元大小范围指的是，镶嵌数据集中的影像参加动态镶嵌的像元大小范围，也就是，动态镶嵌的过程中从栅格数据集中读取的像元大小的范围。
-在镶嵌数据集的属性表中，字段 LowPS 列和 HighPS 列定义镶嵌数据集从源栅格数据集中读取的像元大小的 实际范围。当我们向镶嵌数据集中添加栅格时，工具会根据源栅格数据分辨率、金字塔等级、金字塔选项中的设置 来计算属性表中 LowPS 与 Hig">
+安装Hexo [文档]
+
+选主题 Hueman [hexo-theme-hueman]
+
+搬运填内容 [CSDN]
+
+各种倒饬主题
+
+Banner图片、favicon
+Widget顺序
+weiboxiu,友链
+多说评论，国内Share
+自定义网页字体
+图床外链
+Goolge Analyst 
+
+
+
+
+在Mac上部署Hexo，多个终端一起更新博客
+
+欠倒饬">
     
 
     
@@ -146,47 +205,61 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    <a class="page-title-link" href="/categories/碎碎念/">碎碎念</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-MDCellRange" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-WhatHasBeenDoneUntill327" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        镶嵌数据集工具小结（九）计算像元大小范围
+        Hexo My Blog
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2014/11/28/MDCellRange/" class="article-date">
-    <time datetime="2014-11-28T07:41:03.000Z" itemprop="datePublished">2014-11-28</time>
+            <a href="/2016/03/27/WhatHasBeenDoneUntill327/" class="article-date">
+    <time datetime="2016-03-27T10:36:17.000Z" itemprop="datePublished">2016-03-27</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geodata/">Geodata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raster/">Raster</a></li></ul>
-
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p><strong>计算像元大小范围</strong></p>
-<p><img src="http://img.blog.csdn.net/20141127151918341" alt=""></p>
-<p>像元大小范围指的是，镶嵌数据集中的影像参加动态镶嵌的像元大小范围，也就是，动态镶嵌的过程中从栅格数据集中读取的像元大小的范围。</p>
-<p>在镶嵌数据集的属性表中，字段 <strong>LowPS</strong> 列和 <strong>HighPS</strong> 列定义镶嵌数据集从源栅格数据集中读取的像元大小的 <strong>实际范围</strong>。当我们向镶嵌数据集中添加栅格时，工具会根据源栅格数据分辨率、金字塔等级、金字塔选项中的设置 来计算属性表中 LowPS 与 HighPS 字段值。<br>例如，下图中的 LowPS = 0.1 表示基础像素值，High = 0.4 表示正在使用的顶级金字塔像素值。对于不包含金字塔的栅格数据集，低像素大小和高像素大小可能为相同的值，例如第一行。</p>
-<p><img src="http://img.blog.csdn.net/20141125171612875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>例如，在使用所有金字塔等级的情况下，如果栅格数据集包含 1 米的像元，且包含像元大小为 2、4、8 和 16 米的金字塔，则 LowPS 是 1，HighPS 是 16。如果在栅格金字塔选项中将最大像元大小设置为 8，则 HighPS 将为 8 而不是 16。</p>
-<p><img src="http://img.blog.csdn.net/20141127155304879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>属性表中还有两列：<strong>MinPS</strong> 列和 <strong>MaxPS</strong> 列，用来定义在什么像元大小范围内请求什么栅格数据。当我们向镶嵌数据集中添加栅格数据时，选中添加栅格至镶嵌数据集对话框上的 <strong>Update Cell Size Ranges (optional)</strong> 选项，或使用工具 <strong>Calculate Cell Size Ranges</strong> 时，就会填充两列字段值；也可以手动编辑表中的值。<br>MinPS 和 MaxPS 是根据栅格数据和叠加在上面的概视图来计算的。</p>
-<p>用下面一幅图，可以看出默认情况下，MinPS，MaxPS 与 LowPS，HighPS 的关系：</p>
-<p><img src="http://img.blog.csdn.net/20141127164421578?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>当加入镶嵌数据集的栅格数据源有多种分辨率时，就可以利用像元大小范围来控制不同比例尺下显示不同的栅格数据。</p>
-<p>例如，在国家级别查看影像，可以使用 <a href="http://baike.baidu.com/view/4221567.htm?fromtitle=Landsat&amp;fromid=7195765&amp;type=syn" target="_blank" rel="external">Landsat</a> 影像，约 30 米的像元大小；当放大到更高的比例，镶嵌数据集可以提供 SPOT 图像，像元大小约 5 米；进一步放大时，最终将看到航空正射影像，像元大小更小，分辨率更高。</p>
-<p>比例尺和像元大小有很大的关系，如果我们希望求取计算的话，可以参考如下公式：<br>    <strong>Scale = CellSize * 96 / 0.0254</strong><br>    其中，ArcGIS 中 DPI 的默认值为 96，1 英寸（Inch） = 0.0254米，CellSize是以“米”为单位的。<br>    公式反之，可以通过比例推算像元大小：<br>    <strong>CellSize = Scale * 0.0254 / 96</strong></p>
-<p>如果我们访问镶嵌数据集时，不断的放大地图，最终请求的影像的 Cell Size 小于了全部的 MinPS，那么就会请求失败，不再会返回影像；反之，如果我们不断的缩小地图，最终请求的Cell Size 大于了全部的的 MaxPS，那么也会请求失败，返回黑色和白色的棋盘状图案。也就是说，镶嵌数据集的像元大小范围会直接影响我们在缩放地图时影像数据的可见性。</p>
-<p>That’s all …</p>
+            <p><strong>截止到今天，都做过什么？</strong>   备个忘……</p>
+<ol>
+<li><p>安装Hexo [<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external"><strong>文档</strong></a>]</p>
+</li>
+<li><p>选主题 Hueman [<a href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="external"><strong>hexo-theme-hueman</strong></a>]</p>
+</li>
+<li><p>搬运填内容 [<a href="http://blog.csdn.net/kikitamoon" target="_blank" rel="external"><strong>CSDN</strong></a>]</p>
+</li>
+<li><p>各种倒饬主题</p>
+<ul>
+<li>Banner图片、favicon</li>
+<li>Widget顺序</li>
+<li>weiboxiu,友链</li>
+<li>多说评论，国内Share</li>
+<li>自定义网页字体</li>
+<li>图床外链</li>
+<li>Goolge Analyst </li>
+</ul>
+</li>
+</ol>
+<ol>
+<li>在Mac上部署Hexo，多个终端一起更新博客</li>
+</ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a><br></h2><p><strong>欠倒饬的地方：</strong></p>
+<ol>
+<li><p>归档目录折叠</p>
+</li>
+<li><p>博客加目录导航</p>
+</li>
+</ol>
+<p>下一期再说……</p>
 
         </div>
         <footer class="article-footer">
@@ -252,7 +325,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2014/11/28/MDCellRange/" data-title="镶嵌数据集工具小结（九）计算像元大小范围" data-url="http://www.kikitamap.com/2014/11/28/MDCellRange/"></div>
+    <div class="ds-thread" data-thread-key="2016/03/27/WhatHasBeenDoneUntill327/" data-title="Hexo My Blog" data-url="http://www.kikitamap.com/2016/03/27/WhatHasBeenDoneUntill327/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -308,20 +381,10 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         
 <nav id="article-nav">
     
-        <a href="/2014/12/04/FunctionChain/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            镶嵌数据集工具小结（十）函数链
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2014/11/20/MDColorBalance2/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/03/21/insignificant/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">镶嵌数据集工具小结（八）色彩平衡与接缝线 Ⅱ</p>
+        <p class="article-nav-title">渺小</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
