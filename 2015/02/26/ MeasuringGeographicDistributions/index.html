@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>空间统计（一）度量地理分布 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geoprocessing,Spatial Statistics" />
+    
+    <meta name="description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空间统计（一）度量地理分布">
+<meta property="og:url" content="http://www.kikitamap.com/2015/02/26/ MeasuringGeographicDistributions/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+<meta property="og:image" content="http://img.blog.csdn.net/20150226151543719">
+<meta property="og:updated_time" content="2016-03-07T06:30:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空间统计（一）度量地理分布">
+<meta name="twitter:description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150226151543719">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post- MeasuringGeographicDistributions" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        空间统计（一）度量地理分布
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/02/26/ MeasuringGeographicDistributions/" class="article-date">
+    <time datetime="2015-02-26T09:50:36.000Z" itemprop="datePublished">2015-02-26</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（area），连通性（connectivity）等。</p>
+<p>本篇总结一下有关 度量地理分布（ Measuring Geographic Distributions）工具集中提供的功能。这些工具用于研究要素的空间分布特征，下面一个一个来看：</p>
+<p><img src="http://img.blog.csdn.net/20150226151543719" alt=""></p>
+<p><br></p>
+<h1 id="Central-Feature"><a href="#Central-Feature" class="headerlink" title="Central Feature"></a>Central Feature</h1><p>中心要素（Central Feature）这个工具可用于寻找一组要素中处于最中心位置的要素，这一组要素可以是点、线、面。</p>
+<p>可解决的问题例如：</p>
+<p>某个区域的仓库中最中心位置的是哪个? </p>
+<p><img src="http://img.blog.csdn.net/20150204110834566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>在几个区块中，哪一个具有最中心的位置？</p>
+<p><img src="http://img.blog.csdn.net/20150204111026216?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>工具的算法是将每个要素质心与其他各要素质心之间的距离计算并求和，取最小值。那么问题来了……</p>
+<p><strong>距离测量方法是什么？</strong></p>
+<p>有欧式距离与曼哈顿距离可选，区别点这里。并且需牢记，投影坐标系下才有准确的测量值，如果数据是经纬度坐标系，需要投影变换。</p>
+<p><strong>要素的质心如何确定？</strong></p>
+<p>对于线和面要素，距离计算中会使用要素的质心。对于多点、折线或由多部件组成的面，将会使用所有要素部件的加权平均中心来计算质心。点要素的加权项是 1，线要素的加权项是长度，而面要素的加权项是面积。</p>
+<p><strong>如何求多组要素的各自的中心要素？</strong></p>
+<p>设置分组字段，可以对多个分组的要素分别计算中心要素。</p>
+<p><br></p>
+<h1 id="Mean-Center"><a href="#Mean-Center" class="headerlink" title="Mean Center"></a>Mean Center</h1><p>平均中心（Mean Center）用于计算输入的要素的质心的平均中心，因此这个工具会计算出一个新的点。</p>
+<p>如果输入数据包含 Z 值，那么在平均中心也会计算 Z 值，也就是得到3D点。</p>
+<p><img src="http://img.blog.csdn.net/20150209145427121?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<blockquote>
+<p>这个工具在现实中有什么应用呢？我从帮助中引用几个有意思的应用：</p>
+<p>★  犯罪分析师在对白天事件点与夜间事件点进行对比评估时，可能希望查看盗窃行为的平均中心是否会有所变化。这有助于公安部门更好地分配资源。</p>
+<p>★  野生生物学家可以计算某个公园若干年内的麋鹿观测值的平均中心，以了解夏季和冬季麋鹿会在何处聚集，从而为公园游客提供更好的信息。</p>
+<p>★  GIS 分析师可以通过将 911 紧急电话的平均中心与紧急响应站的位置进行比较来评估服务水平。此外，该分析师还可以对由超过 65 岁的个人加权所得的平均中心进行评估，从而确定提供老人服务的理想位置。</p>
+</blockquote>
+<p>举个栗子：</p>
+<p>2012年西非的马里暴动的位置信息采集后，求取平均中心大致可以了解事件的分布情况。</p>
+<p>所有事件：</p>
+<p><img src="http://img.blog.csdn.net/20150227112032811" alt=""></p>
+<p>各类事件的平均中心：</p>
+<p><img src="http://img.blog.csdn.net/20150227113039745" alt=""></p>
+<p><br></p>
+<h1 id="Median-Center"><a href="#Median-Center" class="headerlink" title="Median Center"></a>Median Center</h1><p>中位数中心（Median Center）工具使用迭代算法来查找可使所有要素间的欧氏距离达到最小的点。</p>
+<p>平均中心和中位数中心均是中心趋势度量。但是，比较而言，中位数中心工具的算法受数据异常值的影响较小。</p>
+<p>例如，对紧凑性群集点的平均中心进行计算的结果是该群集中心处的某个位置点。如果随后添加一个远离该群集的新点并重新进行计算平均中心，会注意到结果会向新的异常值靠近。而如果要使用中位数中心工具执行相同的测试，会发现新的异常值对结果位置的影响明显减小。</p>
+<p>如下图中，向数据中增加两个相隔较远的点， Median Center 看起来要比 Mean Center 偏移的更小。</p>
+<p><img src="http://img.blog.csdn.net/20150210115001570" alt=""></p>
+<p>PS： 尽管中位数中心工具只返回一个点，但实际上,距所有要素的距离最小的位置点可能有多个。</p>
+<p><br></p>
+<h1 id="Directional-Distribution-Standard-Deviational-Ellipse"><a href="#Directional-Distribution-Standard-Deviational-Ellipse" class="headerlink" title="Directional Distribution (Standard Deviational Ellipse)"></a>Directional Distribution (Standard Deviational Ellipse)</h1><p>方向分布（标准差椭圆）工具可以查看要素的分布是否是狭长的，是否具有方向性，从而使我们直观的感受数据的趋向。该方法是由平均中心作为起点对 x 坐标和 y 坐标的标准差进行计算，从而定义椭圆的轴，因此该椭圆被称为标准差椭圆。</p>
+<p><img src="http://img.blog.csdn.net/20150226154212460" alt=""></p>
+<p>在工具生成的椭圆面中会包含：</p>
+<ul>
+<li>平均中心的 X 和 Y 坐标、两个标准距离（长轴和短轴）及椭圆的方向，这五个值。</li>
+<li>如果要素的基础空间模式是中心处集中而朝向外围的要素较少（一种空间正态分布），则一个标准差椭圆面会包含聚类中约 68％ 的要素，两个标准差椭圆面会包含聚类中约 95％ 的要素，三个标准差椭圆面则可包含聚类中约 99％ 的要素。</li>
+</ul>
+<blockquote>
+<p>这个工具可能的应有哪些呢？从帮助文档中摘录过来：</p>
+<ul>
+<li>在地图上标示一组犯罪行为的分布趋势可以确定该行为与特定要素（一系列酒吧或餐馆、某条特定街道等）的关系。 </li>
+<li>在地图上标示地下水井样本的特定污染可以指示毒素的扩散方式，这在部署减灾策略时非常有用。</li>
+<li>对各个种族或民族所在区域的椭圆的大小、形状和重叠部分进行比较可以提供与种族隔离或民族隔离相关的深入信息。</li>
+<li>绘制一段时间内疾病爆发情况的椭圆可建立疾病传播的模型。</li>
+</ul>
+</blockquote>
+<p>我还使用上面马里的例子，了解各种事件的分布情况：</p>
+<p><img src="http://img.blog.csdn.net/20150227114022781" alt=""></p>
+<p>且不说分布方向，我们可以看出，无论是哪种暴动事件，与之并发导致的无家可归的难民是分布最广的。</p>
+<p><br></p>
+<h1 id="Standard-Distance"><a href="#Standard-Distance" class="headerlink" title="Standard Distance"></a>Standard Distance</h1><p>标准距离工具可通过绘制一个半径等于标准距离值的圆在地图上体现一组要素的紧密度。</p>
+<p><img src="http://img.blog.csdn.net/20150226163623440" alt=""></p>
+<blockquote>
+<p>可能的应用：</p>
+<ul>
+<li>利用两种或多种分布的值对分布进行比较。例如，犯罪分析家可以对袭击行为和汽车偷窃行为的紧密度进行比较。了解不同犯罪类型的分布情况可能有助于警察制定出应对犯罪行为的策略。如果特定区域内的犯罪行为分布很紧凑，那么在该区域中心附近配置一辆警车也许就足够了。但如果分布较分散，则可能需要几辆警车同时巡查该区域，才能更有效地对犯罪行为做出响应。</li>
+<li>可以对同一类型要素在不同时间段内的分布情况进行比较。例如，犯罪分析家可以对白天盗窃行为和夜间盗窃行为进行比较，以了解白天与夜间相比，盗窃行为是更加分散还是更加紧凑。</li>
+<li>可将要素分布与静态要素进行比较。例如，可以针对某个区域内各响应消防站在几个月内接到的紧急电话的分布情况进行度量和比较，以了解哪些消防站响应的区域较广。</li>
+</ul>
+</blockquote>
+<h1 id="Linear-Directional-Mean"><a href="#Linear-Directional-Mean" class="headerlink" title="Linear Directional Mean"></a>Linear Directional Mean</h1><p>线性方向平均值工具可以计算一组线要素的趋势的平均角度。</p>
+<p>许多具有一个起点和一个终点的线要素，例如飓风路径，我们就可以使用这个工具计算飓风的平均方向。再比如断层线，这种线要素我们一般认为它们有方位（orientation），但是没有方向（direction），我们也可以使用这个工具计算平均方位。</p>
+<p>所以，如果要计算平均方向，请确保所有线的方向都是正确的。如果要计算平均方位，则会忽略线的方向。</p>
+<p>请牢记，尽管大多数线在起点和终点之间具有多个折点，此工具将只使用起点和终点来确定方向。</p>
+<p><img src="http://img.blog.csdn.net/20150226174741467" alt=""></p>
+<p>输出线要素的为位于要素平均中心，长度为输入要素的平均长度。包含了罗盘角（以正北为基准方向按顺时针旋转）、方向平均值（以正东为基准方向按逆时针旋转）、圆方差（指示方向/方位偏离方向平均值的程度）、平均中心 X 和 Y 坐标及平均长度。</p>
+<p><img src="http://img.blog.csdn.net/20150226174841124" alt=""></p>
+<blockquote>
+<p>可能的应用：</p>
+<ul>
+<li>比较两组或多组线。例如，研究河谷中麋鹿和驼鹿迁移状况的野生生物学家可计算这两个物种迁徙路径的方向趋势。</li>
+<li>比较不同时期的要素。例如，鸟类学家可逐月计算猎鹰迁徙的趋势。方向平均值可汇总多个个体的飞行路径并对每日的迁移进行平滑处理。这样便可很容易地了解鸟类在哪个月进得最快，以及迁徙在何时结束。</li>
+<li>评估森林中的伐木状况以了解风型和风向。</li>
+<li>分析可以指示冰川移动方式的冰擦痕。</li>
+<li>标识汽车失窃及被盗车辆追回的大体方向。</li>
+</ul>
+</blockquote>
+<p>再举个栗子：</p>
+<p>如下图中绿色的线段表示历年不同日期采集的风向数据，现在根据不同的年份计算每年的平均风向，结果如图，图形总是比表格数据直观的很：</p>
+<p><img src="http://img.blog.csdn.net/20150227162030456" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/02/26/ MeasuringGeographicDistributions/" data-title="空间统计（一）度量地理分布" data-url="http://www.kikitamap.com/2015/02/26/ MeasuringGeographicDistributions/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/03/05/AnalysisPatternsA/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            空间统计（二）分析模式 A
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/01/12/ParallelProcessing/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">ArcGIS Desktop 工具的并行处理</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/01/Peaceful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_3500.jpg-kikitaMaps)" alt="宁静的白与蓝" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/04/01/Peaceful/" class="title">宁静的白与蓝</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T14:02:28.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/01/IfModelsTuches/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SimpleFootPrint.png-kikitaMaps)" alt="CGA：自动判断模型间关系的3D建模方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/04/01/IfModelsTuches/" class="title">CGA：自动判断模型间关系的3D建模方法</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T02:29:27.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/30/TheCircle/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_2051.jpg-kikitaMaps)" alt="圈" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/30/TheCircle/" class="title">圈</a></p>
+                            <p class="item-date"><time datetime="2016-03-30T14:26:41.000Z" itemprop="datePublished">2016-03-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/27/WhatHasBeenDoneUntill327/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/03/27/WhatHasBeenDoneUntill327/" class="title">Hexo My Blog</a></p>
+                            <p class="item-date"><time datetime="2016-03-27T10:36:17.000Z" itemprop="datePublished">2016-03-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/insignificant/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_DSCN0827.JPG-kikitaMaps)" alt="渺小" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/03/21/insignificant/" class="title">渺小</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T10:36:17.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15.45px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.36px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 15.45px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 14.55px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.27px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 14.55px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">133</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://oopsliu.github.io/">oopsliu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
