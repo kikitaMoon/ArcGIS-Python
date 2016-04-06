@@ -6,7 +6,7 @@
     <title>CGA：自动判断模型间关系的3D建模方法 | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="3D,CGA,CityEngine" />
+        <meta name="keywords" content="3D,CityEngine,CGA" />
     
     <meta name="description" content="背景最近遇到一个有趣的问题，如何在CityEgnine中判断有接触或相交关系的模型，从而自动进行建模？
 这个问题有点抽象，我们来看个实例，了解下问题的背景:
@@ -23,7 +23,7 @@
 
 实际生活中的的建筑物可能是更复杂的，例如商场、大型会议中心、复杂居民楼等参差不齐的多栋联合建筑，我们可以采集多个底面来表示建筑物，例如">
 <meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SimpleFootPrint.png-kikitaMaps">
-<meta property="og:updated_time" content="2016-04-01T10:27:58.161Z">
+<meta property="og:updated_time" content="2016-04-06T03:50:56.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CGA：自动判断模型间关系的3D建模方法">
 <meta name="twitter:description" content="背景最近遇到一个有趣的问题，如何在CityEgnine中判断有接触或相交关系的模型，从而自动进行建模？
@@ -31,6 +31,7 @@
 以往绝大多数情况下，我们拿到的2D建筑物底面（FootPrint）都是一个建筑对应一个面，也就是这样的：
 
 实际生活中的的建筑物可能是更复杂的，例如商场、大型会议中心、复杂居民楼等参差不齐的多栋联合建筑，我们可以采集多个底面来表示建筑物，例如">
+<meta name="twitter:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SimpleFootPrint.png-kikitaMaps">
     
 
     
@@ -39,19 +40,19 @@
         <link rel="icon" href="/images/kikita.jpg" />
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
     
     
         <script type="text/javascript">
@@ -186,13 +187,13 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 <p><br></p>
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>CityEngine的真正魅力在于“动态”建模，这是CE的创作者一直想要传播的理念。 CityEgnine提供很多内置函数解决这些问题，其中有一组为：<strong>Occlusion Functions</strong>，包含：<code>inside</code>，<code>overlaps</code>，<code>touches</code> 三个函数。 我们可以利用 <code>touches()</code> 来实现判断。</p>
 <p>先写段简单的来了解下函数用法：</p>
-<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Init</span>  --&gt; extrude(<span class="number">40</span>) <span class="type">Mass</span></span><br><span class="line"><span class="type">Mass</span> --&gt; comp(f)&#123;top:<span class="type">NIL</span>| side:<span class="type">Side</span>&#125; </span><br><span class="line"><span class="type">Side</span> --&gt; <span class="keyword">case</span> touches<span class="literal">()</span>: color(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="type">ShareSide</span></span><br><span class="line">         <span class="keyword">else</span>: <span class="type">Walls</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Init <span class="comment">--&gt; </span></span><br><span class="line">     extrude(<span class="number">40</span>) Mass</span><br><span class="line">Mass <span class="comment">--&gt;</span></span><br><span class="line">     comp(f)&#123;top:NIL| side:Side&#125; </span><br><span class="line">Side <span class="comment">--&gt; </span></span><br><span class="line">     case touches(): color(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>) ShareSide</span><br><span class="line">     <span class="keyword">else</span>: Walls</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_ShareSide.png-kikitaMaps" alt=""></p>
 <p>针对前面“空中地下室”的问题，可以在楼层切割到窗户和墙体的时候做个判断，楼层不touch其他楼层时，再进行分割。</p>
 <p>可以实现这个样子：</p>
 <p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_ModelTouchSolve.png-kikitaMaps" alt=""></p>
 <p>全部 CGA 代码共享给大家：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define Attributes</span></span><br><span class="line">attr AVG_HEIGHT = <span class="number">0</span></span><br><span class="line">attr WindowsWidth = <span class="number">8</span></span><br><span class="line">attr WallWidth = <span class="number">2.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Building Schmetic</span></span><br><span class="line">Init <span class="comment">--&gt; extrude(AVG_HEIGHT) Mass</span></span><br><span class="line">Mass <span class="comment">--&gt; comp(f)&#123;top:Top|side:Walls&#125;</span></span><br><span class="line">Walls <span class="comment">--&gt; split(y) &#123; 15 : GroundFloor | &#123;~10 : UpperFloors &#125; * &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ground Floor</span></span><br><span class="line">GroundFloor <span class="comment">--&gt; </span></span><br><span class="line">      setupProjection(<span class="number">0</span>, scope.xy, '<span class="number">1</span>, '<span class="number">1</span>)</span><br><span class="line">      projectUV(<span class="number">0</span>) </span><br><span class="line">      texture(<span class="string">"GroundFloor.jpg"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># All Upper Floors</span></span><br><span class="line">UpperFloors <span class="comment">--&gt; </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use touches() function</span></span><br><span class="line">	case touches():</span><br><span class="line">		  setupProjection(<span class="number">0</span>, scope.xy, <span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">          projectUV(<span class="number">0</span>) </span><br><span class="line">          texture(<span class="string">"Wall/wall_grey.jpg"</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	      split(x) &#123; ~WallWidth : AllWalls |</span><br><span class="line">                &#123; ~WindowsWidth : WindowTiles |</span><br><span class="line">                  ~WallWidth : AllWalls &#125; * &#125;                 </span><br><span class="line">	      WindowTiles <span class="comment">--&gt;</span></span><br><span class="line">		  split(y)&#123;~WallWidth/<span class="number">2</span>: AllWalls |</span><br><span class="line">			       ~WindowsWidth : Windows|</span><br><span class="line">			       ~WallWidth/<span class="number">2</span> :AllWalls &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Wall Texture      </span></span><br><span class="line">AllWalls <span class="comment">--&gt;    </span></span><br><span class="line">      setupProjection(<span class="number">0</span>, scope.xy, <span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">      projectUV(<span class="number">0</span>) </span><br><span class="line">      texture(<span class="string">"Wall/wall_grey.jpg"</span>)</span><br><span class="line">    </span><br><span class="line">Windows <span class="comment">--&gt; </span></span><br><span class="line">      color(<span class="string">"DAFAF3"</span>)</span><br><span class="line">      i(<span class="string">"Windows/sash_window.obj"</span>) </span><br><span class="line">      s('<span class="number">1</span>,'<span class="number">1</span>,'<span class="number">2</span>)   </span><br><span class="line">        </span><br><span class="line">Top  <span class="comment">--&gt; </span></span><br><span class="line">      <span class="command">offset</span>(-<span class="number">0.5</span>)</span><br><span class="line">      comp(f)&#123; border : RoofEdge | inside : RoofFlat &#125;     </span><br><span class="line">RoofFlat <span class="comment">--&gt;</span></span><br><span class="line">      setupProjection(<span class="number">0</span>, scope.xy, '<span class="number">1</span>, '<span class="number">1</span>)</span><br><span class="line">      projectUV(<span class="number">0</span>) </span><br><span class="line">      texture(<span class="string">"flatroof6.bw.jpg"</span>)     </span><br><span class="line">RoofEdge <span class="comment">--&gt; extrude(1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * File:    TestTouches.cga</span><br><span class="line"> * Created: <span class="number">1</span> Apr <span class="number">2016</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">24</span> GMT</span><br><span class="line"> * Author:  kikita</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"><span class="built_in">version</span> <span class="string">"2015.2"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define Attributes</span></span><br><span class="line">attr AVG_HEIGHT = <span class="number">0</span></span><br><span class="line">attr WindowsWidth = <span class="number">8</span></span><br><span class="line">attr WallWidth = <span class="number">2.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Building Schmetic</span></span><br><span class="line">Init <span class="comment">--&gt; </span></span><br><span class="line">     extrude(AVG_HEIGHT) Mass</span><br><span class="line">Mass <span class="comment">--&gt;</span></span><br><span class="line">     comp(f)&#123;top:Top|side:Walls&#125;</span><br><span class="line">Walls <span class="comment">--&gt;</span></span><br><span class="line">     split(y) &#123; <span class="number">15</span> : GroundFloor | &#123;~<span class="number">10</span> : UpperFloors &#125; * &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ground Floor</span></span><br><span class="line">GroundFloor <span class="comment">--&gt; </span></span><br><span class="line">   setupProjection(<span class="number">0</span>, scope.xy, '<span class="number">1</span>, '<span class="number">1</span>)</span><br><span class="line">   projectUV(<span class="number">0</span>) </span><br><span class="line">   texture(<span class="string">"GroundFloor.jpg"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># All Upper Floors</span></span><br><span class="line">UpperFloors <span class="comment">--&gt; </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use touches() function</span></span><br><span class="line">	case touches():</span><br><span class="line">         setupProjection(<span class="number">0</span>, scope.xy, <span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">         projectUV(<span class="number">0</span>) </span><br><span class="line">         texture(<span class="string">"Wall/wall_grey.jpg"</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	     split(x)&#123; ~WallWidth : AllWalls |</span><br><span class="line">                 &#123; ~WindowsWidth : WindowTiles |</span><br><span class="line">                   ~WallWidth : AllWalls &#125; * &#125;                 </span><br><span class="line">	     WindowTiles <span class="comment">--&gt;</span></span><br><span class="line">		    split(y)&#123; ~WallWidth/<span class="number">2</span>: AllWalls |</span><br><span class="line">			          ~WindowsWidth : Windows|</span><br><span class="line">			          ~WallWidth/<span class="number">2</span> :AllWalls &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Wall Texture      </span></span><br><span class="line">AllWalls <span class="comment">--&gt;    </span></span><br><span class="line">      setupProjection(<span class="number">0</span>, scope.xy, <span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">      projectUV(<span class="number">0</span>) </span><br><span class="line">      texture(<span class="string">"Wall/wall_grey.jpg"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows  </span></span><br><span class="line">Windows <span class="comment">--&gt; </span></span><br><span class="line">      color(<span class="string">"DAFAF3"</span>)</span><br><span class="line">      i(<span class="string">"Windows/sash_window.obj"</span>) </span><br><span class="line">      s('<span class="number">1</span>,'<span class="number">1</span>,'<span class="number">2</span>)          </span><br><span class="line"></span><br><span class="line"><span class="comment"># Roofs</span></span><br><span class="line">Top <span class="comment">--&gt; </span></span><br><span class="line">      <span class="built_in">offset</span>(<span class="number">-0.5</span>)</span><br><span class="line">      comp(f)&#123; border : RoofEdge | inside : RoofFlat &#125;     </span><br><span class="line">RoofFlat <span class="comment">--&gt;</span></span><br><span class="line">      setupProjection(<span class="number">0</span>, scope.xy, '<span class="number">1</span>, '<span class="number">1</span>)</span><br><span class="line">      projectUV(<span class="number">0</span>) </span><br><span class="line">      texture(<span class="string">"flatroof6.bw.jpg"</span>)     </span><br><span class="line">RoofEdge <span class="comment">--&gt; </span></span><br><span class="line">      extrude(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p>明天就放假了</p>
 <p>节日愉快</p>
 <p>我说的是愚人节</p>
@@ -318,6 +319,16 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         
 <nav id="article-nav">
     
+        <a href="/2016/04/01/Peaceful/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            宁静的白与蓝
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2016/03/30/TheCircle/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
@@ -336,6 +347,25 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/01/Peaceful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_3500.jpg-kikitaMaps)" alt="宁静的白与蓝" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/04/01/Peaceful/" class="title">宁静的白与蓝</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T14:02:28.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -413,25 +443,6 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
-                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
-                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -451,7 +462,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">133</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">133</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -462,6 +473,10 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
                 
                     <li>
                         <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
@@ -479,10 +494,6 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
                     </li>
                 
-                    <li>
-                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -495,7 +506,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
         </div>
     </div>
 
@@ -538,17 +549,17 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
-        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
 
     </div>
 </body>

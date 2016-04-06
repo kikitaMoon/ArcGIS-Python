@@ -43,6 +43,7 @@ Data Driven Page 工具条上的设置，主要也是来配置索引图层，那
 
 &amp;nbsp;
 ArcGIS 提供了一系列制作和准">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20130621160054515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
     
 
     
@@ -51,19 +52,19 @@ ArcGIS 提供了一系列制作和准">
         <link rel="icon" href="/images/kikita.jpg" />
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
     
     
         <script type="text/javascript">
@@ -217,7 +218,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 <p>（1）直接对没有投影的要素类运行此工具将会产生错误。要素类必须进行<strong>投影</strong>。</p>
 <p>（2）<strong>坐标系字段</strong>必须是文本字段，并且字段长度应大于或等于 600 个字符。</p>
 <p>在新字段中添加了文本坐标信息，格式类似如下：</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="atom">span</span> <span class="atom">style</span>=<span class="string">"background-color:rgb(204,204,204)"</span>&gt;<span class="name">PROJCS</span>[&amp;<span class="atom">quot</span>;<span class="name">World_Mercator</span>&amp;<span class="atom">quot</span>;,<span class="name">GEOGCS</span>[&amp;<span class="atom">quot</span>;<span class="name">GCS_WGS_1984</span>&amp;<span class="atom">quot</span>;,<span class="name">DATUM</span>[&amp;<span class="atom">quot</span>;<span class="name">D_WGS_1984</span>&amp;<span class="atom">quot</span>;,<span class="name">SPHEROID</span>[&amp;<span class="atom">quot</span>;<span class="name">WGS_1984</span>&amp;<span class="atom">quot</span>;,<span class="number">6378137.0</span>,<span class="number">298.257223563</span>]],<span class="name">PRIMEM</span>[&amp;<span class="atom">quot</span>;<span class="name">Greenwich</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">UNIT</span>[&amp;<span class="atom">quot</span>;<span class="name">Degree</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0174532925199433</span>]],<span class="name">PROJECTION</span>[&amp;<span class="atom">quot</span>;<span class="name">Mercator</span>&amp;<span class="atom">quot</span>;],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">False_Easting</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">False_Northing</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">Central_Meridian</span>&amp;<span class="atom">quot</span>;,-<span class="number">118.525225741025</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">Standard_Parallel_1</span>&amp;<span class="atom">quot</span>;,<span class="number">46.76032322895251</span>],<span class="name">UNIT</span>[&amp;<span class="atom">quot</span>;<span class="name">Meter</span>&amp;<span class="atom">quot</span>;,<span class="number">1.0</span>],<span class="name">AUTHORITY</span>[&amp;<span class="atom">quot</span>;<span class="name">ESRI</span>&amp;<span class="atom">quot</span>;,<span class="number">54004</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;span style="background-color:rgb(<span class="number">204</span>,<span class="number">204</span>,<span class="number">204</span>)"&gt;</span>PROJCS[<span class="variable">&amp;quot</span>;World_Mercator<span class="variable">&amp;quot</span>;,GEOGCS[<span class="variable">&amp;quot</span>;GCS_WGS_1984<span class="variable">&amp;quot</span>;,DATUM[<span class="variable">&amp;quot</span>;D_WGS_1984<span class="variable">&amp;quot</span>;,SPHEROID[<span class="variable">&amp;quot</span>;WGS_1984<span class="variable">&amp;quot</span>;,<span class="number">6378137.0</span>,<span class="number">298.257223563</span>]],PRIMEM[<span class="variable">&amp;quot</span>;Greenwich<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],UNIT[<span class="variable">&amp;quot</span>;Degree<span class="variable">&amp;quot</span>;,<span class="number">0.0174532925199433</span>]],PROJECTION[<span class="variable">&amp;quot</span>;Mercator<span class="variable">&amp;quot</span>;],PARAMETER[<span class="variable">&amp;quot</span>;False_Easting<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],PARAMETER[<span class="variable">&amp;quot</span>;False_Northing<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],PARAMETER[<span class="variable">&amp;quot</span>;Central_Meridian<span class="variable">&amp;quot</span>;,<span class="number">-118.525225741025</span>],PARAMETER[<span class="variable">&amp;quot</span>;Standard_Parallel_1<span class="variable">&amp;quot</span>;,<span class="number">46.76032322895251</span>],UNIT[<span class="variable">&amp;quot</span>;Meter<span class="variable">&amp;quot</span>;,<span class="number">1.0</span>],AUTHORITY[<span class="variable">&amp;quot</span>;ESRI<span class="variable">&amp;quot</span>;,<span class="number">54004</span>]]</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h1 id="5-Calculate-nbsp-Grid-Convergence-Angle"><a href="#5-Calculate-nbsp-Grid-Convergence-Angle" class="headerlink" title="5. Calculate&nbsp;Grid Convergence Angle"></a>5. Calculate&nbsp;Grid Convergence Angle</h1><p>此工具根据要素类中各要素的中心点计算偏离正北方向的旋转角度（网格收敛角），并将所得值填充到指定字段中。这样就方便了，将地图旋转到正北方向。</p>
 <p>此工具替代了&nbsp;Calculate Geodesic Angle（计算大地线角度）。输入数据需要指定有效的投影坐标系。</p>
@@ -235,7 +236,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 <p>（2）为了得到最佳结果，输入要素的基准面应与数据框使用的基准面相同。</p>
 <p>（3）该工具不执行任何地理变换。</p>
 <p>在新字段中的复制内容，类似如下：</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="atom">span</span> <span class="atom">style</span>=<span class="string">"background-color:rgb(204,204,204)"</span>&gt;<span class="name">PROJCS</span>[&amp;<span class="atom">quot</span>;<span class="name">GCS</span> <span class="name">Beijing</span> <span class="number">1954</span> <span class="name">UTM</span> <span class="name">Zone</span> <span class="number">51</span><span class="name">R</span> (<span class="name">Calculated</span>)&amp;<span class="atom">quot</span>;,<span class="name">GEOGCS</span>[&amp;<span class="atom">quot</span>;<span class="name">GCS_Beijing_1954</span>&amp;<span class="atom">quot</span>;,<span class="name">DATUM</span>[&amp;<span class="atom">quot</span>;<span class="name">D_Beijing_1954</span>&amp;<span class="atom">quot</span>;,<span class="name">SPHEROID</span>[&amp;<span class="atom">quot</span>;<span class="name">Krasovsky_1940</span>&amp;<span class="atom">quot</span>;,<span class="number">6378245.0</span>,<span class="number">298.3</span>]],<span class="name">PRIMEM</span>[&amp;<span class="atom">quot</span>;<span class="name">Greenwich</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">UNIT</span>[&amp;<span class="atom">quot</span>;<span class="name">Degree</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0174532925199433</span>]],<span class="name">PROJECTION</span>[&amp;<span class="atom">quot</span>;<span class="name">Transverse_Mercator</span>&amp;<span class="atom">quot</span>;],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">False_Easting</span>&amp;<span class="atom">quot</span>;,<span class="number">500000.0</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">False_Northing</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">Central_Meridian</span>&amp;<span class="atom">quot</span>;,<span class="number">123.0</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">Scale_Factor</span>&amp;<span class="atom">quot</span>;,<span class="number">0.9996</span>],<span class="name">PARAMETER</span>[&amp;<span class="atom">quot</span>;<span class="name">Latitude_Of_Origin</span>&amp;<span class="atom">quot</span>;,<span class="number">0.0</span>],<span class="name">UNIT</span>[&amp;<span class="atom">quot</span>;<span class="name">Meter</span>&amp;<span class="atom">quot</span>;,<span class="number">1.0</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;span style="background-color:rgb(<span class="number">204</span>,<span class="number">204</span>,<span class="number">204</span>)"&gt;</span>PROJCS[<span class="variable">&amp;quot</span>;GCS Beijing <span class="number">1954</span> UTM Zone <span class="number">51</span>R (Calculated)<span class="variable">&amp;quot</span>;,GEOGCS[<span class="variable">&amp;quot</span>;GCS_Beijing_1954<span class="variable">&amp;quot</span>;,DATUM[<span class="variable">&amp;quot</span>;D_Beijing_1954<span class="variable">&amp;quot</span>;,SPHEROID[<span class="variable">&amp;quot</span>;Krasovsky_1940<span class="variable">&amp;quot</span>;,<span class="number">6378245.0</span>,<span class="number">298.3</span>]],PRIMEM[<span class="variable">&amp;quot</span>;Greenwich<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],UNIT[<span class="variable">&amp;quot</span>;Degree<span class="variable">&amp;quot</span>;,<span class="number">0.0174532925199433</span>]],PROJECTION[<span class="variable">&amp;quot</span>;Transverse_Mercator<span class="variable">&amp;quot</span>;],PARAMETER[<span class="variable">&amp;quot</span>;False_Easting<span class="variable">&amp;quot</span>;,<span class="number">500000.0</span>],PARAMETER[<span class="variable">&amp;quot</span>;False_Northing<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],PARAMETER[<span class="variable">&amp;quot</span>;Central_Meridian<span class="variable">&amp;quot</span>;,<span class="number">123.0</span>],PARAMETER[<span class="variable">&amp;quot</span>;Scale_Factor<span class="variable">&amp;quot</span>;,<span class="number">0.9996</span>],PARAMETER[<span class="variable">&amp;quot</span>;Latitude_Of_Origin<span class="variable">&amp;quot</span>;,<span class="number">0.0</span>],UNIT[<span class="variable">&amp;quot</span>;Meter<span class="variable">&amp;quot</span>;,<span class="number">1.0</span>]]</span><br></pre></td></tr></table></figure>
 <p>关于数据驱动制图就说这么多了，主要是整理了帮助中的关键点，配以了实例截图做说明，帮助理解。</p>
 
         </div>
@@ -390,6 +391,25 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2016/04/01/Peaceful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_3500.jpg-kikitaMaps)" alt="宁静的白与蓝" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/04/01/Peaceful/" class="title">宁静的白与蓝</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T14:02:28.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/04/01/IfModelsTuches/" class="thumbnail">
     
     
@@ -463,25 +483,6 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/21/SplitLine/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/SSN_ToBeContinued.jpg)" alt="分割线" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
-                            <p class="item-title"><a href="/2016/03/21/SplitLine/" class="title">分割线</a></p>
-                            <p class="item-date"><time datetime="2016-03-21T09:22:49.000Z" itemprop="datePublished">2016-03-21</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -501,7 +502,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">133</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">133</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -512,6 +513,10 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
         <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
                 
                     <li>
                         <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
@@ -529,10 +534,6 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
                         <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
                     </li>
                 
-                    <li>
-                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -545,7 +546,7 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
         </div>
     </div>
 
@@ -588,17 +589,17 @@ _st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
 
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
-        <script src="/vendor/scrollLoading/main.js" type="text/javascript"></script>
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
 
     </div>
 </body>
