@@ -1662,52 +1662,73 @@ i.icon:before {
   margin: 1.6em 0;
 }
 .highlight {
-  color: #a9b7c6;
-  background: #282b2e;
-}
-.highlight .code .number,
-.highlight .code .literal,
-.highlight .code .symbol,
-.highlight .code .bullet {
-  color: #6897bb;
-}
-.highlight .code .keyword,
-.highlight .code .selector-tag,
-.highlight .code .deletion {
-  color: #cc7832;
-}
-.highlight .code .variable,
-.highlight .code .template-variable,
-.highlight .code .link {
-  color: #629755;
+  color: #000;
+  background: #f8f8f8;
 }
 .highlight .code .comment,
 .highlight .code .quote {
-  color: #808080;
+  color: #006a00;
 }
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .literal {
+  color: #aa0d91;
+}
+.highlight .code .name {
+  color: #008;
+}
+.highlight .code .variable,
+.highlight .code .template-variable {
+  color: #660;
+}
+.highlight .code .string {
+  color: #c41a16;
+}
+.highlight .code .regexp,
+.highlight .code .link {
+  color: #080;
+}
+.highlight .code .title,
+.highlight .code .tag,
+.highlight .code .symbol,
+.highlight .code .bullet,
+.highlight .code .number,
 .highlight .code .meta {
-  color: #bbb529;
-}
-.highlight .code .string,
-.highlight .code .attribute,
-.highlight .code .addition {
-  color: #6a8759;
+  color: #1c00cf;
 }
 .highlight .code .section,
-.highlight .code .title,
-.highlight .code .type {
-  color: #ffc66d;
+.highlight .code .class .title,
+.highlight .code .type,
+.highlight .code .attr,
+.highlight .code .built_in,
+.highlight .code .builtin-name,
+.highlight .code .params {
+  color: #5c2699;
 }
-.highlight .code .name,
+.highlight .code .attribute,
+.highlight .code .subst {
+  color: #000;
+}
+.highlight .code .formula {
+  background-color: #eee;
+  font-style: italic;
+}
+.highlight .code .addition {
+  background-color: #baeeba;
+}
+.highlight .code .deletion {
+  background-color: #ffc8bd;
+}
 .highlight .code .selector-id,
 .highlight .code .selector-class {
-  color: #e8bf6a;
+  color: #9b703f;
+}
+.highlight .code .doctag,
+.highlight .code .strong {
+  font-weight: bold;
 }
 .highlight .code .emphasis {
   font-style: italic;
-}
-.highlight .code .strong {
-  font-weight: bold;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .article-entry .img-wrap:before {
