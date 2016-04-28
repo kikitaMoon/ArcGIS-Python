@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>浅谈使用ArcPy执行大数据量处理任务 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="Python功能强大而易于学习。对于ArcGIS for Desktop用户来讲，Python是提高工作效率的不二选择。 
+Arcpy是esri提供的用于高效数据处理分析、制图等的Python站点包。 利用ArcPy，我们可以在ArcMap的Python窗口交互执行脚本，还可以创建自定义脚本工具或脚本工具箱，还可以在ArcGIS之外运行独立脚本，享受更纯正的python体验。
+这一篇说说如何利用P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈使用ArcPy执行大数据量处理任务">
+<meta property="og:url" content="http://www.kikitamap.com/2016/04/28/ParallelPython/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="Python功能强大而易于学习。对于ArcGIS for Desktop用户来讲，Python是提高工作效率的不二选择。 
+Arcpy是esri提供的用于高效数据处理分析、制图等的Python站点包。 利用ArcPy，我们可以在ArcMap的Python窗口交互执行脚本，还可以创建自定义脚本工具或脚本工具箱，还可以在ArcGIS之外运行独立脚本，享受更纯正的python体验。
+这一篇说说如何利用P">
+<meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_BatchClip.png-kikitaMaps">
+<meta property="og:updated_time" content="2016-04-28T05:20:31.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈使用ArcPy执行大数据量处理任务">
+<meta name="twitter:description" content="Python功能强大而易于学习。对于ArcGIS for Desktop用户来讲，Python是提高工作效率的不二选择。 
+Arcpy是esri提供的用于高效数据处理分析、制图等的Python站点包。 利用ArcPy，我们可以在ArcMap的Python窗口交互执行脚本，还可以创建自定义脚本工具或脚本工具箱，还可以在ArcGIS之外运行独立脚本，享受更纯正的python体验。
+这一篇说说如何利用P">
+<meta name="twitter:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_BatchClip.png-kikitaMaps">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <div class="search-form">
+        <input type="text" class="st-default-search-input search-form-input" placeholder="Search" />
+    </div>
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','ApMsywb2aZs_Wvh-TZmb','2.0.0');
+</script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: #3b8dbd !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: #3b8dbd;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: #3b8dbd;
+    }
+</style>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-ParallelPython" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        浅谈使用ArcPy执行大数据量处理任务
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2016/04/28/ParallelPython/" class="article-date">
+    <time datetime="2016-04-28T04:31:40.000Z" itemprop="datePublished">2016-04-28</time>
+</a>
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Python功能强大而易于学习。对于ArcGIS for Desktop用户来讲，Python是提高工作效率的不二选择。 </p>
+<p><a href="http://desktop.arcgis.com/zh-cn/arcmap/latest/analyze/arcpy/what-is-arcpy-.htm" target="_blank" rel="external">Arcpy</a>是esri提供的用于高效数据处理分析、制图等的Python站点包。 利用ArcPy，我们可以在ArcMap的Python窗口交互执行脚本，还可以创建自定义脚本工具或脚本工具箱，还可以在ArcGIS之外运行独立脚本，享受更纯正的python体验。</p>
+<p>这一篇说说如何利用Python批量执行数据处理任务，这个问题也是前段时间遇到的用户的实际问题，比较有价值。</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>还是从实例开始……</p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_BatchClip.png-kikitaMaps" alt=""></p>
+<p>有一个简单但耗体力的裁剪任务，希望通过大量面分割（逐一裁剪）大量的数据，类似Split工具要完成的任务，并且要按照一定的规则命名将分割结果输出到指定的位置，例如要求有指定前缀。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>例如，一种思路是逐一遍历面要素，然后去裁剪目标数据再输出，这时你可能会遇到下面的小问题：</p>
+<p><strong>我如何通过ArcPy获取要素的几何？</strong></p>
+<p>在ArcPy中提供了一个数据访问模块/Data Access (arcpy.da)，我们可以通过游标（Cursor）来查询要素的几何或属性。在这个需求中是逐一遍历面要素的几何，我们选择 SearchCursor，通过 <strong><code>SHAPE@</code></strong> 可以访问要素的几何。 </p>
+<p>语法： <code>SearchCursor(in_table, field_names, {where_clause}, {spatial_reference}, {explode_to_points}, {sql_clause})</code></p>
+<p>了解详细的帮助信息点<a href="http://desktop.arcgis.com/zh-cn/arcmap/latest/analyze/arcpy-data-access/searchcursor-class.htm" target="_blank" rel="external">这里</a>。</p>
+<p>那么可以把函数主体定义成这样，即可实现需求：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MyBatchClip</span><span class="params">(Parameter)</span>:</span></span><br><span class="line">    <span class="comment"># 参数</span></span><br><span class="line">    inputFC = Parameter[<span class="number">0</span>]</span><br><span class="line">    ClipArea = Parameter[<span class="number">1</span>]</span><br><span class="line">    OutputWS = Parameter[<span class="number">2</span>]</span><br><span class="line">    Prefix = Parameter[<span class="number">3</span>]</span><br><span class="line">    <span class="comment"># 字段列表，SHAPE@ 访问要素几何对象</span></span><br><span class="line">    Fields = [<span class="string">'FID'</span>,<span class="string">'SHAPE@'</span>]</span><br><span class="line">    <span class="comment"># 遍历面要素逐一裁剪目标数据并输出自定义前缀的结果。</span></span><br><span class="line">    <span class="keyword">with</span> arcpy.da.SearchCursor(ClipArea,Fields) <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">            outputFC = os.path.join(OutputWS, Prefix+str(row[<span class="number">0</span>])+<span class="string">'.shp'</span>)</span><br><span class="line">            arcpy.Clip_analysis(inputFC, row[<span class="number">1</span>], outputFC)</span><br></pre></td></tr></table></figure>
+<h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><p>如果这个批量任务是大量的，<strong>如何更高效地开动起来？</strong></p>
+<p>这里按照esri以前的一篇 <a href="https://blogs.esri.com/esri/arcgis/2012/09/26/distributed-processing-with-arcgis-part-1/" target="_blank" rel="external">Blog</a> 提到的方法分享给大家，使用Multiprocessing模块并行处理。 <a href="https://docs.python.org/2/library/multiprocessing.html#" target="_blank" rel="external">Multiprocessing</a> 模块是Python的一个标准库，通过这个库，我们可以利用多核CPU，来实现多进程处理大数据量的任务。 </p>
+<p>可以通过 <code>multiprocessing.Pool</code> 来使用进程池，Pool类可以管理固定数目的进程，默认是开启和机器CPU数目相同的进程。</p>
+<blockquote>
+<p>语法：<br><code>multiprocessing.Pool([processes[, initializer[, initargs[, maxtasksperchild]]]])</code><br>processes表示pool中进程的数目，默认地为当前CPU的核数。<br>initializer表示新进程的初始化函数。<br>initargs表示新进程的初始化函数的参数。<br>maxtasksperchild表示每个进程执行task的最大数目</p>
+</blockquote>
+<p>把脚本修改下，加上多进程处理的部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line">__author__ = <span class="string">'kikita'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">arcpy.env.workspace =  <span class="string">r'D:\LearnAboutPython\MyPythonProject\UsingCurser\DemoDataS.gdb'</span></span><br><span class="line">arcpy.env.overwriteOutput = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量裁剪函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MyBatchClip</span><span class="params">(Parameter)</span>:</span></span><br><span class="line">    <span class="comment"># 参数</span></span><br><span class="line">    inputFC = Parameter[<span class="number">0</span>]</span><br><span class="line">    ClipArea = Parameter[<span class="number">1</span>]</span><br><span class="line">    OutputWS = Parameter[<span class="number">2</span>]</span><br><span class="line">    Prefix = Parameter[<span class="number">3</span>]</span><br><span class="line">    <span class="comment"># 字段列表，其中 SHAPE@用于访问数据几何</span></span><br><span class="line">    Fields = [<span class="string">'OBJECTID'</span>,<span class="string">'SHAPE@'</span>]</span><br><span class="line">    <span class="keyword">with</span> arcpy.da.SearchCursor(ClipArea,Fields) <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> cursor:</span><br><span class="line">            outputFC = os.path.join(OutputWS, Prefix+str(row[<span class="number">0</span>])+<span class="string">'.shp'</span>)</span><br><span class="line">            arcpy.Clip_analysis(inputFC, row[<span class="number">1</span>], outputFC)</span><br><span class="line">            <span class="keyword">print</span> Prefix+str(row[<span class="number">0</span>])+<span class="string">'.shp'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 参数</span></span><br><span class="line">    OutputWS = <span class="string">r'D:\LearnAboutPython\MyPythonProject\UsingCurser\OutputWS'</span></span><br><span class="line">    <span class="comment"># SDE库输出</span></span><br><span class="line">    <span class="comment">#OutputWS = r'C:\Connection131.sde'</span></span><br><span class="line">    Parameter1 = [<span class="string">'CountyPoints'</span>,<span class="string">'Area_A'</span>,OutputWS, <span class="string">'AAA_'</span>]</span><br><span class="line">    Parameter2 = [<span class="string">'hyd_line'</span>,<span class="string">'Area_B'</span>,OutputWS, <span class="string">'BBB_'</span>]</span><br><span class="line">    <span class="comment">#Parameter3 = ['River_line.shp','Area_C.shp',OutputWS,'CCC_']</span></span><br><span class="line">    Parameters = [Parameter1,Parameter2]</span><br><span class="line">    <span class="comment"># 当前CPU核数</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'CPU Count:'</span> + str(multiprocessing.cpu_count())</span><br><span class="line">    <span class="comment"># 进程池</span></span><br><span class="line">    MyGPpool = multiprocessing.Pool()</span><br><span class="line">    <span class="comment"># 多进程并行处理</span></span><br><span class="line">    StartTime = time.time()</span><br><span class="line">    results = MyGPpool.map(MyBatchClip,Parameters)</span><br><span class="line">    EndTime = time.time()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Elapsed:  '</span> + str(EndTime - StartTime) + <span class="string">'  Seconds...'</span></span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">CPU Count:<span class="number">8</span></span><br><span class="line">AAA_0<span class="selector-class">.shp</span></span><br><span class="line">BBB_0<span class="selector-class">.shp</span></span><br><span class="line">CCC_0<span class="selector-class">.shp</span></span><br><span class="line">BBB_1<span class="selector-class">.shp</span></span><br><span class="line">AAA_1<span class="selector-class">.shp</span></span><br><span class="line">CCC_1<span class="selector-class">.shp</span></span><br><span class="line">BBB_2<span class="selector-class">.shp</span></span><br><span class="line">AAA_2<span class="selector-class">.shp</span></span><br><span class="line">CCC_2<span class="selector-class">.shp</span></span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">BBB_28<span class="selector-class">.shp</span></span><br><span class="line">AAA_27<span class="selector-class">.shp</span></span><br><span class="line">BBB_29<span class="selector-class">.shp</span></span><br><span class="line">CCC_28<span class="selector-class">.shp</span></span><br><span class="line">CCC_29<span class="selector-class">.shp</span></span><br><span class="line">AAA_28<span class="selector-class">.shp</span></span><br><span class="line">BBB_30<span class="selector-class">.shp</span></span><br><span class="line">CCC_30<span class="selector-class">.shp</span></span><br><span class="line">AAA_29<span class="selector-class">.shp</span></span><br><span class="line">AAA_30<span class="selector-class">.shp</span></span><br><span class="line">Elapsed:  <span class="number">28.628000021</span>  Seconds...</span><br></pre></td></tr></table></figure>
+<h1 id="一点有用的提示："><a href="#一点有用的提示：" class="headerlink" title="一点有用的提示："></a>一点有用的提示：</h1><p>1.在使用Multiprocessing时，注意数据锁定（Schema Lock）的问题，例如这个例子中，当输出工作空间选择为FileGDB时出现异常。 使用文件夹输出 Shapefile，或者以SDE数据库作为输出工作空间，都是可以的。</p>
+<p>2.我在代码中也加入了计时，用于比较并行与否的耗时情况。 但是有时确实会发现，较简单的处理任务时，多进程并行并不比单进程快，因为导入模块和启动进程都需要花时间。 </p>
+<p><strong>参考：</strong><br><a href="https://blogs.esri.com/esri/arcgis/2012/09/26/distributed-processing-with-arcgis-part-1/" target="_blank" rel="external">https://blogs.esri.com/esri/arcgis/2012/09/26/distributed-processing-with-arcgis-part-1/</a><br><a href="https://docs.python.org/2/library/multiprocessing.html#using-a-pool-of-workers" target="_blank" rel="external">https://docs.python.org/2/library/multiprocessing.html#using-a-pool-of-workers</a><br><a href="https://www.binpress.com/tutorial/simple-python-parallelism/121" target="_blank" rel="external">https://www.binpress.com/tutorial/simple-python-parallelism/121</a><br><a href="http://cloga.info/python/2014/01/12/PythonMultiprocessingintro/" target="_blank" rel="external">http://cloga.info/python/2014/01/12/PythonMultiprocessingintro/</a><br><a href="http://kmdouglass.github.io/posts/learning-pythons-multiprocessing-module.html" target="_blank" rel="external">http://kmdouglass.github.io/posts/learning-pythons-multiprocessing-module.html</a><br><a href="http://broadcast.oreilly.com/2009/04/pymotw-multiprocessing-part-2.html" target="_blank" rel="external">http://broadcast.oreilly.com/2009/04/pymotw-multiprocessing-part-2.html</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/04/28/ParallelPython/" data-title="浅谈使用ArcPy执行大数据量处理任务" data-url="http://www.kikitamap.com/2016/04/28/ParallelPython/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2016/04/14/ForMyself/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">留着</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/28/ParallelPython/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_BatchClip.png-kikitaMaps)" alt="浅谈使用ArcPy执行大数据量处理任务" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/04/28/ParallelPython/" class="title">浅谈使用ArcPy执行大数据量处理任务</a></p>
+                            <p class="item-date"><time datetime="2016-04-28T04:31:40.000Z" itemprop="datePublished">2016-04-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/14/ForMyself/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/碎碎念/">碎碎念</a></p>
+                            <p class="item-title"><a href="/2016/04/14/ForMyself/" class="title">留着</a></p>
+                            <p class="item-date"><time datetime="2016-04-14T12:26:07.000Z" itemprop="datePublished">2016-04-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/08/RedBeach/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_5106.JPG-kikitaMaps)" alt="红沙滩" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/04/08/RedBeach/" class="title">红沙滩</a></p>
+                            <p class="item-date"><time datetime="2016-04-08T12:38:22.000Z" itemprop="datePublished">2016-04-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/01/Peaceful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/XJL_IMG_3500.jpg-kikitaMaps)" alt="宁静的白与蓝" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/相机里/">相机里</a></p>
+                            <p class="item-title"><a href="/2016/04/01/Peaceful/" class="title">宁静的白与蓝</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T14:02:28.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/01/IfModelsTuches/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SimpleFootPrint.png-kikitaMaps)" alt="CGA：自动判断模型间关系的3D建模方法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/木工开物/">木工开物</a></p>
+                            <p class="item-title"><a href="/2016/04/01/IfModelsTuches/" class="title">CGA：自动判断模型间关系的3D建模方法</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T02:29:27.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.18px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 11.82px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.73px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 14.55px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15.45px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.36px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.09px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 12.73px;">License</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/Mapping/" style="font-size: 15.45px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Python/" style="font-size: 14.55px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.27px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 14.55px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.64px;">Spatial Statistics</a> <a href="/tags/Web/" style="font-size: 10.91px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/木工开物/">木工开物</a><span class="category-list-count">134</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/相机里/">相机里</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/碎碎念/">碎碎念</a><span class="category-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://oopsliu.github.io/">oopsliu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS-CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'kikitamoon'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
