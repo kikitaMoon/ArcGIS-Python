@@ -3,6 +3,50 @@
 
 
     
+  <url>
+    <loc>http://www.kikitamap.com/2016/06/17/LMthroughFireWall/</loc>
+    <lastmod>2016-06-29T08:05:50.965Z</lastmod>
+    <data>
+        <display>
+        <title>Trubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</title>
+        <pubTime>2016-06-17T08:11:33.000Z</pubTime>
+        
+        <tag>License</tag>
+         
+        <tag>Deployment</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
+    <lastmod>2016-06-16T06:14:53.756Z</lastmod>
+    <data>
+        <display>
+        <title>给自己做个地图故事——Trip to Greece</title>
+        <pubTime>2015-09-30T10:23:16.000Z</pubTime>
+        
+        <tag>Mapping</tag>
+         
+        <tag>Web</tag>
+         
+         
+           
+             
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://www.kikitamap.com/2016/05/24/theBlueSea/</loc>
@@ -402,9 +446,9 @@
         <title>你所不知的有趣投影方法</title>
         <pubTime>2016-02-04T05:00:00.000Z</pubTime>
         
-        <tag>Mapping</tag>
-         
         <tag>Coordinate System</tag>
+         
+        <tag>Mapping</tag>
          
          
            
@@ -926,9 +970,9 @@
         <title>3D分析之ArcGIS 支持的表面类型</title>
         <pubTime>2012-11-17T04:14:13.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -948,9 +992,9 @@
         <title>3D分析之3D要素工具箱</title>
         <pubTime>2012-11-18T13:50:43.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -970,9 +1014,9 @@
         <title>3D分析之Functional Surface工具箱</title>
         <pubTime>2012-11-18T13:51:59.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -992,9 +1036,9 @@
         <title>3D分析之常用转换工具</title>
         <pubTime>2012-11-21T03:49:04.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1692,9 +1736,9 @@
         <title>3D分析之可见性分析工具</title>
         <pubTime>2014-02-11T03:41:38.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2364,9 +2408,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>License</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -2841,28 +2885,6 @@
         <tag>Python</tag>
          
         <tag>Geoprocessing</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
-    <lastmod>2016-03-04T10:52:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>给自己做个地图故事——Trip to Greece</title>
-        <pubTime>2015-09-30T10:23:16.000Z</pubTime>
-        
-        <tag>Mapping</tag>
-         
-        <tag>Web</tag>
          
          
            
