@@ -3,41 +3,32 @@
 <head>
     <meta charset="utf-8">
     
-    <title>羽化效果的HeatMap | kikita &amp; Maps</title>
+    <title>Make Query Layer在Model Builder中的使用 | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Mapping,ArcGIS Pro" />
+        <meta name="keywords" content="Geodata" />
     
-    <meta name="description" content="用采样点制作热力图是个非常常见的需求。热力图可以给地图的阅读者直观的信息，下面就看看如何在 ArcGIS Pro 中做一个漂亮的HeatMap。
+    <meta name="description" content="前两天碰到一个关于在 Model Builder 中使用 Make Query Layer 工具的问题，“如何把Make Query Layer结果输入到下一个工具中？”  
 
-1.准备好采样点数据，当然是量大更优。我这里用了全球地震点数据，大约有 21W+ 的数据量。像这一类的数据可以从一些提供公开数据的网站获取，例如 USGS 。
-
-
-
-2.使用 ArcGIS 中的密度分析工具可以从点数据直接生成密度栅格，工具位于 Arc">
+TIPS: 什么是 Query Layer？
+在ArcMap中，我们可以通过定义SQL语句创建Query Layer，来查询存储在DBMS中的空间数据或者非空间数据。 每次在ArcMap中显示或使用Query Layer时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="羽化效果的HeatMap">
-<meta property="og:url" content="http://www.kikitamap.com/2015/06/09/FeatureHeatMap/index.html">
+<meta property="og:title" content="Make Query Layer在Model Builder中的使用">
+<meta property="og:url" content="http://www.kikitamap.com/2016/06/30/QueryLayerResult/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="用采样点制作热力图是个非常常见的需求。热力图可以给地图的阅读者直观的信息，下面就看看如何在 ArcGIS Pro 中做一个漂亮的HeatMap。
+<meta property="og:description" content="前两天碰到一个关于在 Model Builder 中使用 Make Query Layer 工具的问题，“如何把Make Query Layer结果输入到下一个工具中？”  
 
-1.准备好采样点数据，当然是量大更优。我这里用了全球地震点数据，大约有 21W+ 的数据量。像这一类的数据可以从一些提供公开数据的网站获取，例如 USGS 。
-
-
-
-2.使用 ArcGIS 中的密度分析工具可以从点数据直接生成密度栅格，工具位于 Arc">
-<meta property="og:image" content="http://img.blog.csdn.net/20150608105255424">
-<meta property="og:updated_time" content="2016-03-07T02:55:26.000Z">
+TIPS: 什么是 Query Layer？
+在ArcMap中，我们可以通过定义SQL语句创建Query Layer，来查询存储在DBMS中的空间数据或者非空间数据。 每次在ArcMap中显示或使用Query Layer时">
+<meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_FeatureTable.png-kikitaMaps">
+<meta property="og:updated_time" content="2016-07-01T08:53:05.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="羽化效果的HeatMap">
-<meta name="twitter:description" content="用采样点制作热力图是个非常常见的需求。热力图可以给地图的阅读者直观的信息，下面就看看如何在 ArcGIS Pro 中做一个漂亮的HeatMap。
+<meta name="twitter:title" content="Make Query Layer在Model Builder中的使用">
+<meta name="twitter:description" content="前两天碰到一个关于在 Model Builder 中使用 Make Query Layer 工具的问题，“如何把Make Query Layer结果输入到下一个工具中？”  
 
-1.准备好采样点数据，当然是量大更优。我这里用了全球地震点数据，大约有 21W+ 的数据量。像这一类的数据可以从一些提供公开数据的网站获取，例如 USGS 。
-
-
-
-2.使用 ArcGIS 中的密度分析工具可以从点数据直接生成密度栅格，工具位于 Arc">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20150608105255424">
+TIPS: 什么是 Query Layer？
+在ArcMap中，我们可以通过定义SQL语句创建Query Layer，来查询存储在DBMS中的空间数据或者非空间数据。 每次在ArcMap中显示或使用Query Layer时">
+<meta name="twitter:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_FeatureTable.png-kikitaMaps">
     
 
     
@@ -164,45 +155,48 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-FeatureHeatMap" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-QueryLayerResult" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        羽化效果的HeatMap
+        Make Query Layer在Model Builder中的使用
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2015/06/09/FeatureHeatMap/" class="article-date">
-    <time datetime="2015-06-09T03:07:58.000Z" itemprop="datePublished">2015-06-09</time>
+            <a href="/2016/06/30/QueryLayerResult/" class="article-date">
+    <time datetime="2016-06-30T10:11:33.000Z" itemprop="datePublished">2016-06-30</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapping/">Mapping</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geodata/">Geodata</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>用采样点制作热力图是个非常常见的需求。热力图可以给地图的阅读者直观的信息，下面就看看如何在 ArcGIS Pro 中做一个漂亮的HeatMap。</p>
+            <p>前两天碰到一个关于在 Model Builder 中使用 Make Query Layer 工具的问题，“如何把Make Query Layer结果输入到下一个工具中？”  </p>
+<blockquote>
+<p><strong>TIPS</strong>: 什么是 Query Layer？</p>
+<p>在ArcMap中，我们可以通过定义SQL语句创建Query Layer，来查询存储在DBMS中的空间数据或者非空间数据。 每次在ArcMap中显示或使用Query Layer时，都会执行查询，因此无需生成数据的副本或快照便可显示最新的信息，这尤其适用于处理频繁更改的动态信息。 Query Layer功能适用于 ArcGIS支持的所有DBMS。<br>~ 详请点这里看 <a href="http://desktop.arcgis.com/en/arcmap/10.3/map/working-with-layers/what-is-a-query-layer-.htm" target="_blank" rel="external"><strong>帮助</strong></a>。</p>
+</blockquote>
+<p>下面通过一个实例先来说明下Query Layer的使用场景。</p>
+<p>为了阐述方便，我找了一份数据稍作修改来模拟这个问题，数据位于基于Oracle的ArcSDE数据库，一个空间数据为点要素类，一个非空间表。</p>
+<p>点数据表示事件，每发生一次事件（例如报警电话）就记录一个点，假设理想情况下同一个地址的事件都是重合点，如下图高亮的记录； 非空间表中记录了各个地址的某项分值（例如警力配备得分）。</p>
+<p>打开脑洞，假设你是警察局长，需求是，获取每个有完整信息的地址（例如，点位于路的左侧或右侧的信息）的报警电话数，并对比警力配备分值，用于后续的工作，例如指挥调配或者空间统计工作等等。这时，使用Query Layer是个好选择。</p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_FeatureTable.png-kikitaMaps" alt=""></p>
 <p><br></p>
-<h1 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h1><p>准备好采样点数据，当然是量大更优。我这里用了全球地震点数据，大约有 21W+ 的数据量。像这一类的数据可以从一些提供公开数据的网站获取，例如 <a href="http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php" target="_blank" rel="external">USGS</a> 。</p>
-<p><img src="http://img.blog.csdn.net/20150608105255424" alt=""></p>
+<p>Query Layer 返回的记录集可以是包含空间信息的 Feature Query Layer ，也可以是非空间信息的 StandAlone Table。 那么，其实在回到文章开头的问题，<strong>“如何把Make Query Layer结果输入到下一个工具中？” 这取决于“下一个工具” 接受的输入数据的类型是什么。</strong></p>
 <p><br></p>
+<p>假如后续工作中需要用到空间数据，例如进行热点分析，评估下犯罪高发区，那么就需要查询SHAPE空间字段。 如果忽略了空间字段，普通的非空间表是没办法将记录集传递给后续空间处理的工具的。</p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_MakeQueryLayerModel.png-kikitaMaps" alt=""></p>
+<p>Make Feature Layer 中的 SQL语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>  c.SHAPE,</span><br><span class="line">        c.ADDRESS,</span><br><span class="line">        <span class="keyword">count</span>(c.ADDRESS) <span class="keyword">as</span> CallNum, </span><br><span class="line">        <span class="keyword">min</span>(s.SCORE) <span class="keyword">as</span> MinScore, </span><br><span class="line">        c.POINT_X, </span><br><span class="line">        c.POINT_Y</span><br><span class="line"><span class="keyword">from</span> SDE.kikita_Calls c </span><br><span class="line"></span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> SDE.kikita_ScoreTable s </span><br><span class="line"><span class="keyword">on</span> c.ADDRESS=s.ADDRESS</span><br><span class="line"></span><br><span class="line"><span class="keyword">where</span> c.AV_SIDE <span class="keyword">in</span> (<span class="string">'R'</span>,<span class="string">'L'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> c.SHAPE,c.ADDRESS,c.POINT_X, c.POINT_Y</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> CallNum <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
-<h1 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h1><p>使用 ArcGIS 中的密度分析工具可以从点数据直接生成密度栅格，工具位于 ArcToolbox —— Spatial Analyst —— Density 工具集下。这里我采用了 Kernel Density 。</p>
-<p><img src="http://img.blog.csdn.net/20150608141704212" alt=""></p>
-<p><br></p>
-<p><br></p>
-<h1 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h1><p>制作一个自己喜欢的热力色带，最边缘的颜色使用透明色，这样就有“羽化”的效果。</p>
-<p><img src="http://img.blog.csdn.net/20150608142932524" alt=""></p>
-<p>应用色带之后：</p>
-<p><img src="http://img.blog.csdn.net/20150608143314185" alt=""></p>
-<p><br></p>
-<p>如有需要，可以进一步为图层设置透明：</p>
-<p><img src="http://img.blog.csdn.net/20150609110455795" alt=""></p>
+<p>附一张结果图：</p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_QureyLayerReault.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -268,7 +262,7 @@ ga('send', 'pageview');
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2015/06/09/FeatureHeatMap/" data-title="羽化效果的HeatMap" data-url="http://www.kikitamap.com/2015/06/09/FeatureHeatMap/"></div>
+    <div class="ds-thread" data-thread-key="2016/06/30/QueryLayerResult/" data-title="Make Query Layer在Model Builder中的使用" data-url="http://www.kikitamap.com/2016/06/30/QueryLayerResult/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -364,20 +358,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2015/06/10/DeployAGSLMonLinux/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            在Linux上安装ArcGIS许可管理器备忘录
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2015/06/05/RunnerRoutes/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/06/17/LMthroughFireWall/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">为Runner做一张有质感的图</p>
+        <p class="article-nav-title">Trubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

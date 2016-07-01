@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
+    <lastmod>2016-07-01T08:53:05.291Z</lastmod>
+    <data>
+        <display>
+        <title>Make Query Layer在Model Builder中的使用</title>
+        <pubTime>2016-06-30T10:11:33.000Z</pubTime>
+        
+        <tag>Geodata</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2016/06/17/LMthroughFireWall/</loc>
-    <lastmod>2016-06-29T08:05:50.965Z</lastmod>
+    <lastmod>2016-06-30T02:47:52.237Z</lastmod>
     <data>
         <display>
         <title>Trubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</title>
