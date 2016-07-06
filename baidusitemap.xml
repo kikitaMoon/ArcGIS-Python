@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
-    <lastmod>2016-07-01T08:53:05.291Z</lastmod>
+    <loc>http://www.kikitamap.com/2015/12/21/TroubleshootingShapefile/</loc>
+    <lastmod>2016-07-06T08:45:29.159Z</lastmod>
     <data>
         <display>
-        <title>Make Query Layer在Model Builder中的使用</title>
-        <pubTime>2016-06-30T10:11:33.000Z</pubTime>
+        <title>Troubleshooting：Shapefile 乱码与字符截断问题</title>
+        <pubTime>2015-12-21T05:00:00.000Z</pubTime>
         
         <tag>Geodata</tag>
          
@@ -25,15 +25,35 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/06/17/LMthroughFireWall/</loc>
-    <lastmod>2016-06-30T02:47:52.237Z</lastmod>
+    <lastmod>2016-07-06T08:43:29.975Z</lastmod>
     <data>
         <display>
-        <title>Trubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</title>
+        <title>Troubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</title>
         <pubTime>2016-06-17T08:11:33.000Z</pubTime>
         
         <tag>License</tag>
          
         <tag>Deployment</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
+    <lastmod>2016-07-01T08:53:05.291Z</lastmod>
+    <data>
+        <display>
+        <title>Make Query Layer在Model Builder中的使用</title>
+        <pubTime>2016-06-30T10:11:33.000Z</pubTime>
+        
+        <tag>Geodata</tag>
          
          
            
@@ -2947,26 +2967,6 @@
         <pubTime>2015-12-06T05:00:00.000Z</pubTime>
         
         <tag>Geoprocessing</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/12/21/TrubleshootingShapefile/</loc>
-    <lastmod>2016-03-04T10:49:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>Trubleshooting：Shapefile 乱码与字符截断问题</title>
-        <pubTime>2015-12-21T05:00:00.000Z</pubTime>
-        
-        <tag>Geodata</tag>
          
          
            
