@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2015/03/20/RegressionAnalysis/</loc>
+    <lastmod>2016-08-08T06:35:27.487Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（四）回归分析探索</title>
+        <pubTime>2015-03-20T08:01:54.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsB/</loc>
+    <lastmod>2016-08-08T06:08:37.308Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（二）分析模式 B</title>
+        <pubTime>2015-03-05T03:21:40.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2015/12/21/TroubleshootingShapefile/</loc>
     <lastmod>2016-07-06T08:45:29.159Z</lastmod>
     <data>
@@ -1403,7 +1447,7 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2013/05/13/CityEgnine%E4%B8%AD%E7%9A%84Annotation/</loc>
+    <loc>http://www.kikitamap.com/2013/05/13/CityEgnineAnnotation/</loc>
     <lastmod>2016-03-18T07:40:30.000Z</lastmod>
     <data>
         <display>
@@ -2419,28 +2463,6 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsB/</loc>
-    <lastmod>2016-03-07T04:54:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（二）分析模式 B</title>
-        <pubTime>2015-03-05T03:21:40.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2015/03/06/ArcGISPro60DayFreetrial/</loc>
     <lastmod>2016-03-07T04:48:38.000Z</lastmod>
     <data>
@@ -2469,28 +2491,6 @@
         <display>
         <title>空间统计（三）聚类分布制图</title>
         <pubTime>2015-03-17T07:59:35.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/03/20/RegressionAnalysis/</loc>
-    <lastmod>2016-03-07T04:43:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（四）回归分析探索</title>
-        <pubTime>2015-03-20T08:01:54.000Z</pubTime>
         
         <tag>Geoprocessing</tag>
          

@@ -19,7 +19,7 @@ Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最�
 
 Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
 <meta property="og:image" content="http://img.blog.csdn.net/20150303103705851">
-<meta property="og:updated_time" content="2016-03-07T04:54:14.000Z">
+<meta property="og:updated_time" content="2016-08-08T06:08:37.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="空间统计（二）分析模式 B">
 <meta name="twitter:description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
@@ -190,8 +190,7 @@ ga('send', 'pageview');
 </ul>
 </blockquote>
 <p><br><br><br><br><br><br><br></p>
-<p>#Spatial Autocorrelation</p>
-<p>空间自相关 (Global Moran’s I) 工具同时根据要素位置和要素的属性值来度量空间自相关。在给定一组要素及相关属性的情况下，评估所表达的模式是聚类模式、离散模式还是随机模式。</p>
+<h1 id="Spatial-Autocorrelation"><a href="#Spatial-Autocorrelation" class="headerlink" title="Spatial Autocorrelation"></a>Spatial Autocorrelation</h1><p>空间自相关 (Global Moran’s I) 工具同时根据要素位置和要素的属性值来度量空间自相关。在给定一组要素及相关属性的情况下，评估所表达的模式是聚类模式、离散模式还是随机模式。</p>
 <p>与平均最近邻工具类似，此工具将返回五个值：Moran’s I 指数、预期指数、方差、z 得分和 p 值。</p>
 <p><img src="http://img.blog.csdn.net/20150304103916681" alt=""></p>
 <p>在使用这个工具的时候，<strong>注意</strong>以下几点：</p>
@@ -208,8 +207,7 @@ ga('send', 'pageview');
 </ul>
 </blockquote>
 <p><br><br><br><br><br><br><br></p>
-<p>#Incremental Spatial Autocorrelation </p>
-<p>增量自相关工具会去测量一系列的空间自相关，并且可以创建 Z 得分折线图。Z 得分反映空间聚类的程度，峰值 Z 得分表示聚类最明显的距离。<br>这些峰值能做什么呢？我们可以将这些峰值作为其他工具（例如热点分析，将来会说到）的必要参数，例如距离范围，距离半径等等。</p>
+<h1 id="Incremental-Spatial-Autocorrelation"><a href="#Incremental-Spatial-Autocorrelation" class="headerlink" title="Incremental Spatial Autocorrelation"></a>Incremental Spatial Autocorrelation</h1><p>增量自相关工具会去测量一系列的空间自相关，并且可以创建 Z 得分折线图。Z 得分反映空间聚类的程度，峰值 Z 得分表示聚类最明显的距离。<br>这些峰值能做什么呢？我们可以将这些峰值作为其他工具（例如热点分析，将来会说到）的必要参数，例如距离范围，距离半径等等。</p>
 <p><img src="http://img.blog.csdn.net/20150304163215457" alt=""></p>
 <p>以下面的数据为例：</p>
 <p>我欲研究下面几个城市的人口分布情况：</p>
@@ -218,8 +216,7 @@ ga('send', 'pageview');
 <p><img src="http://img.blog.csdn.net/20150305091915238" alt=""></p>
 <p>第一个峰值位于大约 250000 处。当显示多个具有统计显著性的峰值时（例如，本示例数据中有两个峰值），聚类在这些距离处均很明显。选择与感兴趣的分析比例对应的峰值距离，我们通常选择第一个具有统计显著性的峰值。</p>
 <p><br><br><br><br><br><br><br></p>
-<p>#High/Low Clustering (Getis-Ord General G)</p>
-<p>高/低聚类 (General G) 统计的零假设规定被研究的要素值不存在空间聚类。当返回的 p 值较小且在统计学上显著，则可以拒绝零假设。如果零假设被拒绝，则 z 得分的符号将变得十分重要。如果 z 得分值为正数，则观测的 General G 指数会比期望的 General G 指数要大一些，表明属性的高值将在研究区域中聚类。如果 z 得分值为负数，则观测的 General G 指数会比期望的 General G 指数要小一些，表明属性的低值将在研究区域中聚类。</p>
+<h1 id="High-Low-Clustering-Getis-Ord-General-G"><a href="#High-Low-Clustering-Getis-Ord-General-G" class="headerlink" title="High/Low Clustering (Getis-Ord General G)"></a>High/Low Clustering (Getis-Ord General G)</h1><p>高/低聚类 (General G) 统计的零假设规定被研究的要素值不存在空间聚类。当返回的 p 值较小且在统计学上显著，则可以拒绝零假设。如果零假设被拒绝，则 z 得分的符号将变得十分重要。如果 z 得分值为正数，则观测的 General G 指数会比期望的 General G 指数要大一些，表明属性的高值将在研究区域中聚类。如果 z 得分值为负数，则观测的 General G 指数会比期望的 General G 指数要小一些，表明属性的低值将在研究区域中聚类。</p>
 <p>当存在完全均匀分布的值并且要查找高值的异常空间峰值时，首选高/低聚类(Getis-Ord General G)工具。遗憾的是，高值和低值同时聚类时，它们倾向于彼此相互抵消。如果在高值和低值同时聚类时测量空间聚类，则使用空间自相关工具。</p>
 <p><img src="http://img.blog.csdn.net/20150305103225867" alt=""></p>
 <p>“高/低聚类”工具可返回五个值：General G 观测值、General G 期望值、方差、z 得分以及 p 值。</p>
@@ -233,8 +230,7 @@ ga('send', 'pageview');
 </ul>
 </blockquote>
 <p><br><br><br><br><br><br><br></p>
-<p>#Multi-Distance Spatial Cluster Analysis (Ripley’s K Function) </p>
-<p>基于 Ripley’s K 函数的多距离空间聚类分析工具是另外一种分析事件点数据的空间模式的方法。Ripley’s K 函数可表明要素质心的空间聚集或空间扩散在邻域大小发生变化时是如何变化的。</p>
+<h1 id="Multi-Distance-Spatial-Cluster-Analysis-Ripley’s-K-Function"><a href="#Multi-Distance-Spatial-Cluster-Analysis-Ripley’s-K-Function" class="headerlink" title="Multi-Distance Spatial Cluster Analysis (Ripley’s K Function)"></a>Multi-Distance Spatial Cluster Analysis (Ripley’s K Function)</h1><p>基于 Ripley’s K 函数的多距离空间聚类分析工具是另外一种分析事件点数据的空间模式的方法。Ripley’s K 函数可表明要素质心的空间聚集或空间扩散在邻域大小发生变化时是如何变化的。</p>
 <p>如果有兴趣研究要素的聚类/扩散如何相对于不同距离（不同的分析规模）进行变化，可以使用此工具。</p>
 <p><img src="http://img.blog.csdn.net/20150305105633321" alt=""></p>
 

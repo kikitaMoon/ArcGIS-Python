@@ -21,7 +21,7 @@
 
 你可能会问，为什么要进行">
 <meta property="og:image" content="http://img.blog.csdn.net/20150320115908163">
-<meta property="og:updated_time" content="2016-03-07T04:43:24.000Z">
+<meta property="og:updated_time" content="2016-08-08T06:35:27.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="空间统计（四）回归分析探索">
 <meta name="twitter:description" content="在上一篇文章中，我提到的这些工具都是用于研究数据有什么样的空间模式，哪里聚类？哪里是热点？哪里有冷点？哪里有异常值？等等，总之研究的是“生米煮成熟饭”的结果状态。
@@ -179,7 +179,7 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <p>在上一篇文章中，我提到的这些工具都是用于研究数据有什么样的空间模式，哪里聚类？哪里是热点？哪里有冷点？哪里有异常值？等等，总之研究的是“生米煮成熟饭”的结果状态。</p>
 <p>而“空间关系建模”工具箱中的工具，更倾向于研究 Why？ 例如，为什么会出现这种情况？ 或者说什么导致了这种情况。这时我们就可以使用工具进行回归分析，如：普通最小二成法（OLS） 和 地理加权回归（GWR）。</p>
-<p><br><br><br><br><br><br><br></p>
+<p><br><br><br></p>
 <p>你可能会问，<strong>为什么要进行回归分析？</strong>帮助文档中回归分析基础这一章写的最好，比较贴近读者，而不是冰冷的字典，我把回归分析的应用示例搬过来帮助理解，以下内容整理自<a href="http://resources.arcgis.com/zh-cn/help/main/10.2/index.html#/na/005p00000023000000/" target="_blank" rel="external">帮助文档</a>。</p>
 <ol>
 <li><p>对某一现象建模，以更好地了解该现象并有可能基于对该现象的了解来影响政策的制定以及决定采取何种相应措施。基本目标是测量一个或多个变量的变化对另一变量变化的影响程度。示例：了解某些特定濒危鸟类的主要栖息地特征（例如：降水、食物源、植被、天敌），以协助通过立法来保护该物种。（<strong>更好地了解</strong>）</p>
@@ -216,7 +216,7 @@ ga('send', 'pageview');
 <p><strong>还有重要的回归系数呢！</strong></p>
 <p><img src="http://img.blog.csdn.net/20150320154347675" alt=""></p>
 <p>在方程中，我们还发现有些 β 值，称为 <strong>回归系数（Coefficient）</strong> 。表示解释变量与因变量之间的关系强度和类型，每个解释变量都有一个对应的回归系数。当关系为正时，关联系数的符号也为正。当关系为负时，关联系数的符号也为负。如果关系很强，则系数也相对较大。如果关系较弱，则关联系数接近于零。</p>
-<p>其中<img src="http://img.blog.csdn.net/20150320154518935" alt=""> 为回归<strong>截距</strong>。它表示所有自变量（解释变量）均为零时因变量的预期值。</p>
+<p>其中，<img src="http://img.blog.csdn.net/20150320154518935" alt=""> 为回归<strong>截距</strong>。 它表示所有自变量（解释变量）均为零时因变量的预期值。</p>
 <p><br><br><br></p>
 <p><strong>绝对不能忘记的残差！</strong></p>
 <p><img src="http://img.blog.csdn.net/20150320154803016" alt=""></p>
