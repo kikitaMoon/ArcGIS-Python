@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2016/09/02/TripToHngKong/</loc>
+    <lastmod>2016-09-02T10:06:16.499Z</lastmod>
+    <data>
+        <display>
+        <title>Trip To HngKong</title>
+        <pubTime>2016-09-02T09:30:02.000Z</pubTime>
+        
+        <tag>Map Story</tag>
+         
+         
+           
+             
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
+    <lastmod>2016-09-02T09:37:57.541Z</lastmod>
+    <data>
+        <display>
+        <title>给自己做个地图故事——Trip to Greece</title>
+        <pubTime>2015-09-30T10:23:16.000Z</pubTime>
+        
+        <tag>Mapping</tag>
+         
+        <tag>Web</tag>
+         
+        <tag>Map Story</tag>
+         
+         
+           
+             
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2016/08/31/ArcGISProPython/</loc>
     <lastmod>2016-08-31T01:58:34.164Z</lastmod>
     <data>
@@ -145,28 +189,6 @@
            
              
               <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
-    <lastmod>2016-06-16T06:14:53.756Z</lastmod>
-    <data>
-        <display>
-        <title>给自己做个地图故事——Trip to Greece</title>
-        <pubTime>2015-09-30T10:23:16.000Z</pubTime>
-        
-        <tag>Mapping</tag>
-         
-        <tag>Web</tag>
-         
-         
-           
-             
-              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
           
         </display>
     </data>
@@ -892,9 +914,9 @@
         <title>Point to Raster 工作原理</title>
         <pubTime>2012-02-08T00:58:00.000Z</pubTime>
         
-        <tag>Geoprocessing</tag>
-         
         <tag>Raster</tag>
+         
+        <tag>Geoprocessing</tag>
          
          
            
@@ -1204,9 +1226,9 @@
         <title>不规则三角网（TIN）</title>
         <pubTime>2012-12-06T01:29:33.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1226,9 +1248,9 @@
         <title>ArcGIS Terrain Dataset</title>
         <pubTime>2012-12-13T08:23:24.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1368,9 +1390,9 @@
         <title>3D数据互操作之认识Collada</title>
         <pubTime>2013-03-04T01:22:20.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2966,9 +2988,9 @@
         <title>地统计分析笔记——探索数据</title>
         <pubTime>2015-11-27T10:19:41.000Z</pubTime>
         
-        <tag>Geoprocessing</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>Geoprocessing</tag>
          
          
            
