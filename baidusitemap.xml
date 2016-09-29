@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2016/09/29/PackageArcpyEXE/</loc>
+    <lastmod>2016-09-29T09:37:17.306Z</lastmod>
+    <data>
+        <display>
+        <title>如何使用py2exe打包arcpy脚本？</title>
+        <pubTime>2016-09-29T01:03:35.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>ArcGIS Pro</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2016/09/22/LineDirectioninCE/</loc>
+    <lastmod>2016-09-22T09:57:32.970Z</lastmod>
+    <data>
+        <display>
+        <title>在CityEngine中如何判断线的方向与左右？</title>
+        <pubTime>2016-09-22T06:44:20.000Z</pubTime>
+        
+        <tag>3D</tag>
+         
+        <tag>CityEngine</tag>
+         
+        <tag>CGA</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
     <lastmod>2016-09-02T10:23:15.731Z</lastmod>
     <data>
@@ -55,9 +101,9 @@
         <title>在ArcGIS Pro 1.3之外运行arcpy独立脚本</title>
         <pubTime>2016-08-31T01:06:23.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Python</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -914,9 +960,9 @@
         <title>Point to Raster 工作原理</title>
         <pubTime>2012-02-08T00:58:00.000Z</pubTime>
         
-        <tag>Raster</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>Raster</tag>
          
          
            
@@ -1118,9 +1164,9 @@
         <title>3D分析之ArcGIS 支持的表面类型</title>
         <pubTime>2012-11-17T04:14:13.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1140,9 +1186,9 @@
         <title>3D分析之3D要素工具箱</title>
         <pubTime>2012-11-18T13:50:43.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1162,9 +1208,9 @@
         <title>3D分析之Functional Surface工具箱</title>
         <pubTime>2012-11-18T13:51:59.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1184,9 +1230,9 @@
         <title>3D分析之常用转换工具</title>
         <pubTime>2012-11-21T03:49:04.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1864,9 +1910,9 @@
         <title>3D分析之可见性分析工具</title>
         <pubTime>2014-02-11T03:41:38.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2514,9 +2560,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>License</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -2988,9 +3034,9 @@
         <title>地统计分析笔记——探索数据</title>
         <pubTime>2015-11-27T10:19:41.000Z</pubTime>
         
-        <tag>Geodata</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>Geodata</tag>
          
          
            
