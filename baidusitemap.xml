@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
-    <lastmod>2017-01-03T08:31:40.493Z</lastmod>
+    <lastmod>2017-01-12T02:35:54.634Z</lastmod>
     <data>
         <display>
         <title>部署 ArcGIS Python API</title>
@@ -14,6 +14,26 @@
         <tag>Web</tag>
          
         <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2014/12/26/Complete/</loc>
+    <lastmod>2017-01-12T02:04:12.467Z</lastmod>
+    <data>
+        <display>
+        <title>无法正常卸载 ArcGIS Desktop时，这样完全清除</title>
+        <pubTime>2014-12-26T02:15:20.000Z</pubTime>
+        
+        <tag>Deployment</tag>
          
          
            
@@ -2479,26 +2499,6 @@
         <tag>Geoprocessing</tag>
          
         <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2014/12/26/Complete/</loc>
-    <lastmod>2016-03-07T08:50:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>无法正常卸载 ArcGIS Desktop时，这样完全清除</title>
-        <pubTime>2014-12-26T02:15:20.000Z</pubTime>
-        
-        <tag>Deployment</tag>
          
          
            

@@ -20,7 +20,7 @@
 但是，如果遇到异常，例如：被杀毒程序不完整的删除或手动删除了必要的文件等，导致 ArcGIS 无论如何也卸载不掉，或者即使使用光盘去修复程序也失败，或者使用高版本的ArcGIS程序去覆盖也报错等。
 那就需要手动清理一下了，这是最后一招，正常卸载程序失败时再考虑这招……
 我把有可能有的位置">
-<meta property="og:updated_time" content="2016-03-07T08:50:46.000Z">
+<meta property="og:updated_time" content="2017-01-12T02:04:12.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无法正常卸载 ArcGIS Desktop时，这样完全清除">
 <meta name="twitter:description" content="一般情况下，我们可以直接在“添加删除程序”中，对 ArcGIS Desktop 程序进行卸载，这是推荐的方法。
@@ -181,10 +181,16 @@ ga('send', 'pageview');
 <p>我把有可能有的位置列在下面，对照一下，检查是否删除干净了。有些文件夹是隐藏文件夹，设置显示出来然后删除。</p>
 <h1 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹:"></a>文件夹:</h1><p>C:\Program Files (x86)\ArcGIS<br>C:\Program Files (x86)\Esri<br>C:\Program Files (x86)\Common Files\ArcGIS<br>C:\Program Files (x86)\Common Files\Esri<br>C:\Program Files\ArcGIS<br>C:\Program Files\Esri<br>C:\Program Files\Common Files\ArcGIS<br>C:\Program Files\Common Files\Esri<br>C:\Program Data\Esri<br>C:\Program Data\ArcGIS<br>C:\Program Data\FLEXnet<br>C:\Users\<username>\AppData\Local\ESRI<br>C:\Users\<username>\AppData\Local\ArcGIS<br>C:\Users\<username>\AppData\Roaming\ESRI<br>C:\Users\<username>\AppData\Roaming\ArcGIS<br>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ArcGIS<br>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Esri</username></username></username></username></p>
 <h1 id="注册表："><a href="#注册表：" class="headerlink" title="注册表："></a>注册表：</h1><p>HKEY_LOCAL_MACHINE\SOFTWARE\ESRI<br>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ESRI<br>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Flex LM License Manager<br>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\<delete any="" folder="" that="" contains="" arcgis="" or="" esri=""><br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ArcGIS Server<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\<delete any="" folder="" that="" contains="" arcgis="" or="" esri="" within=""><br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\FLEXnet Licensing Service<br>HKEY_CLASSES_ROOT\Installer\Products\<delete any="" folder="" that="" contains="" arcgis="" or="" esri="" within=""><br>HKEY_CLASSES_ROOT\Installer\Assemblies\<delete any="" folder="" that="" contains="" arcgis="" or="" esri="" within=""><br>HKEY_CLASSES_ROOT\<delete and="" folder="" that="" contains="" arcgis="" or="" esri="" within=""><br>HKEY_CLASSES_ROOT\Installer\Assemblies\Global\<delete all="" keys="" beginning="" with="" esri="" or="" arcgis=""></delete></delete></delete></delete></delete></delete></p>
-<h1 id="安全设置："><a href="#安全设置：" class="headerlink" title="安全设置："></a>安全设置：</h1><p>Security Settings -&gt; Local Policies -&gt; Security Options<br>Locate “User Account Control: Run all administrators in Admin Approval” and change the setting from Enabled to Disabled<br>Uninstall: C:\Windows\assembly\Esri.<em> (This can be hundreds of files)<br>Uninstall: C:\Windows\assembly\ArcGIS.</em> (This can be hundreds of files)</p>
+<h1 id="安全设置："><a href="#安全设置：" class="headerlink" title="安全设置："></a>安全设置：</h1><p>安全设置/Security Settings -&gt; 本地策略/Local Policies -&gt; 安全选项/Security Options</p>
+<p>找到 “用户账户控制：以管理员批准模式运行所有管理员”/“User Account Control: Run all administrators in Admin Approval” , 将设置从 “已启用/Enabled” 改为 “已禁用/Disabled”。</p>
+<p>如果有，则卸载: C:\Windows\assembly\Esri.<em><br>如果有，则卸载: C:\Windows\assembly\ArcGIS.</em> </p>
 
         </div>
         <footer class="article-footer">
+			<div>如果需要转载文章，请注明出处哦！
+			     <br/>
+				 <br/>
+			</div>
             
     <div class="jiathis_style">
     <span class="jiathis_txt">分享到：</span>
