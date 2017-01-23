@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- #################
 __author__ = 'Mu Xiaoyan'
 
 ## What's New in 2.0 ?
@@ -30,8 +30,8 @@ def perpendicularline(lineGeometry, spatialReference, Position, bufferSize):
     else:
         AngleDegree = 0
     # Construct Perpendicular Line
-    PerpendicularPoint1 = pointGeometry.pointFromAngleAndDistance(180-AngleDegree, float(bufferSize)+100.0)
-    PerpendicularPoint2 = pointGeometry.pointFromAngleAndDistance(180-AngleDegree, -float(bufferSize)-100.0)
+    PerpendicularPoint1 = pointGeometry.pointFromAngleAndDistance(180-AngleDegree, float(bufferSize)+1.0)
+    PerpendicularPoint2 = pointGeometry.pointFromAngleAndDistance(180-AngleDegree, -float(bufferSize)-1.0)
     perpGeometry = arcpy.Polyline(arcpy.Array([PerpendicularPoint1.centroid,
                                            pointGeometry.centroid, PerpendicularPoint2.centroid]), spatialReference)
     return(perpGeometry)
@@ -78,4 +78,4 @@ if sr.type == "Projected":
             arcpy.Append_management('in_memory\\splittedbufferitem', splitedbuffer, 'NO_TEST')
             arcpy.Delete_management("in_memory")
 else:
-    arcpy.AddError(u"输入要素类 <{0}> 需要具有投影坐标系定义.".encode('utf-8').format(linefc))
+    arcpy.AddError(u"输入要素�?<{0}> 需要具有投影坐标系定义.".encode('utf-8').format(linefc))
