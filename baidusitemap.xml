@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
+    <lastmod>2017-01-23T07:32:35.313Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Python API 功能一瞥</title>
+        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
     <lastmod>2017-01-12T02:35:54.634Z</lastmod>
     <data>
@@ -2582,9 +2604,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>License</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
