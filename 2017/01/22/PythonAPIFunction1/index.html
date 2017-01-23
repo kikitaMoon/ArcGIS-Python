@@ -19,7 +19,7 @@
 渲染1  导入gis模块，创建GIS对象
 在 ArcGIS Python API 中 gis 是个核心模块，提供了对组织内成员、群组、内容的创建、读取、更新和删除等功能，你的组织既可以是托管在ArcGIS Onlin">
 <meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_MapWidget.gif-kikitaMaps">
-<meta property="og:updated_time" content="2017-01-23T07:32:35.313Z">
+<meta property="og:updated_time" content="2017-01-23T07:38:42.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArcGIS Python API 功能一瞥">
 <meta name="twitter:description" content="继上一篇部署 ArcGIS Python API 之后，再来试试 Python API 的渲染和分析的功能。 通过这两个功能来摸索下 ArcGIS Python API 的使用方法。
@@ -198,7 +198,7 @@ ga('send', 'pageview');
 <p>还是使用地图微件，用来显示下数据和分析结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mymap = gis.map(<span class="string">'California'</span>)</span><br><span class="line">mymap.height = <span class="string">'500px'</span></span><br><span class="line">mymap</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">O3layer = search_result.layers[<span class="number">0</span>]</span><br><span class="line">mymap.add_layer(O3layer)</span><br></pre></td></tr></table></figure>
-<p>Portal 中提供了一系列的“工具”，可以辅助我们实现分析的需求，包括 标准的分析工具、矢量大数据分析GeoAnalytics Tools、栅格数据分析等，一些列分析功能都可以通过 ArcGIS Python API 调用。  这里就以 interpolate points 为例。</p>
+<p>Portal 中提供了一系列的“工具”，可以辅助我们实现分析的需求，包括 标准的分析工具、矢量大数据分析GeoAnalytics Tools、栅格数据分析等，一系列分析功能都可以通过 ArcGIS Python API 调用。  这里就以 interpolate points 为例。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> arcgis.features.analyze_patterns <span class="keyword">import</span> interpolate_points</span><br><span class="line">Interpolate = interpolate_points(O3layer, field=<span class="string">'ozone'</span>, output_name=<span class="string">'O3layerInterpolated2'</span>)</span><br><span class="line">mymap.add_layer(Interpolate)</span><br></pre></td></tr></table></figure>
 
         </div>
