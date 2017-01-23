@@ -4,8 +4,48 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2017/01/13/Childlike/</loc>
+    <lastmod>2017-01-23T08:58:11.174Z</lastmod>
+    <data>
+        <display>
+        <title>Childlike</title>
+        <pubTime>2017-01-13T10:01:40.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
+    <lastmod>2017-01-23T08:38:27.482Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Python API 功能一瞥</title>
+        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2017/01/23/CreateSplittedBuffer/</loc>
-    <lastmod>2017-01-23T08:33:57.373Z</lastmod>
+    <lastmod>2017-01-23T08:38:02.708Z</lastmod>
     <data>
         <display>
         <title>生成线要素分段缓冲区</title>
@@ -28,21 +68,17 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
-    <lastmod>2017-01-23T07:38:42.554Z</lastmod>
+    <loc>http://www.kikitamap.com/2017/01/13/Painting/</loc>
+    <lastmod>2017-01-13T09:22:18.492Z</lastmod>
     <data>
         <display>
-        <title>ArcGIS Python API 功能一瞥</title>
-        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
+        <title>Painting</title>
+        <pubTime>2017-01-13T09:22:18.000Z</pubTime>
         
-        <tag>Web</tag>
-         
-        <tag>python</tag>
-         
          
            
              
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
           
         </display>
     </data>

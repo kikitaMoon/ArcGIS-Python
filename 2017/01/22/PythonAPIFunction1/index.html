@@ -19,7 +19,7 @@
 渲染1  导入gis模块，创建GIS对象
 在 ArcGIS Python API 中 gis 是个核心模块，提供了对组织内成员、群组、内容的创建、读取、更新和删除等功能，你的组织既可以是托管在ArcGIS Onlin">
 <meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_MapWidget.gif-kikitaMaps">
-<meta property="og:updated_time" content="2017-01-23T07:38:42.554Z">
+<meta property="og:updated_time" content="2017-01-23T08:38:27.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArcGIS Python API 功能一瞥">
 <meta name="twitter:description" content="继上一篇部署 ArcGIS Python API 之后，再来试试 Python API 的渲染和分析的功能。 通过这两个功能来摸索下 ArcGIS Python API 的使用方法。
@@ -190,11 +190,11 @@ ga('send', 'pageview');
 <p><strong>4 添加图层并渲染</strong></p>
 <p>例如使用热度图/Heatmap 渲染器</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Add layer using heatmap renderer</span></span><br><span class="line">featureitem = search_result[<span class="number">0</span>]</span><br><span class="line">mymap.add_layer(featureitem.layers[<span class="number">0</span>], &#123;<span class="string">"renderer"</span>:<span class="string">"HeatmapRenderer"</span>, <span class="string">"opacity"</span>:<span class="number">0.7</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_MapWidget.gif-kikitaMaps" alt="enter image description here"></p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_MapWidget.gif-kikitaMaps" alt=""></p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>假设需求是实现采样点插值，数据来源是桌面产品自带的ArcGIS Tutorial中的数据（Geostatistical Analyst\ca_ozone.gdb\O3_Sep06_3pm）。</p>
 <p>除了通过搜索的方法，如果知道 itemid ，也能直接获得到内容，可以使用方法 gis.content.get()</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> arcgis <span class="keyword">import</span> gis</span><br><span class="line">gis = gis.GIS(<span class="string">"https://kikita.mycloud.com/arcgis"</span>,<span class="string">"portaladmin"</span>,<span class="string">"Super123"</span>, verify_cert=<span class="keyword">False</span>)</span><br><span class="line">search_result = gis.content.get(<span class="string">'15b012af7f15484293517c844d2d65ab'</span>)</span><br><span class="line">search_result</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_GetItem.png-kikitaMaps" alt="enter image description here"></p>
+<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_PythonAPI_GetItem.png-kikitaMaps" alt=""></p>
 <p>还是使用地图微件，用来显示下数据和分析结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mymap = gis.map(<span class="string">'California'</span>)</span><br><span class="line">mymap.height = <span class="string">'500px'</span></span><br><span class="line">mymap</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">O3layer = search_result.layers[<span class="number">0</span>]</span><br><span class="line">mymap.add_layer(O3layer)</span><br></pre></td></tr></table></figure>
@@ -376,9 +376,9 @@ ga('send', 'pageview');
     </a>
     
     
-        <a href="/2016/10/17/UsingArcGISPythonAPI/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/01/13/Childlike/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">部署 ArcGIS Python API</p>
+        <p class="article-nav-title">Childlike</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
