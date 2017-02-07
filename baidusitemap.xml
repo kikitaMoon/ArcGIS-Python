@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2017/02/07/VSpublishFailure/</loc>
+    <lastmod>2017-02-07T02:07:45.738Z</lastmod>
+    <data>
+        <display>
+        <title>VS部署应用程序失败'找不到SignTool.exe'</title>
+        <pubTime>2017-02-07T01:08:44.000Z</pubTime>
+        
+        <tag>Visual Studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
+    <lastmod>2017-02-07T01:10:37.238Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Python API 功能一瞥</title>
+        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2017/01/13/Painting/</loc>
     <lastmod>2017-01-23T09:28:35.165Z</lastmod>
     <data>
@@ -33,28 +75,6 @@
            
              
               <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
-    <lastmod>2017-01-23T08:38:27.482Z</lastmod>
-    <data>
-        <display>
-        <title>ArcGIS Python API 功能一瞥</title>
-        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
           
         </display>
     </data>
@@ -1396,9 +1416,9 @@
         <title>不规则三角网（TIN）</title>
         <pubTime>2012-12-06T01:29:33.000Z</pubTime>
         
-        <tag>Geodata</tag>
-         
         <tag>3D</tag>
+         
+        <tag>Geodata</tag>
          
          
            
@@ -1418,9 +1438,9 @@
         <title>ArcGIS Terrain Dataset</title>
         <pubTime>2012-12-13T08:23:24.000Z</pubTime>
         
-        <tag>Geodata</tag>
-         
         <tag>3D</tag>
+         
+        <tag>Geodata</tag>
          
          
            
@@ -1560,9 +1580,9 @@
         <title>3D数据互操作之认识Collada</title>
         <pubTime>2013-03-04T01:22:20.000Z</pubTime>
         
-        <tag>Geodata</tag>
-         
         <tag>3D</tag>
+         
+        <tag>Geodata</tag>
          
          
            
@@ -2664,9 +2684,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>License</tag>
-         
         <tag>ArcGIS Pro</tag>
+         
+        <tag>License</tag>
          
          
            
