@@ -23,7 +23,7 @@
 注意：某些情况下，Windows会报告计算机上安装的内存数量以及可以使用的内存数量。如果使用的是32位版本的Windows，则可用内存的数量可能低于安装的内存总量。
 虚拟内存将计算机的RAM和硬盘上的临时空间组合在一起。当RAM运行速度缓慢时，虚拟内存将数据从RAM移动到称为分页文件的空间中。">
 <meta property="og:image" content="http://hi.csdn.net/attachment/201202/7/0_1328594603jmMs.gif">
-<meta property="og:updated_time" content="2016-03-20T03:53:46.476Z">
+<meta property="og:updated_time" content="2016-03-20T03:53:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="认识虚拟内存与分页文件">
 <meta name="twitter:description" content="如果计算机缺少运行程序或操作所需的RAM，则 Windows 使用虚拟内存进行补偿。
@@ -401,44 +401,9 @@ ga('send', 'pageview');
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2012/02/07/virtualmemory/" data-title="认识虚拟内存与分页文件" data-url="http://www.kikitamap.com/2012/02/07/virtualmemory/"></div>
-    <style>
-        #ds-thread #ds-reset .ds-textarea-wrapper {
-            background: none;
-        }
-        #ds-reset .ds-avatar img {
-            box-shadow: none;
-        }
-        #ds-reset .ds-gradient-bg {
-            background: #f7f7f7;
-        }
-        #ds-thread #ds-reset li.ds-tab a {
-            border-radius: 3px;
-        }
-        #ds-thread #ds-reset .ds-post-button {
-            color: white;
-            border: none;
-            box-shadow: none;
-            background: #d32;
-            text-shadow: none;
-            font-weight: normal;
-            font-family: 'Microsoft Yahei';
-        }
-        #ds-thread #ds-reset .ds-post-button:hover {
-            color: white;
-            background: #DE594C;
-        }
-        #ds-thread #ds-reset .ds-post-button:active {
-            background: #d32;
-        }
-        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
-            color: white;
-            background: #d32;
-            box-shadow: none;
-            text-shadow: none;
-            font-weight: normal;
-        }
-    </style>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
     
     </section>
@@ -596,15 +561,18 @@ ga('send', 'pageview');
 </footer>
         
     
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:'kikitamoon'};
+    <script>
+    var disqus_shortname = 'kikitamap';
+    
+    
+    var disqus_url = 'http://www.kikitamap.com/2012/02/07/virtualmemory/';
+    
     (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
 
