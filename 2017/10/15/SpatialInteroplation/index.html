@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>小结空间插值分析 | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Geoprocessing,Spatial Analyst" />
+    
+    <meta name="description" content="空间插值分析的基本原则是“地理学第一定律”，即“Everything is related to everything else, but near things are more related than distant things”，这是Waldo Tobler提出的。 例如，如果你所在的位置正在下雨，那么很有可能离你100米的位置也在下雨，而20公里以外的地方下雨就不一定了，或者说可能性就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小结空间插值分析">
+<meta property="og:url" content="http://www.kikitamap.com/2017/10/15/SpatialInteroplation/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="空间插值分析的基本原则是“地理学第一定律”，即“Everything is related to everything else, but near things are more related than distant things”，这是Waldo Tobler提出的。 例如，如果你所在的位置正在下雨，那么很有可能离你100米的位置也在下雨，而20公里以外的地方下雨就不一定了，或者说可能性就">
+<meta property="og:updated_time" content="2017-10-16T06:58:07.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小结空间插值分析">
+<meta name="twitter:description" content="空间插值分析的基本原则是“地理学第一定律”，即“Everything is related to everything else, but near things are more related than distant things”，这是Waldo Tobler提出的。 例如，如果你所在的位置正在下雨，那么很有可能离你100米的位置也在下雨，而20公里以外的地方下雨就不一定了，或者说可能性就">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-SpatialInteroplation" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        小结空间插值分析
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2017/10/15/SpatialInteroplation/" class="article-date">
+    <time datetime="2017-10-15T06:10:44.000Z" itemprop="datePublished">2017-10-15</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>空间插值分析的基本原则是“<a href="https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography" target="_blank" rel="external">地理学第一定律</a>”，即“Everything is related to everything else, but near things are more related than distant things”，这是Waldo Tobler提出的。 例如，如果你所在的位置正在下雨，那么很有可能离你100米的位置也在下雨，而20公里以外的地方下雨就不一定了，或者说可能性就低了很多。 大多数插值方法遵循了这样的准则。</p>
+<p>插值方法大致可以分为，<strong>确定性插值方法/Deterministic interpolation methods</strong>和随机性插值方法： 确定性插值方法使用了<a href="https://en.wikipedia.org/wiki/Deterministic_algorithm" target="_blank" rel="external">确定性算法</a>，即，给予特定的输入数据我们会得到相同的结果； 而<strong>随机性插值方法</strong>是基于统计学的，通常用于更高级的表面预测建模，这种建模方法不仅可以预测表面的数值，也可能会带来误差或者不确定性，一些常见的地统计插值方法就属于这个范畴。</p>
+<p>从参与计算预测值的采样点的范围来看，确定性插值方法可以分为<strong>全局/Globe</strong>和<strong>局部/Local</strong>两种。 全局插值方法在计算预测值时使用了整个数据集，而局部插值方法是通过特定的领域来计算预测值。</p>
+<p>从预测表面是否穿过已知采样点来看，确定性插值还可以分为<strong>精确/exact</strong>和<strong>非精确/inexact</strong>两种。 如果插值算法预测的采样点位置的数值与采样点自身的数据一致，那么就是精确插值；否则为非精确插值。</p>
+<ul>
+<li>精确插值：   反距离权重法/IDW，径向基函数法/radial basis functions，样条函数法/Spline</li>
+<li>非精确插值： 全局或局部多项式法/global and local polynomial</li>
+</ul>
+<p><strong>IDW 插值方法</strong></p>
+<p>IDW是一种非常实用又很好理解的插值方法，适用于大多数情况。但是有关这个算法还有些注意事项：IDW并没有考虑数据的趋势，例如，如果数据在不同的方向上有不同的变化，那么这会被IDW方法忽略，IDW得到的是各个方向均一的预测插值；IDW插值仅在采样点的最大值和最小值之间进行预测插值，如果你是高程表面建模，那么山峰和河谷很有可能被抹平了。</p>
+<p>IDW插值时，可以设置power参数来控制周围采样点对插值影响的显著性。 power值越大，较远的点对预测插值的影响就会越弱，也就是说，远处的采样点对预测值的影响随着power的增大而削减越快。power可以是任意正数，但是通常取值范围是0.5-3，默认为2。</p>
+<p>有关IDW还有个常见小问题。既然IDW是精确插值，那为什么有时候看采样点所在像元的预测值与采样点值还是稍有差异？这是因为采样点并没有恰好落在像元的正中心。</p>
+<p><strong>样条函数插值方法/Spline Method</strong></p>
+<p>样条函数相比IDW更灵活，我们可以想象一下通过一张橡皮膜穿过所有已知采样点来预测表面。 样条函数法不像IDW，它可以是预测值高于或低于已知采样点的最大值或最小值。 然而，如果相聚非常近的采样点的值变化非常剧烈，样条函数就会出现异常，因为样条函数的算法中是基于坡度（单位距离的值变化量）来计算预测值的。 也就是说，例如，如果你的数据中如果含有悬崖，断层线，最好还是用IDW吧。</p>
+<p>样条函数有两种类型： regularized 和 tension。 使用相同的采样点，tension spline比 regularized spline得到的预测表面更扁平，也就是使得预测值更接近采样值。 或者说tension spline更僵硬，而regularized spline 更有弹性，这个描述看起来更生动。</p>
+<p>另外一个可以进一步控制预测表面的形态的参数是权重/weight。对于regularized spline，权重越高表面越平滑，常用的典型参数有0, 0.001、 0.01、 0.1、 0.5，默认是0.1；对于tension spline，权重越高表面约粗糙，常用的典型参数有0、 1、 5、10。</p>
+<p><strong>地形转拓扑/Topo to Raster</strong></p>
+<p>这是一种水文校正的插值方法，可以综合点线面输入数据，充当不同的角色或类别进行表面建模。 </p>
+<blockquote>
+<p>从帮助中摘过来的描述：</p>
+</blockquote>
+<p>共有九种数据类型可作为地形类的输入：</p>
+<ul>
+<li>PointElevation 表示表面高程的点要素类，field 用于存储点的高程。</li>
+<li>Contour 表示高程等值线的线要素类， field 用于存储等值线的高程。</li>
+<li>Stream 河流位置的线要素类。所有弧线必须定向为指向下游。要素类中应该仅包含单条弧线组成的河流。</li>
+<li>Sink 表示已知地形凹陷的点要素类。</li>
+<li>Boundary 边界是包含表示输出栅格外边界的单个面的要素类。在输出栅格中，位于此边界以外的像元将为 NoData。此选项可用于在创建最终输出栅格之前沿海岸线裁剪出水域。 </li>
+<li>Lake 指定湖泊位置的面要素类。湖面内的所有输出栅格像元均将指定为使用沿湖岸线所有像元高程值中最小的那个高程值。</li>
+<li>Cliff 悬崖的线要素类。必须对悬崖线要素进行定向以使线的左侧位于悬崖的低侧，线的右侧位于悬崖的高侧。</li>
+<li>Exclusion 其中的输入数据应被忽略的区域的面要素类。这些面允许从插值过程中移除高程数据。通常将其用于移除与堤壁和桥相关联的高程数据。这样就可以内插带有连续地形结构的基础山谷。</li>
+<li>Coast 包含沿海地区轮廓的面要素类。位于这些面之外的最终输出栅格中的像元会被设置为小于用户所指定的最小高度限制的值。<br>PointElevation、Contour 和 Sink 要素输入类型均可指定包含 z 值的字段。但对于 Boundary、Lake、Cliff、Coast、Exclusion 或 Stream 输入类型则不存在 Field 选项。</li>
+</ul>
+<p>容差 1 和容差 2 设置的典型值为：</p>
+<ul>
+<li>对于比例为 1:100,000 的点数据，请分别使用 5.0 和 200.0。</li>
+<li>对于比例高达 1:500,000 的较不密集的点数据，请分别使用 10.0 和 400.0。</li>
+<li>对于等值线间距为 10 的等值线数据，请分别使用 5.0 和 100.0。<br>容差 2 应至少比容差 1 大 6 倍。</li>
+</ul>
+<p>插值方法其实还有很多，今天就针对Esri Training的课程整理这些吧。</p>
+
+        </div>
+        <footer class="article-footer">
+			<div>如果需要转载文章，请注明出处哦！
+			     <br/>
+				 <br/>
+			</div>
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://zh-cn.facebook.com/people/Kikita-Moon/100002555057242" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/+%E6%85%95%E6%99%93%E7%87%95" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/08/14/ArcMapStartupLog/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">如何创建ArcMap的启动日志？</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://oopsliu.github.io/">OopsLiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS_CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.33px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 14.17px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.5px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.83px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 15px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15.83px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.67px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.17px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.33px;">License</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.83px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 15.83px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.83px;">Performance</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.5px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 14.17px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.67px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'kikitamap';
+    
+    
+    var disqus_url = 'http://www.kikitamap.com/2017/10/15/SpatialInteroplation/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+
+</body>
+</html>

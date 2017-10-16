@@ -8,23 +8,32 @@
     
         <meta name="keywords" content="Geoprocessing,Spatial Statistics" />
     
-    <meta name="description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+    <meta name="description" content="Updated: 2017-10-11修改了文中表意含糊的语句，增加了更多解释性描述。
 
-Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+
+Average Nearest Neighbor平">
 <meta property="og:type" content="article">
 <meta property="og:title" content="空间统计（二）分析模式 B">
 <meta property="og:url" content="http://www.kikitamap.com/2015/03/05/AnalysisPatternsB/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+<meta property="og:description" content="Updated: 2017-10-11修改了文中表意含糊的语句，增加了更多解释性描述。
 
-Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+
+Average Nearest Neighbor平">
 <meta property="og:image" content="http://img.blog.csdn.net/20150303103705851">
-<meta property="og:updated_time" content="2016-08-08T06:08:37.000Z">
+<meta property="og:updated_time" content="2017-10-13T12:50:32.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="空间统计（二）分析模式 B">
-<meta name="twitter:description" content="这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+<meta name="twitter:description" content="Updated: 2017-10-11修改了文中表意含糊的语句，增加了更多解释性描述。
 
-Average Nearest Neighbor平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1">
+这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。
+
+
+Average Nearest Neighbor平">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20150303103705851">
     
 
@@ -174,13 +183,24 @@ ga('send', 'pageview');
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。</p>
-<p><img src="http://img.blog.csdn.net/20150303103705851" alt=""><br><br><br><br><br><br><br><br></p>
-<h1 id="Average-Nearest-Neighbor"><a href="#Average-Nearest-Neighbor" class="headerlink" title="Average Nearest Neighbor"></a>Average Nearest Neighbor</h1><p>平均最近邻工具通过计算每个要素与其最邻近要素之间的距离来计算最近邻比率。如果最近邻比率小于 1，则表现的模式为聚类。如果指数大于 1，则表现的模式趋向于扩散。</p>
-<p><img src="http://img.blog.csdn.net/20150303152059424" alt=""></p>
-<p>“平均最近邻”工具将返回五个值：观测的平均距离、期望的平均距离、最近邻指数、z 得分和 p 值。</p>
+            <p><em>Updated: 2017-10-11</em><br><em>修改了文中表意含糊的语句，增加了更多解释性描述。</em></p>
+<p><br></p>
+<p>这一篇具体看分析模式工具集中的具体工具，整理这一篇的目的，不是要读者了解每个工具的背后使用了多么高级的算法，运用了多么庞大的公式，而是一起了解这些工具究竟可以为我们研究什么样的空间数据分布模式，当需要探索数据的空间性质时，知道应该如何去应用这些分析工具。</p>
+<p><img src="http://img.blog.csdn.net/20150303103705851" alt=""></p>
+<p><br></p>
+<h1 id="Average-Nearest-Neighbor"><a href="#Average-Nearest-Neighbor" class="headerlink" title="Average Nearest Neighbor"></a>Average Nearest Neighbor</h1><p>平均最近邻工具，计算每个要素中心与其最邻近要素中心的距离，然后求取所有最近邻距离的平均值，然后用这个观测平均值与随机分布的期望平均值进行比较，从而可以反应数据的空间分布是聚合的还是分散的。 </p>
+<p>Average Nearest Neighbor 工具将返回五个值：</p>
+<ul>
+<li>观测的平均距离 / Observed Mean Distance</li>
+<li>期望的平均距离 / Excepted Mean Distance</li>
+<li>最近邻指数 / Nearest Neighbor Ratio</li>
+<li>z得分 / z-score</li>
+<li>p值 / p-value</li>
+</ul>
+<p>其中，最近邻指数是观测平均值与期望平均值的比率，最近邻如果最近邻比率小于1，则表现的模式为聚类。如果指数大于1，则表现的模式趋向于扩散。</p>
+<p><img src="http://img.blog.csdn.net/20150303152059424" alt="最近邻比率"></p>
 <p>在HTML报告文件中可以更显见的了解数据的趋势：</p>
-<p><img src="http://img.blog.csdn.net/20150303163930384" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150303163930384" alt="报告"></p>
 <blockquote>
 <p>可能的应用：</p>
 <ul>
@@ -189,10 +209,20 @@ ga('send', 'pageview');
 <li>将观测分布与控制分布进行比较：在木材分析中，如果给定全部可收获木材的分布，则您最好将已收获面积图案与可收获面积图案进行比较，以确定砍伐面积是否比期望面积更为聚类。</li>
 </ul>
 </blockquote>
-<p><br><br><br><br><br><br><br></p>
+<p><br></p>
 <h1 id="Spatial-Autocorrelation"><a href="#Spatial-Autocorrelation" class="headerlink" title="Spatial Autocorrelation"></a>Spatial Autocorrelation</h1><p>空间自相关 (Global Moran’s I) 工具同时根据要素位置和要素的属性值来度量空间自相关。在给定一组要素及相关属性的情况下，评估所表达的模式是聚类模式、离散模式还是随机模式。</p>
-<p>与平均最近邻工具类似，此工具将返回五个值：Moran’s I 指数、预期指数、方差、z 得分和 p 值。</p>
+<p>此工具将返回五个值：</p>
+<ul>
+<li>Moran’s I指数 / Moran’s I Index</li>
+<li>预期指数 / Expected Index</li>
+<li>方差 / Variance</li>
+<li>z得分 / z-score</li>
+<li>p值 / p-value</li>
+</ul>
 <p><img src="http://img.blog.csdn.net/20150304103916681" alt=""></p>
+<p><strong>Moran’s I 指数</strong>：</p>
+<p>Global Moran‘s I 工具计算所评估属性的<strong>均值/Mean</strong>和<strong>方差/Variance</strong>。然后，将每个要素值减去均值，从而得到与均值的<strong>偏差/Deviation</strong>。 将所有相邻要素（例如位于指定距离范围内的要素）的偏差值相乘，从而得到<strong>叉积/Cross Production</strong>。Global Moran’s I 统计量的分子是这些叉积的和。</p>
+<p>如果数据在空间上趋于聚类，则Moran’s I指数为正值；如果空间上高值排斥其他高值而分散存在，则Moran’s I 指数为负值；如果叉积的正负值趋于平衡，则指数趋于0。</p>
 <p>在使用这个工具的时候，<strong>注意</strong>以下几点：</p>
 <ul>
 <li>输入要素的记录数至少30个，少于30结果不可靠。</li>
@@ -206,8 +236,8 @@ ga('send', 'pageview');
 <li>总结某种观点、疾病或趋势随空间和时间变化的传播情况 - 观点、疾病或趋势是保持隔离和集中，还是传播开并变得更加分散？</li>
 </ul>
 </blockquote>
-<p><br><br><br><br><br><br><br></p>
-<h1 id="Incremental-Spatial-Autocorrelation"><a href="#Incremental-Spatial-Autocorrelation" class="headerlink" title="Incremental Spatial Autocorrelation"></a>Incremental Spatial Autocorrelation</h1><p>增量自相关工具会去测量一系列的空间自相关，并且可以创建 Z 得分折线图。Z 得分反映空间聚类的程度，峰值 Z 得分表示聚类最明显的距离。<br>这些峰值能做什么呢？我们可以将这些峰值作为其他工具（例如热点分析，将来会说到）的必要参数，例如距离范围，距离半径等等。</p>
+<p><br></p>
+<h1 id="Incremental-Spatial-Autocorrelation"><a href="#Incremental-Spatial-Autocorrelation" class="headerlink" title="Incremental Spatial Autocorrelation"></a>Incremental Spatial Autocorrelation</h1><p>增量自相关工具会去测量一系列的空间自相关，并且可以创建Z得分折线图。Z得分反映空间聚类的程度，峰值Z得分表示聚类最明显的距离。<br>这些峰值能做什么呢？我们可以将这些峰值作为其他工具（例如热点分析，将来会说到）的必要参数，例如距离范围，距离半径等等。</p>
 <p><img src="http://img.blog.csdn.net/20150304163215457" alt=""></p>
 <p>以下面的数据为例：</p>
 <p>我欲研究下面几个城市的人口分布情况：</p>
@@ -215,7 +245,7 @@ ga('send', 'pageview');
 <p><img src="http://img.blog.csdn.net/20150305091759165" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20150305091915238" alt=""></p>
 <p>第一个峰值位于大约 250000 处。当显示多个具有统计显著性的峰值时（例如，本示例数据中有两个峰值），聚类在这些距离处均很明显。选择与感兴趣的分析比例对应的峰值距离，我们通常选择第一个具有统计显著性的峰值。</p>
-<p><br><br><br><br><br><br><br></p>
+<p><br></p>
 <h1 id="High-Low-Clustering-Getis-Ord-General-G"><a href="#High-Low-Clustering-Getis-Ord-General-G" class="headerlink" title="High/Low Clustering (Getis-Ord General G)"></a>High/Low Clustering (Getis-Ord General G)</h1><p>高/低聚类 (General G) 统计的零假设规定被研究的要素值不存在空间聚类。当返回的 p 值较小且在统计学上显著，则可以拒绝零假设。如果零假设被拒绝，则 z 得分的符号将变得十分重要。如果 z 得分值为正数，则观测的 General G 指数会比期望的 General G 指数要大一些，表明属性的高值将在研究区域中聚类。如果 z 得分值为负数，则观测的 General G 指数会比期望的 General G 指数要小一些，表明属性的低值将在研究区域中聚类。</p>
 <p>当存在完全均匀分布的值并且要查找高值的异常空间峰值时，首选高/低聚类(Getis-Ord General G)工具。遗憾的是，高值和低值同时聚类时，它们倾向于彼此相互抵消。如果在高值和低值同时聚类时测量空间聚类，则使用空间自相关工具。</p>
 <p><img src="http://img.blog.csdn.net/20150305103225867" alt=""></p>
@@ -229,7 +259,7 @@ ga('send', 'pageview');
 <li>汇总空间现象聚类的程度以检查不同时期或不同位置的变化。例如，众所周知的城市及其人口聚类。使用高/低聚类分析时，可以随时间来比较某个城市的人口聚类的程度（城镇发展以及密集度的分析）。</li>
 </ul>
 </blockquote>
-<p><br><br><br><br><br><br><br></p>
+<p><br></p>
 <h1 id="Multi-Distance-Spatial-Cluster-Analysis-Ripley’s-K-Function"><a href="#Multi-Distance-Spatial-Cluster-Analysis-Ripley’s-K-Function" class="headerlink" title="Multi-Distance Spatial Cluster Analysis (Ripley’s K Function)"></a>Multi-Distance Spatial Cluster Analysis (Ripley’s K Function)</h1><p>基于 Ripley’s K 函数的多距离空间聚类分析工具是另外一种分析事件点数据的空间模式的方法。Ripley’s K 函数可表明要素质心的空间聚集或空间扩散在邻域大小发生变化时是如何变化的。</p>
 <p>如果有兴趣研究要素的聚类/扩散如何相对于不同距离（不同的分析规模）进行变化，可以使用此工具。</p>
 <p><img src="http://img.blog.csdn.net/20150305105633321" alt=""></p>
@@ -390,7 +420,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -432,7 +462,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/3D/" style="font-size: 18.46px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 13.85px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.31px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.77px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 15.38px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.15px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.92px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.23px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.08px;">License</a> <a href="/tags/Linux/" style="font-size: 11.54px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.77px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 16.15px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.77px;">Performance</a> <a href="/tags/Python/" style="font-size: 16.92px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.69px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 14.62px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.85px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.54px;">Web</a>
+            <a href="/tags/3D/" style="font-size: 18.33px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 14.17px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.5px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.83px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 15px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15.83px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.67px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.17px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.33px;">License</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.83px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 15.83px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.83px;">Performance</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.5px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 14.17px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.67px;">Web</a>
         </div>
     </div>
 

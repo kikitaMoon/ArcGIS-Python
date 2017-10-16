@@ -4,8 +4,118 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2017/10/15/SpatialInteroplation/</loc>
+    <lastmod>2017-10-16T06:58:07.580Z</lastmod>
+    <data>
+        <display>
+        <title>小结空间插值分析</title>
+        <pubTime>2017-10-15T06:10:44.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Analyst</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/03/17/MappingCluster/</loc>
+    <lastmod>2017-10-13T15:24:36.714Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（三）聚类分布制图</title>
+        <pubTime>2015-03-17T07:59:35.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsB/</loc>
+    <lastmod>2017-10-13T12:50:32.221Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（二）分析模式 B</title>
+        <pubTime>2015-03-05T03:21:40.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/02/26/MeasuringGeographicDistributions/</loc>
+    <lastmod>2017-10-11T08:24:23.097Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（一）度量地理分布</title>
+        <pubTime>2015-02-26T09:50:36.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsA/</loc>
+    <lastmod>2017-10-11T06:33:37.724Z</lastmod>
+    <data>
+        <display>
+        <title>空间统计（二）分析模式 A</title>
+        <pubTime>2015-03-05T03:15:56.000Z</pubTime>
+        
+        <tag>Geoprocessing</tag>
+         
+        <tag>Spatial Statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2017/08/14/ArcMapStartupLog/</loc>
-    <lastmod>2017-08-14T07:31:33.000Z</lastmod>
+    <lastmod>2017-08-14T07:31:33.495Z</lastmod>
     <data>
         <display>
         <title>如何创建ArcMap的启动日志？</title>
@@ -25,7 +135,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/08/01/AnotherBeginning/</loc>
-    <lastmod>2017-08-01T04:54:00.000Z</lastmod>
+    <lastmod>2017-08-01T04:54:00.692Z</lastmod>
     <data>
         <display>
         <title>回归后的新起点</title>
@@ -43,7 +153,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/02/07/VSpublishFailure/</loc>
-    <lastmod>2017-02-07T02:07:45.000Z</lastmod>
+    <lastmod>2017-02-07T02:07:45.738Z</lastmod>
     <data>
         <display>
         <title>VS部署应用程序失败'找不到SignTool.exe'</title>
@@ -63,7 +173,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
-    <lastmod>2017-02-07T01:10:37.000Z</lastmod>
+    <lastmod>2017-02-07T01:10:37.238Z</lastmod>
     <data>
         <display>
         <title>ArcGIS Python API 功能一瞥</title>
@@ -85,7 +195,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/01/13/Painting/</loc>
-    <lastmod>2017-01-23T09:28:35.000Z</lastmod>
+    <lastmod>2017-01-23T09:28:35.165Z</lastmod>
     <data>
         <display>
         <title>父亲节的作品</title>
@@ -103,7 +213,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/01/13/Childlike/</loc>
-    <lastmod>2017-01-23T09:18:08.000Z</lastmod>
+    <lastmod>2017-01-23T09:18:08.877Z</lastmod>
     <data>
         <display>
         <title>孩童般</title>
@@ -121,7 +231,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2017/01/23/CreateSplittedBuffer/</loc>
-    <lastmod>2017-01-23T08:38:02.000Z</lastmod>
+    <lastmod>2017-01-23T08:38:02.708Z</lastmod>
     <data>
         <display>
         <title>生成线要素分段缓冲区</title>
@@ -145,7 +255,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
-    <lastmod>2017-01-12T02:35:54.000Z</lastmod>
+    <lastmod>2017-01-12T02:35:54.634Z</lastmod>
     <data>
         <display>
         <title>部署 ArcGIS Python API</title>
@@ -167,7 +277,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2014/12/26/Complete/</loc>
-    <lastmod>2017-01-12T02:04:12.000Z</lastmod>
+    <lastmod>2017-01-12T02:04:12.467Z</lastmod>
     <data>
         <display>
         <title>无法正常卸载 ArcGIS Desktop时，这样完全清除</title>
@@ -187,7 +297,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/09/30/LineDirectioninCE/</loc>
-    <lastmod>2016-09-30T02:33:50.000Z</lastmod>
+    <lastmod>2016-09-30T02:33:50.261Z</lastmod>
     <data>
         <display>
         <title>在CityEngine中如何判断线的方向与左右？</title>
@@ -211,7 +321,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/09/29/PackageArcpyEXE/</loc>
-    <lastmod>2016-09-29T09:37:17.000Z</lastmod>
+    <lastmod>2016-09-29T09:37:17.306Z</lastmod>
     <data>
         <display>
         <title>如何使用py2exe打包arcpy脚本？</title>
@@ -233,7 +343,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2015/09/30/TriptoGreece/</loc>
-    <lastmod>2016-09-02T10:23:15.000Z</lastmod>
+    <lastmod>2016-09-02T10:23:15.731Z</lastmod>
     <data>
         <display>
         <title>给自己做个地图故事——Trip to Greece</title>
@@ -257,7 +367,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/09/02/TripToHngKong/</loc>
-    <lastmod>2016-09-02T10:06:16.000Z</lastmod>
+    <lastmod>2016-09-02T10:06:16.499Z</lastmod>
     <data>
         <display>
         <title>Trip To HngKong</title>
@@ -277,7 +387,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/08/31/ArcGISProPython/</loc>
-    <lastmod>2016-08-31T01:58:34.000Z</lastmod>
+    <lastmod>2016-08-31T01:58:34.164Z</lastmod>
     <data>
         <display>
         <title>在ArcGIS Pro 1.3之外运行arcpy独立脚本</title>
@@ -299,7 +409,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2013/03/22/DeployCityEngineLocalHelp/</loc>
-    <lastmod>2016-08-23T09:25:26.000Z</lastmod>
+    <lastmod>2016-08-23T09:25:26.617Z</lastmod>
     <data>
         <display>
         <title>单独打开CityEngine本地帮助</title>
@@ -319,7 +429,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2015/03/20/RegressionAnalysis/</loc>
-    <lastmod>2016-08-08T06:35:27.000Z</lastmod>
+    <lastmod>2016-08-08T06:35:27.487Z</lastmod>
     <data>
         <display>
         <title>空间统计（四）回归分析探索</title>
@@ -340,30 +450,8 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsB/</loc>
-    <lastmod>2016-08-08T06:08:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（二）分析模式 B</title>
-        <pubTime>2015-03-05T03:21:40.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2015/12/21/TroubleshootingShapefile/</loc>
-    <lastmod>2016-07-06T08:45:29.000Z</lastmod>
+    <lastmod>2016-07-06T08:45:29.159Z</lastmod>
     <data>
         <display>
         <title>Troubleshooting：Shapefile 乱码与字符截断问题</title>
@@ -383,7 +471,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/06/17/LMthroughFireWall/</loc>
-    <lastmod>2016-07-06T08:43:29.000Z</lastmod>
+    <lastmod>2016-07-06T08:43:29.975Z</lastmod>
     <data>
         <display>
         <title>Troubleshooting： 有防火墙的情况下你需要如何部署许可服务器？</title>
@@ -405,7 +493,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
-    <lastmod>2016-07-01T08:53:05.000Z</lastmod>
+    <lastmod>2016-07-01T08:53:05.291Z</lastmod>
     <data>
         <display>
         <title>Make Query Layer在Model Builder中的使用</title>
@@ -426,7 +514,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/05/24/theBlueSea/</loc>
-    <lastmod>2016-05-24T05:36:12.000Z</lastmod>
+    <lastmod>2016-05-24T05:36:12.190Z</lastmod>
     <data>
         <display>
         <title>海</title>
@@ -444,7 +532,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/04/28/ParallelPython/</loc>
-    <lastmod>2016-04-29T03:41:55.000Z</lastmod>
+    <lastmod>2016-04-29T03:41:55.474Z</lastmod>
     <data>
         <display>
         <title>浅谈使用ArcPy执行大数据量处理任务</title>
@@ -483,26 +571,8 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2016/04/08/RedBeach/</loc>
-    <lastmod>2016-04-08T14:31:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>红沙滩</title>
-        <pubTime>2016-04-08T12:38:22.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2016/03/30/TheCircle/</loc>
-    <lastmod>2016-04-08T13:55:30.000Z</lastmod>
+    <lastmod>2016-04-08T13:55:28.000Z</lastmod>
     <data>
         <display>
         <title>圈</title>
@@ -519,8 +589,26 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2016/04/08/RedBeach/</loc>
+    <lastmod>2016-04-08T13:52:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>红沙滩</title>
+        <pubTime>2016-04-08T12:38:22.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2016/04/01/IfModelsTuches/</loc>
-    <lastmod>2016-04-06T03:50:56.000Z</lastmod>
+    <lastmod>2016-04-06T03:50:56.741Z</lastmod>
     <data>
         <display>
         <title>CGA：自动判断模型间关系的3D建模方法</title>
@@ -562,7 +650,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/03/21/insignificant/</loc>
-    <lastmod>2016-04-01T06:27:01.000Z</lastmod>
+    <lastmod>2016-04-01T06:27:01.963Z</lastmod>
     <data>
         <display>
         <title>渺小</title>
@@ -580,7 +668,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/03/27/WhatHasBeenDoneUntill327/</loc>
-    <lastmod>2016-03-31T05:27:16.000Z</lastmod>
+    <lastmod>2016-03-31T05:27:16.810Z</lastmod>
     <data>
         <display>
         <title>Hexo My Blog</title>
@@ -598,7 +686,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/03/21/SplitLine/</loc>
-    <lastmod>2016-03-23T06:19:32.000Z</lastmod>
+    <lastmod>2016-03-23T06:19:32.319Z</lastmod>
     <data>
         <display>
         <title>分割线</title>
@@ -616,7 +704,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/06/01/AboutGaussKruger/</loc>
-    <lastmod>2016-03-21T07:27:42.000Z</lastmod>
+    <lastmod>2016-03-21T07:27:42.567Z</lastmod>
     <data>
         <display>
         <title>关于高斯克吕格平面直角坐标系</title>
@@ -636,7 +724,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/06/01/SurveyBasic/</loc>
-    <lastmod>2016-03-21T07:27:28.000Z</lastmod>
+    <lastmod>2016-03-21T07:27:28.094Z</lastmod>
     <data>
         <display>
         <title>控制测量的基本概念总结</title>
@@ -656,7 +744,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2013/10/21/Beijing1954ToWGS1984/</loc>
-    <lastmod>2016-03-21T07:27:10.000Z</lastmod>
+    <lastmod>2016-03-21T07:27:10.905Z</lastmod>
     <data>
         <display>
         <title>Beijing_1954_To_WGS_1984</title>
@@ -676,7 +764,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2013/04/22/WhereArethePRJs/</loc>
-    <lastmod>2016-03-21T07:24:53.000Z</lastmod>
+    <lastmod>2016-03-21T07:24:53.668Z</lastmod>
     <data>
         <display>
         <title>ArcGIS Desktop 10.1 的系统自带的 prj 文件的去哪了?</title>
@@ -696,7 +784,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2014/03/19/MapProjectionType/</loc>
-    <lastmod>2016-03-21T07:24:28.000Z</lastmod>
+    <lastmod>2016-03-21T07:24:28.084Z</lastmod>
     <data>
         <display>
         <title>地图投影类型</title>
@@ -716,7 +804,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2014/01/19/GeographicTransformation2/</loc>
-    <lastmod>2016-03-21T07:24:15.000Z</lastmod>
+    <lastmod>2016-03-21T07:24:15.331Z</lastmod>
     <data>
         <display>
         <title>ArcGIS中的地理坐标系转换方法参数（二）</title>
@@ -736,7 +824,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2014/01/17/GeographicTransformation1/</loc>
-    <lastmod>2016-03-21T07:24:08.000Z</lastmod>
+    <lastmod>2016-03-21T07:24:08.154Z</lastmod>
     <data>
         <display>
         <title>ArcGIS中的地理坐标系转换方法参数（一）</title>
@@ -756,7 +844,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/ArcGISSpatialReference/</loc>
-    <lastmod>2016-03-21T07:23:20.000Z</lastmod>
+    <lastmod>2016-03-21T07:23:20.201Z</lastmod>
     <data>
         <display>
         <title>ArcGIS的空间参考</title>
@@ -776,7 +864,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/05/23/ChineseUTMZone/</loc>
-    <lastmod>2016-03-21T07:23:07.000Z</lastmod>
+    <lastmod>2016-03-21T07:23:07.681Z</lastmod>
     <data>
         <display>
         <title>中国UTM分区</title>
@@ -796,7 +884,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2015/05/29/SecretofWebMercator/</loc>
-    <lastmod>2016-03-21T07:22:30.000Z</lastmod>
+    <lastmod>2016-03-21T07:22:30.933Z</lastmod>
     <data>
         <display>
         <title>Web Mercator 公开的小秘密</title>
@@ -816,7 +904,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2016/02/04/FunnyProjections/</loc>
-    <lastmod>2016-03-21T07:22:07.000Z</lastmod>
+    <lastmod>2016-03-21T07:22:07.684Z</lastmod>
     <data>
         <display>
         <title>你所不知的有趣投影方法</title>
@@ -838,7 +926,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/27/SAHydrology/</loc>
-    <lastmod>2016-03-20T05:48:33.000Z</lastmod>
+    <lastmod>2016-03-20T05:48:33.281Z</lastmod>
     <data>
         <display>
         <title>空间分析之水文分析</title>
@@ -860,7 +948,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/27/SAMultiDimensions/</loc>
-    <lastmod>2016-03-20T05:45:29.000Z</lastmod>
+    <lastmod>2016-03-20T05:45:29.847Z</lastmod>
     <data>
         <display>
         <title>空间分析之多元分析</title>
@@ -882,7 +970,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/27/SAInterpolation/</loc>
-    <lastmod>2016-03-20T05:43:37.000Z</lastmod>
+    <lastmod>2016-03-20T05:43:37.085Z</lastmod>
     <data>
         <display>
         <title>空间分析之插值分析</title>
@@ -904,7 +992,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/24/SAZonal/</loc>
-    <lastmod>2016-03-20T05:42:19.000Z</lastmod>
+    <lastmod>2016-03-20T05:42:19.329Z</lastmod>
     <data>
         <display>
         <title>空间分析之区域分析</title>
@@ -926,7 +1014,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/23/SAProximity/</loc>
-    <lastmod>2016-03-20T05:39:15.000Z</lastmod>
+    <lastmod>2016-03-20T05:39:15.232Z</lastmod>
     <data>
         <display>
         <title>空间分析之邻域分析</title>
@@ -948,7 +1036,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/20/SASurface/</loc>
-    <lastmod>2016-03-20T05:37:48.000Z</lastmod>
+    <lastmod>2016-03-20T05:37:48.572Z</lastmod>
     <data>
         <display>
         <title>空间分析之表面分析</title>
@@ -970,7 +1058,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/19/SAGeneral/</loc>
-    <lastmod>2016-03-20T05:34:10.000Z</lastmod>
+    <lastmod>2016-03-20T05:34:10.600Z</lastmod>
     <data>
         <display>
         <title>空间分析之常用工具</title>
@@ -992,7 +1080,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/10/SADistance/</loc>
-    <lastmod>2016-03-20T05:33:13.000Z</lastmod>
+    <lastmod>2016-03-20T05:33:13.476Z</lastmod>
     <data>
         <display>
         <title>空间分析之距离分析</title>
@@ -1014,7 +1102,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/08/06/SADensity/</loc>
-    <lastmod>2016-03-20T05:28:19.000Z</lastmod>
+    <lastmod>2016-03-20T05:28:19.955Z</lastmod>
     <data>
         <display>
         <title>空间分析之密度分析</title>
@@ -1036,7 +1124,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/04/10/ArcPad10Synchronization1/</loc>
-    <lastmod>2016-03-20T05:15:17.000Z</lastmod>
+    <lastmod>2016-03-20T05:15:17.144Z</lastmod>
     <data>
         <display>
         <title>ArcPad 10 使用与同步 ArcGIS Server 的数据全攻略（二）</title>
@@ -1056,7 +1144,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/04/09/ArcPad10Synchronization2/</loc>
-    <lastmod>2016-03-20T05:12:51.000Z</lastmod>
+    <lastmod>2016-03-20T05:12:51.148Z</lastmod>
     <data>
         <display>
         <title>ArcPad 10 使用与同步 ArcGIS Server 的数据全攻略（一）</title>
@@ -1076,7 +1164,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/03/28/ArcPad10Deployment/</loc>
-    <lastmod>2016-03-20T05:00:17.000Z</lastmod>
+    <lastmod>2016-03-20T05:00:17.174Z</lastmod>
     <data>
         <display>
         <title>ArcPad 10 的安装部署</title>
@@ -1096,7 +1184,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/28/ArcMapExportPDF/</loc>
-    <lastmod>2016-03-20T04:53:19.000Z</lastmod>
+    <lastmod>2016-03-20T04:53:19.921Z</lastmod>
     <data>
         <display>
         <title>ArcMap中将地图导出至PDF</title>
@@ -1116,7 +1204,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/17/GodaddyEmailFailure/</loc>
-    <lastmod>2016-03-20T04:48:37.000Z</lastmod>
+    <lastmod>2016-03-20T04:48:37.220Z</lastmod>
     <data>
         <display>
         <title>解决Godaddy邮箱无法收信的问题</title>
@@ -1136,7 +1224,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/08/HowPointtoRasterWorks/</loc>
-    <lastmod>2016-03-20T04:45:09.000Z</lastmod>
+    <lastmod>2016-03-20T04:45:09.503Z</lastmod>
     <data>
         <display>
         <title>Point to Raster 工作原理</title>
@@ -1158,7 +1246,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/ArcGISforAutoCAD/</loc>
-    <lastmod>2016-03-20T04:42:04.000Z</lastmod>
+    <lastmod>2016-03-20T04:42:04.874Z</lastmod>
     <data>
         <display>
         <title>ArcGIS for AutoCAD 小结</title>
@@ -1180,7 +1268,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/ArcMapFeatureCache/</loc>
-    <lastmod>2016-03-20T04:13:38.000Z</lastmod>
+    <lastmod>2016-03-20T04:13:38.844Z</lastmod>
     <data>
         <display>
         <title>ArcMap的Feature Cache</title>
@@ -1200,7 +1288,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/GeodatabaseBasic/</loc>
-    <lastmod>2016-03-20T03:58:03.000Z</lastmod>
+    <lastmod>2016-03-20T03:58:03.352Z</lastmod>
     <data>
         <display>
         <title>Geodatabase之基础</title>
@@ -1220,7 +1308,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/Aboutshapefile/</loc>
-    <lastmod>2016-03-20T03:56:02.000Z</lastmod>
+    <lastmod>2016-03-20T03:56:02.673Z</lastmod>
     <data>
         <display>
         <title>有关shape文件的说明</title>
@@ -1240,7 +1328,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/virtualmemory/</loc>
-    <lastmod>2016-03-20T03:53:46.000Z</lastmod>
+    <lastmod>2016-03-20T03:53:46.476Z</lastmod>
     <data>
         <display>
         <title>认识虚拟内存与分页文件</title>
@@ -1260,7 +1348,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/ArcPad8Overview/</loc>
-    <lastmod>2016-03-20T03:23:26.000Z</lastmod>
+    <lastmod>2016-03-20T03:23:26.904Z</lastmod>
     <data>
         <display>
         <title>ArcPad 8 简介</title>
@@ -1280,7 +1368,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/AnchorPointinMaplex/</loc>
-    <lastmod>2016-03-20T03:21:36.000Z</lastmod>
+    <lastmod>2016-03-20T03:21:36.997Z</lastmod>
     <data>
         <display>
         <title>Maplex中，设置面要素标注锚点位置</title>
@@ -1300,7 +1388,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/02/07/importKMLKMZ/</loc>
-    <lastmod>2016-03-20T03:17:15.000Z</lastmod>
+    <lastmod>2016-03-20T03:17:15.843Z</lastmod>
     <data>
         <display>
         <title>KML/KMZ到ArcGIS完全转化</title>
@@ -1320,7 +1408,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/11/17/ArcSceneArcGlobe/</loc>
-    <lastmod>2016-03-20T03:09:48.000Z</lastmod>
+    <lastmod>2016-03-20T03:09:48.285Z</lastmod>
     <data>
         <display>
         <title>了解 ArcScene 与 ArcGlobe</title>
@@ -1340,7 +1428,7 @@
     
   <url>
     <loc>http://www.kikitamap.com/2012/11/17/3DSupportedSurface/</loc>
-    <lastmod>2016-03-20T03:06:56.000Z</lastmod>
+    <lastmod>2016-03-20T03:06:56.279Z</lastmod>
     <data>
         <display>
         <title>3D分析之ArcGIS 支持的表面类型</title>
@@ -1454,9 +1542,9 @@
         <title>不规则三角网（TIN）</title>
         <pubTime>2012-12-06T01:29:33.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1476,9 +1564,9 @@
         <title>ArcGIS Terrain Dataset</title>
         <pubTime>2012-12-13T08:23:24.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1618,9 +1706,9 @@
         <title>3D数据互操作之认识Collada</title>
         <pubTime>2013-03-04T01:22:20.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2147,7 +2235,7 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2014/03/03/Landset-8-%E4%B8%8E-ArcGIS/</loc>
+    <loc>http://www.kikitamap.com/2014/03/03/Landset8_ArcGIS/</loc>
     <lastmod>2016-03-12T13:07:42.000Z</lastmod>
     <data>
         <display>
@@ -2671,50 +2759,6 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2015/02/26/MeasuringGeographicDistributions/</loc>
-    <lastmod>2016-03-07T06:30:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（一）度量地理分布</title>
-        <pubTime>2015-02-26T09:50:36.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/03/05/AnalysisPatternsA/</loc>
-    <lastmod>2016-03-07T04:56:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（二）分析模式 A</title>
-        <pubTime>2015-03-05T03:15:56.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2015/03/06/ArcGISPro60DayFreetrial/</loc>
     <lastmod>2016-03-07T04:48:38.000Z</lastmod>
     <data>
@@ -2722,31 +2766,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>License</tag>
          
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/03/17/MappingCluster/</loc>
-    <lastmod>2016-03-07T04:46:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>空间统计（三）聚类分布制图</title>
-        <pubTime>2015-03-17T07:59:35.000Z</pubTime>
-        
-        <tag>Geoprocessing</tag>
-         
-        <tag>Spatial Statistics</tag>
+        <tag>ArcGIS Pro</tag>
          
          
            

@@ -8,17 +8,23 @@
     
         <meta name="keywords" content="Geoprocessing,Spatial Statistics" />
     
-    <meta name="description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+    <meta name="description" content="Updated: 2017-10-11
+
+ArcGIS Desktop 中有一个包含了一系列用于研究空间分布/spatial distribution、空间模式/spatial pattern、空间关系/spatial relationship的统计的工具箱 —— Spatial Statistics Toolbox。  这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="空间统计（一）度量地理分布">
 <meta property="og:url" content="http://www.kikitamap.com/2015/02/26/MeasuringGeographicDistributions/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+<meta property="og:description" content="Updated: 2017-10-11
+
+ArcGIS Desktop 中有一个包含了一系列用于研究空间分布/spatial distribution、空间模式/spatial pattern、空间关系/spatial relationship的统计的工具箱 —— Spatial Statistics Toolbox。  这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例">
 <meta property="og:image" content="http://img.blog.csdn.net/20150226151543719">
-<meta property="og:updated_time" content="2016-03-07T06:30:12.000Z">
+<meta property="og:updated_time" content="2017-10-11T08:24:23.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="空间统计（一）度量地理分布">
-<meta name="twitter:description" content="ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（a">
+<meta name="twitter:description" content="Updated: 2017-10-11
+
+ArcGIS Desktop 中有一个包含了一系列用于研究空间分布/spatial distribution、空间模式/spatial pattern、空间关系/spatial relationship的统计的工具箱 —— Spatial Statistics Toolbox。  这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20150226151543719">
     
 
@@ -168,12 +174,15 @@ ga('send', 'pageview');
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>ArcGIS Desktop 中有一个包含了一系列用于研究空间分布（spatial distribution）、空间模式（spatial pattern）、空间关系（spatial relationship）的统计的工具箱 —— Spatial Statistics Toolbox。这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域（proximity），面积（area），连通性（connectivity）等。</p>
-<p>本篇总结一下有关 度量地理分布（ Measuring Geographic Distributions）工具集中提供的功能。这些工具用于研究要素的空间分布特征，下面一个一个来看：</p>
-<p><img src="http://img.blog.csdn.net/20150226151543719" alt=""></p>
+            <p><em>Updated: 2017-10-11</em></p>
 <p><br></p>
-<h1 id="Central-Feature"><a href="#Central-Feature" class="headerlink" title="Central Feature"></a>Central Feature</h1><p>中心要素（Central Feature）这个工具可用于寻找一组要素中处于最中心位置的要素，这一组要素可以是点、线、面。</p>
-<p>可解决的问题例如：</p>
+<p>ArcGIS Desktop 中有一个包含了一系列用于研究空间分布/spatial distribution、空间模式/spatial pattern、空间关系/spatial relationship的统计的工具箱 —— Spatial Statistics Toolbox。  这与普通的统计方法不同，空间统计将许多地理空间的概念融入到统计算法逻辑中，例如：邻域/proximity，面积/area，连通性/connectivity等。</p>
+<p>本篇总结一下有关 度量地理分布/Measuring Geographic Distributions工具集中提供的功能。</p>
+<p><img src="http://img.blog.csdn.net/20150226151543719" alt=""></p>
+<p>这些工具用于研究要素的空间分布特征，下面一个一个来看：</p>
+<p><br></p>
+<h1 id="Central-Feature"><a href="#Central-Feature" class="headerlink" title="Central Feature"></a>Central Feature</h1><p>中心要素（Central Feature）这个工具可用于寻找一组要素中处于最中心位置的要素，这一组要素可以是点、线、面。<br>算法：测量每个要素与其他要素之间两两的距离，然后求和，和值最小的要素即判定为central feature。</p>
+<p>可解决的问题，例如：</p>
 <p>某个区域的仓库中最中心位置的是哪个? </p>
 <p><img src="http://img.blog.csdn.net/20150204110834566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lraXRhTW9vbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <p>在几个区块中，哪一个具有最中心的位置？</p>
@@ -182,9 +191,9 @@ ga('send', 'pageview');
 <p><strong>距离测量方法是什么？</strong></p>
 <p>有欧式距离与曼哈顿距离可选，区别点这里。并且需牢记，投影坐标系下才有准确的测量值，如果数据是经纬度坐标系，需要投影变换。</p>
 <p><strong>要素的质心如何确定？</strong></p>
-<p>对于线和面要素，距离计算中会使用要素的质心。对于多点、折线或由多部件组成的面，将会使用所有要素部件的加权平均中心来计算质心。点要素的加权项是 1，线要素的加权项是长度，而面要素的加权项是面积。</p>
+<p>对于线和面要素，距离计算中会使用要素的质心。对于多点、折线或由多部件组成的面，将会使用所有要素部件的加权平均中心来计算质心。点要素的加权项是1，线要素的加权项是长度，而面要素的加权项是面积。</p>
 <p><strong>如何求多组要素的各自的中心要素？</strong></p>
-<p>设置分组字段，可以对多个分组的要素分别计算中心要素。</p>
+<p>设置分组/case字段，可以对多个分组的要素分别计算中心要素。</p>
 <p><br></p>
 <h1 id="Mean-Center"><a href="#Mean-Center" class="headerlink" title="Mean Center"></a>Mean Center</h1><p>平均中心（Mean Center）用于计算输入的要素的质心的平均中心，因此这个工具会计算出一个新的点。</p>
 <p>如果输入数据包含 Z 值，那么在平均中心也会计算 Z 值，也就是得到3D点。</p>
@@ -229,7 +238,7 @@ ga('send', 'pageview');
 <p><img src="http://img.blog.csdn.net/20150227114022781" alt=""></p>
 <p>且不说分布方向，我们可以看出，无论是哪种暴动事件，与之并发导致的无家可归的难民是分布最广的。</p>
 <p><br></p>
-<h1 id="Standard-Distance"><a href="#Standard-Distance" class="headerlink" title="Standard Distance"></a>Standard Distance</h1><p>标准距离工具可通过绘制一个半径等于标准距离值的圆在地图上体现一组要素的紧密度。</p>
+<h1 id="Standard-Distance"><a href="#Standard-Distance" class="headerlink" title="Standard Distance"></a>Standard Distance</h1><p>标准距离工具可通过绘制一个圆心位于平均中心/meancenter、半径等于标准距离值的圆在地图上体现一组要素的紧密度。 </p>
 <p><img src="http://img.blog.csdn.net/20150226163623440" alt=""></p>
 <blockquote>
 <p>可能的应用：</p>
@@ -416,7 +425,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -458,7 +467,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/3D/" style="font-size: 18.46px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 13.85px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.31px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.77px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 15.38px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 16.15px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.92px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.23px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.08px;">License</a> <a href="/tags/Linux/" style="font-size: 11.54px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.77px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 16.15px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.77px;">Performance</a> <a href="/tags/Python/" style="font-size: 16.92px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.69px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 14.62px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.85px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.54px;">Web</a>
+            <a href="/tags/3D/" style="font-size: 18.33px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 14.17px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.5px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.83px;">CGA</a> <a href="/tags/CityEngine/" style="font-size: 15px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15.83px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.67px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.17px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.33px;">License</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.83px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 15.83px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.83px;">Performance</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.5px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 15px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 14.17px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.67px;">Web</a>
         </div>
     </div>
 
