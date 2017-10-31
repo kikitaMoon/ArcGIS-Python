@@ -3,35 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>生成线要素分段缓冲区 | kikita &amp; Maps</title>
+    <title>ArcGIS Desktop Professional 10.5 | kikita &amp; Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Python,Geoprocessing,ArcGIS Pro" />
+        <meta name="keywords" content="" />
     
-    <meta name="description" content="前段时间做了个小工具，可以生成线要素的分段缓冲区，补充 ArcGIS 现有缓冲区工具的不足，用来辅助实现更多的功能。
-
-工具基于 arcpy、maths、os 几个模块实习，arcpy 中并没有提供现成的计算切线方向的函数或接口，我就尝试通过点处微小偏移量的三角定理计算方法构造切线，然后进行角度换算实现垂线的构造，最后再用垂线去切割缓冲区条带。
-
-链接中可以下载 ArcGIS Desktop 或者">
+    <meta name="description" content="The ArcGIS Desktop Professional exam tests the candidate’s experience applying ArcGIS concepts and processes to workflows. Qualified candidates should demonstrate proficiency when applying advanced GI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成线要素分段缓冲区">
-<meta property="og:url" content="http://www.kikitamap.com/2017/01/23/CreateSplittedBuffer/index.html">
+<meta property="og:title" content="ArcGIS Desktop Professional 10.5">
+<meta property="og:url" content="http://www.kikitamap.com/2017/10/26/AGSDeskProCA/index.html">
 <meta property="og:site_name" content="kikita & Maps">
-<meta property="og:description" content="前段时间做了个小工具，可以生成线要素的分段缓冲区，补充 ArcGIS 现有缓冲区工具的不足，用来辅助实现更多的功能。
-
-工具基于 arcpy、maths、os 几个模块实习，arcpy 中并没有提供现成的计算切线方向的函数或接口，我就尝试通过点处微小偏移量的三角定理计算方法构造切线，然后进行角度换算实现垂线的构造，最后再用垂线去切割缓冲区条带。
-
-链接中可以下载 ArcGIS Desktop 或者">
-<meta property="og:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBufferTool.png-kikitaMaps">
-<meta property="og:updated_time" content="2017-01-23T08:38:02.708Z">
+<meta property="og:description" content="The ArcGIS Desktop Professional exam tests the candidate’s experience applying ArcGIS concepts and processes to workflows. Qualified candidates should demonstrate proficiency when applying advanced GI">
+<meta property="og:updated_time" content="2017-10-26T02:34:30.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生成线要素分段缓冲区">
-<meta name="twitter:description" content="前段时间做了个小工具，可以生成线要素的分段缓冲区，补充 ArcGIS 现有缓冲区工具的不足，用来辅助实现更多的功能。
-
-工具基于 arcpy、maths、os 几个模块实习，arcpy 中并没有提供现成的计算切线方向的函数或接口，我就尝试通过点处微小偏移量的三角定理计算方法构造切线，然后进行角度换算实现垂线的构造，最后再用垂线去切割缓冲区条带。
-
-链接中可以下载 ArcGIS Desktop 或者">
-<meta name="twitter:image" content="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBufferTool.png-kikitaMaps">
+<meta name="twitter:title" content="ArcGIS Desktop Professional 10.5">
+<meta name="twitter:description" content="The ArcGIS Desktop Professional exam tests the candidate’s experience applying ArcGIS concepts and processes to workflows. Qualified candidates should demonstrate proficiency when applying advanced GI">
     
 
     
@@ -158,44 +144,113 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-CreateSplittedBuffer" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-AGSDeskProCA" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        生成线要素分段缓冲区
+        ArcGIS Desktop Professional 10.5
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2017/01/23/CreateSplittedBuffer/" class="article-date">
-    <time datetime="2017-01-23T07:43:20.000Z" itemprop="datePublished">2017-01-23</time>
+            <a href="/2017/10/26/AGSDeskProCA/" class="article-date">
+    <time datetime="2017-10-26T01:41:48.000Z" itemprop="datePublished">2017-10-26</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>前段时间做了个小工具，可以生成线要素的分段缓冲区，补充 ArcGIS 现有缓冲区工具的不足，用来辅助实现更多的功能。</p>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBufferTool.png-kikitaMaps" alt=""></p>
-<p>工具基于 arcpy、maths、os 几个模块实习，arcpy 中并没有提供现成的计算切线方向的函数或接口，我就尝试通过点处微小偏移量的三角定理计算方法构造切线，然后进行角度换算实现垂线的构造，最后再用垂线去切割缓冲区条带。</p>
-<p><br></p>
-<p>链接中可以下载 ArcGIS Desktop 或者 ArcGIS Pro 的工具箱版本（ 开发版本：Desktop 10.5，Pro 1.3，其他版本需要自己测试下 ）：</p>
-<p><a href="https://github.com/kikitaMoon/ArcGIS-Python/tree/master/MyTools/SplittedBuffer" target="_blank" rel="external">https://github.com/kikitaMoon/ArcGIS-Python/tree/master/MyTools/SplittedBuffer</a></p>
-<p>以在 ArcGIS Pro 中添加和使用为例：</p>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBufferUI.png-kikitaMaps" alt=""></p>
-<p><br></p>
-<p>工具源码参考：<br><a href="https://github.com/kikitaMoon/ArcGIS-Python/blob/master/MyTools/SplittedBuffer/PerpendicularLine_2.0_Tool.py" target="_blank" rel="external">https://github.com/kikitaMoon/ArcGIS-Python/blob/master/MyTools/SplittedBuffer/PerpendicularLine_2.0_Tool.py</a></p>
-<p><br></p>
-<p>基于工具的应用实例：</p>
-<p>1  统计公路各分段的拥堵情况</p>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBuffer_Road.png-kikitaMaps" alt="enter image description here"></p>
-<p>2  河道分段水位模拟</p>
-<p><img src="http://7xs3vz.com1.z0.glb.clouddn.com/MGKW_SplittedBuffer_River.png-kikitaMaps" alt="enter image description here"></p>
+            <p>The ArcGIS Desktop Professional exam tests the candidate’s experience applying ArcGIS concepts and processes to workflows. Qualified candidates should demonstrate proficiency when applying advanced GIS concepts and knowledge to establish workflows, processes, troubleshooting non-routine issues, and skilled at defining and successfully completing complex GIS projects. Qualified candidates should have five years of applied experience, and should be proficient in best practices and uses of Esri’s ArcGIS technologies.</p>
+<h2 id="Qualifications"><a href="#Qualifications" class="headerlink" title="Qualifications"></a>Qualifications</h2><p><strong>A qualified candidate should be able to perform the following tasks:</strong></p>
+<ul>
+<li>Apply and interpret fundamental spatial statistics and visualization techniques</li>
+<li>Build a reference data set and an address locator</li>
+<li>Build a transportation network and apply solvers</li>
+<li>Implement and apply Python scripting</li>
+<li>Perform advanced vector and raster analysis</li>
+<li>Perform fundamentals of geodatabase design and operate within a multi-user geodatabase</li>
+<li>Perform surface modeling and analysis</li>
+<li>Utilize advanced modeling techniques</li>
+<li>Identify and resolve common workflows</li>
+<li>Author a mosaic dataset</li>
+<li>Demonstrate proficiency in ArcGIS Desktop user interface and environment configuration</li>
+<li>Determine and define an appropriate coordinate system</li>
+<li>Manipulate data with Spatial Analyst, 3D Analyst, and Network Analyst extensions</li>
+<li>Author and publish to a web GIS portal</li>
+<li>Implement and apply web content or services to perform analyses</li>
+<li>Configure web app templates and Web AppBuilder widgets</li>
+</ul>
+<p><strong>A qualified candidate should be familiar with the following tools:</strong></p>
+<ul>
+<li>ArcGIS Desktop (ArcCatalog, ArcMap and ArcGIS Pro)</li>
+<li>ArcGIS Online</li>
+<li>ArcGIS Enterprise</li>
+<li>ArcGIS Network Analyst</li>
+<li>ArcGIS Spatial Analyst</li>
+<li>ArcGIS 3D Analyst</li>
+<li>Python</li>
+</ul>
+<p><strong>A qualified candidate should NOT be expected to perform the following tasks:</strong></p>
+<ul>
+<li>Deliver production quality cartographic output with specific industry solutions</li>
+<li>Administer a multi-user geodatabase</li>
+<li>Develop or administer websites</li>
+<li>Develop tools or apps using any SDK or API</li>
+<li>Network or systems administration</li>
+<li>Administer an ArcGIS Online organization</li>
+</ul>
+<h2 id="Skill-Measured"><a href="#Skill-Measured" class="headerlink" title="Skill Measured"></a>Skill Measured</h2><p>The following list will familiarize candidates with the exam sections to help guide exam preparation. The relative weight of each section is provided to illustrate the approximate size of each section. Candidates should review this list and assess their knowledge of each skill. Specific preparation resources are available to assist with refreshing in areas where any knowledge gaps are found.</p>
+<p><strong>Data Storage — 21%</strong></p>
+<ul>
+<li>Given requirements for a specific project, determine how to design a geodatabase</li>
+<li>Select appropriate data formats for an intended use</li>
+<li>Given a task, determine the data, settings, and parameters for creating a complex data set</li>
+<li>Given a task, determine the data, settings, and parameters for creating an address locator</li>
+<li>Given a scenario, determine how to synchronize replicated data</li>
+</ul>
+<p><strong>Managing Data — 26%</strong></p>
+<ul>
+<li>Given a scenario, convert and aggregate data to an appropriate format</li>
+<li>Given a task, determine the necessary schema changes so that the data can support a particular operation</li>
+<li>Given datasets that do not align, determine the best workflow to resolve the issue</li>
+<li>Given a project, determine how to manage coordinate systems</li>
+<li>Given a scenario, determine the method to create a surface dataset</li>
+<li>Given a scenario, determine how to automate data management</li>
+</ul>
+<p><strong>Visualizing and Sharing Data — 21%</strong></p>
+<ul>
+<li>Given a scenario, use advanced cartographic techniques to visualize content across the ArcGIS platform</li>
+<li>Given a scenario, determine how to optimize rendering of maps across the platform</li>
+<li>Given a scenario, determine how to create and render scenes</li>
+<li>Identify procedures to create and publish layers, maps, and apps for a given task</li>
+<li>Given a scenario, determine the most effective process for sharing content</li>
+<li>Given a scenario, determine how to automate visualization and sharing using ArcPy in ArcGIS Desktop</li>
+</ul>
+<p><strong>Analysis and Geoprocessing — 31%</strong></p>
+<ul>
+<li>Determine how to create and edit a Python script to automate a simple repetitive process in an ArcGIS workflow</li>
+<li>Determine how to create and edit a model in ModelBuilder to automate a complex workflow in ArcGIS for a given task</li>
+<li>Given a failed workflow, determine the cause of the failure</li>
+<li>Given user requirements, determine an appropriate method for sharing a geoprocessing model, script, package, toolbox, etc.</li>
+<li>Determine how to customize the user interface to perform a task</li>
+<li>Determine how to author tasks in ArcGIS Pro</li>
+<li>Given a scenario that requires an analysis, determine the workflow, data, tools, settings, and parameters to perform the analysis</li>
+</ul>
+<h2 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h2><p>A qualified candidate should be familiar with following software:</p>
+<ul>
+<li>ArcGIS Desktop (ArcCatalog 10.5, ArcMap 10.5 and ArcGIS Pro 1.4)</li>
+<li>ArcGIS Spatial Analyst extension</li>
+<li>ArcGIS Network Analyst extension</li>
+<li>ArcGIS 3D Analyst extension</li>
+<li>ArcGIS Online</li>
+<li>ArcGIS Enterprise 10.5</li>
+<li>Python 2.7 and 3.5</li>
+</ul>
+<h2 id="Exam-Details"><a href="#Exam-Details" class="headerlink" title="Exam Details"></a>Exam Details</h2><p>Number of questions: 80<br>Certification code: EADP105<br>Exam duration:<br>2 Hours<br>Exam type: Multiple choice, multiple select<br>Published date: June 2017<br>Exam state: Available to public</p>
 
         </div>
         <footer class="article-footer">
@@ -326,20 +381,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2017/02/07/VSpublishFailure/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            VS部署应用程序失败&#39;找不到SignTool.exe&#39;
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/01/22/PythonAPIFunction1/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/10/26/DistributedDatabase/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">ArcGIS Python API 功能一瞥</p>
+        <p class="article-nav-title">分布式地理数据库学习笔记</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -429,7 +474,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'kikitamap';
     
     
-    var disqus_url = 'http://www.kikitamap.com/2017/01/23/CreateSplittedBuffer/';
+    var disqus_url = 'http://www.kikitamap.com/2017/10/26/AGSDeskProCA/';
     
     (function() {
     var dsq = document.createElement('script');

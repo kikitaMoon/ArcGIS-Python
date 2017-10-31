@@ -4,6 +4,42 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2017/10/26/DistributedDatabase/</loc>
+    <lastmod>2017-10-26T02:36:43.342Z</lastmod>
+    <data>
+        <display>
+        <title>分布式地理数据库学习笔记</title>
+        <pubTime>2017-10-26T01:23:51.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/10/26/AGSDeskProCA/</loc>
+    <lastmod>2017-10-26T02:34:30.815Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Desktop Professional 10.5</title>
+        <pubTime>2017-10-26T01:41:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2017/10/15/SpatialInteroplation/</loc>
     <lastmod>2017-10-16T06:58:07.580Z</lastmod>
     <data>
@@ -179,9 +215,9 @@
         <title>ArcGIS Python API 功能一瞥</title>
         <pubTime>2017-01-22T10:55:38.000Z</pubTime>
         
-        <tag>Web</tag>
-         
         <tag>Python</tag>
+         
+        <tag>Web</tag>
          
          
            
@@ -237,11 +273,11 @@
         <title>生成线要素分段缓冲区</title>
         <pubTime>2017-01-23T07:43:20.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Python</tag>
          
         <tag>Geoprocessing</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -261,9 +297,9 @@
         <title>部署 ArcGIS Python API</title>
         <pubTime>2016-10-17T00:03:35.000Z</pubTime>
         
-        <tag>Web</tag>
-         
         <tag>Python</tag>
+         
+        <tag>Web</tag>
          
          
            
@@ -327,9 +363,9 @@
         <title>如何使用py2exe打包arcpy脚本？</title>
         <pubTime>2016-09-29T01:03:35.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Python</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -393,9 +429,9 @@
         <title>在ArcGIS Pro 1.3之外运行arcpy独立脚本</title>
         <pubTime>2016-08-31T01:06:23.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Python</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -1434,9 +1470,9 @@
         <title>3D分析之ArcGIS 支持的表面类型</title>
         <pubTime>2012-11-17T04:14:13.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1456,9 +1492,9 @@
         <title>3D分析之3D要素工具箱</title>
         <pubTime>2012-11-18T13:50:43.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1478,9 +1514,9 @@
         <title>3D分析之Functional Surface工具箱</title>
         <pubTime>2012-11-18T13:51:59.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1500,9 +1536,9 @@
         <title>3D分析之常用转换工具</title>
         <pubTime>2012-11-21T03:49:04.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2180,9 +2216,9 @@
         <title>3D分析之可见性分析工具</title>
         <pubTime>2014-02-11T03:41:38.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geoprocessing</tag>
+         
+        <tag>3D</tag>
          
          
            
