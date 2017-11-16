@@ -2,7 +2,7 @@
 
 ## LazyWorker
 
-some effective tools for ArcGIS users. They will make some works easier, be careful getting lazy...
+some effective tools for ArcGIS users, which might make work easier.  be careful getting lazy...
 welcome all comments.
 open to suggestions.
 Have Fun !
