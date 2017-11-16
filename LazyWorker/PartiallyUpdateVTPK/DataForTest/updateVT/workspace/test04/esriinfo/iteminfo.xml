@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ESRI_ItemInformation Culture='zh-CN'>
+<name>test04</name>
+<guid>65BEB879-06D5-4941-BA13-D69980AB3760</guid>
+<version>1.0</version>
+<created></created>
+<modified></modified>
+<catalogpath></catalogpath>
+<snippet>tt</snippet>
+<description>&lt;DIV STYLE=&quot;text-align:Left;font-size:12pt&quot;&gt;&lt;P&gt;&lt;SPAN&gt;tt&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;</description>
+<summary>tt</summary>
+<title>tt</title>
+<tags>keyword,Data,Vector Tile Package,vtpk</tags>
+<type>Vector Tile Package</type>
+<typekeywords>
+<typekeyword>Data</typekeyword>
+<typekeyword>Vector Tile Package</typekeyword>
+<typekeyword>vtpk</typekeyword>
+</typekeywords>
+<thumbnail>thumbnail/thumbnail.png</thumbnail>
+<documentation></documentation>
+<url></url>
+<extent>
+<xmin>110.287155241006</xmin>
+<ymin>25.5486681357657</ymin>
+<xmax>114.615062346599</xmax>
+<ymax>28.1750408636766</ymax>
+</extent>
+<spatialreference>WGS_1984_Web_Mercator_Auxiliary_Sphere</spatialreference>
+<minScale>295828763.7957775</minScale>
+<maxScale>564.24858800000004</maxScale>
+<datalastModifiedTime></datalastModifiedTime>
+<accessinformation></accessinformation>
+<licenseinfo></licenseinfo>
+</ESRI_ItemInformation>

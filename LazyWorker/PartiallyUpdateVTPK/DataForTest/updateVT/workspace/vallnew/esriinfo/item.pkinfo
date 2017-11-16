@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="http://www.arcgisonline.com/home/pkinfostylesheet.xsl"?>
+<pkinfo Culture='zh-CN'>
+<ID>48B417FE-FB2B-4D34-B3B2-41861825B3DD</ID>
+<name>vall</name>
+<version>11.2</version>
+<size>-1</size>
+<created></created>
+<type>Vector Tile Package</type>
+<servable>false</servable>
+<packagelocation></packagelocation>
+<pkinfolocation></pkinfolocation>
+<documenttypes>
+<documenttype>Lyr</documenttype>
+</documenttypes>
+</pkinfo>
