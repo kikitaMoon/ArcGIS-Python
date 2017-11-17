@@ -42,11 +42,11 @@ analysis = arcpy.mapping.CreateMapSDDraft(map_document="onelayerNew.mxd",
                                           folder_name=None,
                                           summary=summary,
                                           tags=tags)
-# if analysis['errors'] == {}:
-#     arcpy.StageService_server(sddraft, sd)
-#     arcpy.UploadServiceDefinition_server(sd, 'AGSConnection.ags')
-# else:
-#     print analysis['errors']
+if analysis['errors'] == {}:
+    arcpy.StageService_server(sddraft, sd)
+    arcpy.UploadServiceDefinition_server(sd, 'AGSConnection.ags')
+else:
+    print analysis['errors']
 
 
 # The follow 5 code pieces modify the SDDraft from a new MapService

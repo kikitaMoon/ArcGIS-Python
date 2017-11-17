@@ -2,85 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b002ce7c-64bb-4bf4-a4e4-02da726a866f" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ArcMapToolbox.tbx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\CreateGPSDFilePro.py" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\CreateSDFile.py" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\FeatureClassToFeatureClass.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\1\p12\GPoutput2.tbx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\GPoutput.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\GPoutput2.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\GPoutput2.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\ImportLog\02ad12c0ec814133bac05f84c47db2ad_Import.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\Index\MyProject1\_9.cfs" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\Index\MyProject1\segments.gen" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\Index\MyProject1\segments_f" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\Index\Thumbnail\scene.jpg" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.aprx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000001.TablesByName.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000001.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000001.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000001.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000002.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000002.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000003.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000003.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000003.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.CatItemsByPhysicalName.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.CatItemsByType.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.FDO_UUID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000004.spx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.CatItemTypesByName.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.CatItemTypesByParentTypeID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.CatItemTypesByUUID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000005.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.CatRelsByDestinationID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.CatRelsByOriginID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.CatRelsByType.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.FDO_UUID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000006.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByBackwardLabel.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByDestItemTypeID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByForwardLabel.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByName.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByOriginItemTypeID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.CatRelTypesByUUID.atx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.gdbindexes" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.gdbtable" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\a00000007.gdbtablx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\gdb" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.gdb\timestamps" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\MyProject1.tbx" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\NewBuilding2_ArcPy.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\NewBuilding2_ArcPy.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\NewBuilding2_ArcPy162.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\NewBuilding_ArcPy.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\NewBuilding_ArcPy.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\PhiladelphiaCitySceneFromPro.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\PhiladelphiaCitySceneFromPro.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\UploadandPublish.py" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\MyProject1\output.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\PackageGPResult.py" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\city_pt_Python.sd" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\city_pt_Python.sddraft" afterPath="" />
-      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServiceforArcGISPro\ProProject\sddraftToolboxes\FeatureClassToFeatureClass.tbx" afterPath="" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\AGSConnection116.ags" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/AGSConnection116.ags" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\QueryCities.lyr" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/QueryCities.lyr" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\SDE.Symbole.lyr" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/SDE.Symbole.lyr" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\SDE.testSDOgeometry.lyr" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/SDE.testSDOgeometry.lyr" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\onelayer.mxd" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/onelayer.mxd" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\onelayerNew.mxd" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/onelayerNew.mxd" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\oracleConnection.sde" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/oracleConnection.sde" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\testConnectSDE.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testConnectSDE.py" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\testConnectServer.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testConnectServer.py" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\testPublishFS.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py" />
-      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingFeatureService\testPublishFS2.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\AGSConnection116.ags" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\QueryCities.lyr" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\SDE.Symbole.lyr" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\SDE.testSDOgeometry.lyr" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\onelayer.mxd" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\onelayerNew.mxd" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\oracleConnection.sde" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\testConnectServer.py" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\MapServcie\ArcGISServerConnection.ags" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\MapServcie\Connect2Server.py" afterPath="" />
+      <change type="DELETED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\MapServcie\PublishingMapService.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService\testConnectSDE.py" afterPath="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/ConnectSDE.py" />
     </list>
     <ignored path="ArcGIS-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,7 +30,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ArcGIS-Python$PublishingMapService.coverage" NAME="PublishingMapService Coverage Results" MODIFIED="1510727334629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie" />
+    <SUITE FILE_PATH="coverage/ArcGIS-Python$PublishingMapService.coverage" NAME="PublishingMapService Coverage Results" MODIFIED="1510814565183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie" />
+    <SUITE FILE_PATH="coverage/ArcGIS-Python$BatchPublishingMapService.coverage" NAME="BatchPublishingMapService Coverage Results" MODIFIED="1510818685985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -105,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PublishingMapService.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py">
+      <file leaf-file-name="testPublishFS.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42352942">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.02992126">
+              <caret line="8" column="3" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -131,6 +68,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py" />
+        <option value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/BatchPublishingMapService.py" />
+        <option value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py" />
       </list>
     </option>
   </component>
@@ -221,28 +160,6 @@
               <option name="myItemId" value="AutomaticallyPublishingServices" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MapServcie" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ArcGIS-Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ArcGIS-Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LazyWorker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AutomaticallyPublishingServices" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -266,14 +183,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\ForArcGISPro" />
       <recent name="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\MapServcie" />
+      <recent name="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\ForArcGISPro" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\FeatureService" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.PublishingMapService">
+  <component name="RunManager" selected="Python.BatchPublishingMapService">
     <configuration default="false" name="PublishingMapService" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -287,7 +204,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ArcGIS-Python" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py" />
+      <option name="SCRIPT_NAME" value="D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices\MapServcie\PublishingSingleMapService.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="BatchPublishingMapService" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ArcGIS-Python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/BatchPublishingMapService.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -480,12 +415,14 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.PublishingMapService" />
+      <item index="1" class="java.lang.String" itemvalue="Python.BatchPublishingMapService" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.PublishingMapService" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.BatchPublishingMapService" />
+        <item index="1" class="java.lang.String" itemvalue="Python.PublishingMapService" />
       </list>
     </recent_temporary>
   </component>
@@ -504,27 +441,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="86" y="-8" width="1842" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22839506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14522822" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18237935" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31120333" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40456432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -539,11 +476,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py">
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -551,7 +490,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py">
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -566,7 +513,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py">
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
@@ -574,45 +521,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/Connect2Server.py">
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testConnectServer.py">
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/BatchPublishingMapService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41886792">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie_OK/PublishingSingleMapService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49811321">
+          <caret line="24" column="59" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/ConnectSDE.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="31" selection-end-column="72" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/ForArcGISPro/CreateSDFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#12#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/ForArcGISPro/CreateGPSDFilePro.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testPublishFS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="52" selection-start-line="25" selection-start-column="0" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/FeatureService/testConnectServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="31" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/Connect2Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1035599">
-          <caret line="31" column="72" selection-start-line="8" selection-start-column="0" selection-end-line="31" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/AutomaticallyPublishingServices/MapServcie/PublishingMapService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42352942">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.02992126">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="3" />
           <folding />
         </state>
       </provider>
