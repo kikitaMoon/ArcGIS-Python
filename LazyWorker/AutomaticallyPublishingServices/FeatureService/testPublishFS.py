@@ -2,125 +2,141 @@
 __author__ = 'kikita'
 import arcpy
 import xml.dom.minidom as DOM
+import os
 
-# Add Layer
-arcpy.env.workspace = r'D:\LearnAboutPython\MyPythonProject\PublicFeatureService20170220'
-mxdFilePath = "onelayer.mxd"
-mxd = arcpy.mapping.MapDocument(mxdFilePath)
-df = arcpy.mapping.ListDataFrames(mxd, "Layers")[0]
-lyr = arcpy.mapping.Layer("SDE.testSDOgeometry.lyr")
+# Modify as your workspace
+##########################
+workSpace = r"D:\GitHubRepositories\ArcGIS-Python\LazyWorker\AutomaticallyPublishingServices"
+mxdFile = 'SDESource.mxd'
+gisServer = '120win105.esrichina.com'
+gisPort = 6443
+username = 'arcgis'
+password = 'Super123'
+serverUrl = 'https://{0}:{1}/arcgis/admin'.format(gisServer, gisPort)
+print(serverUrl)
+outAGSName = 'ArcGISServerConnection.ags'
+###########################
 
-# ##### Wrong
-# outFolderPath = r'D:\LearnAboutPython\MyPythonProject\PublicFeatureService20170220'
-# outName = 'oracleConnection.sde'
-# sdePath = outFolderPath + '\\' + outName
-# print(sdePath + "\LF.sdoCity")
-# lyr = arcpy.mapping.Layer(sdePath + "\LF.sdoCity")
-# ##### Wrong
 
-arcpy.mapping.AddLayer(df, lyr, "AUTO_ARRANGE")
-mxd.saveACopy("onelayerNew2.mxd")
+# Create ArcGIS Server Connection File Function
+def createAGSConnection(workSpace, outAGSName, serverUrl, username, password):
+    path = workSpace + '\\' + outAGSName
+    if os.path.exists(path):
+        os.remove(path)
+        print("Existing ArcGIS Server connection file deleted ... ")
+    arcpy.mapping.CreateGISServerConnectionFile(connection_type="ADMINISTER_GIS_SERVICES",
+                                                out_folder_path=workSpace,
+                                                out_name=outAGSName,
+                                                server_url=serverUrl,
+                                                server_type="ARCGIS_SERVER",
+                                                use_arcgis_desktop_staging_folder=False,
+                                                staging_folder_path=workSpace,
+                                                username=username,
+                                                password=password,
+                                                save_username_password=True)
+    print('ArcGIS Server connection file created: {0}'.format(outAGSName))
+    return
+
 
 
 
 # Publishing Feature Servcie
-service = 'myFeatureSerice'
-sddraft = service + '.sddraft'
-SD = service + '.sd'
-summary = 'test'
-tags = 'test'
+def publishingFeatureService(workSpace, mxdFile, outAGSName):
 
-newSDdraft = service + 'FS.sddraft'
+    # define local variables
+    mapDoc = arcpy.mapping.MapDocument(os.path.join(workSpace, mxdFile))
+    print('Map Document: {0}'.format(mapDoc.filePath))
+    service = mxdFile.split(".")[0]
+    sddraft = os.path.join(workSpace, service + '.sddraft')
+    sd = os.path.join(workSpace, service + '.sd')
+    summary = 'Publishing Feature Service Using Python'
+    tags = 'python'
+    newSDdraft = service + 'FS.sddraft'
 
-# create service definition draft
-analysis = arcpy.mapping.CreateMapSDDraft(map_document="onelayerNew.mxd",
-                                          out_sddraft=sddraft,
-                                          service_name=service,
-                                          server_type='ARCGIS_SERVER',
-                                          connection_file_path='AGSConnection.ags',
-                                          copy_data_to_server=False,
-                                          folder_name=None,
-                                          summary=summary,
-                                          tags=tags)
-if analysis['errors'] == {}:
-    arcpy.StageService_server(sddraft, sd)
-    arcpy.UploadServiceDefinition_server(sd, 'AGSConnection.ags')
+    # create service definition draft
+    analysis = arcpy.mapping.CreateMapSDDraft(map_document=mapDoc,
+                                              out_sddraft=sddraft,
+                                              service_name=service,
+                                              server_type='ARCGIS_SERVER',
+                                              connection_file_path=outAGSName,
+                                              copy_data_to_server=False,
+                                              folder_name=None,
+                                              summary=summary,
+                                              tags=tags)
+
+    # Modify the SDDraft from a MapService to a FeatureService.
+    doc = DOM.parse(sddraft)
+    # tagsType = doc.getElementsByTagName('Type')
+    # for tagType in tagsType:
+    #     if tagType.parentNode.tagName == 'SVCManifest':
+    #         if tagType.hasChildNodes():
+    #             tagType.firstChild.data = "esriServiceDefinitionType_Replacement"
+    #
+    # tagsState = doc.getElementsByTagName('State')
+    # for tagState in tagsState:
+    #     if tagState.parentNode.tagName == 'SVCManifest':
+    #         if tagState.hasChildNodes():
+    #             tagState.firstChild.data = "esriSDState_Published"
+
+    # Change service type from map service to feature service
+    # typeNames = doc.getElementsByTagName('TypeName')
+    # for typeName in typeNames:
+    #     if typeName.firstChild.data == "MapServer":
+    #         typeName.firstChild.data = "FeatureServer"
+
+    # # Turn off caching
+    # configProps = doc.getElementsByTagName('ConfigurationProperties')[0]
+    # propArray = configProps.firstChild
+    # propSets = propArray.childNodes
+    # for propSet in propSets:
+    #     keyValues = propSet.childNodes
+    #     for keyValue in keyValues:
+    #         if keyValue.tagName == 'Key':
+    #             if keyValue.firstChild.data == "isCached":
+    #                 keyValue.nextSibling.firstChild.data = "false"
+
+    # # Turn on feature access capabilities
+    # configProps = doc.getElementsByTagName('Info')[0]
+    # propArray = configProps.firstChild
+    # propSets = propArray.childNodes
+    # for propSet in propSets:
+    #     keyValues = propSet.childNodes
+    #     for keyValue in keyValues:
+    #         if keyValue.tagName == 'Key':
+    #             if keyValue.firstChild.data == "WebCapabilities":
+    #                 keyValue.nextSibling.firstChild.data = "Query"
+    #                 # keyValue.nextSibling.firstChild.data = "Query,Create,Update,Delete,Uploads,Editing"
+
+    # Write the new draft to disk
+    f = open(newSDdraft, 'w')
+    doc.writexml(f)
+    f.close()
+    # Analyze the service
+    analysis = arcpy.mapping.AnalyzeForSD(newSDdraft)
+    if analysis['errors'] == {}:
+        # Stage the service
+        arcpy.StageService_server(newSDdraft, sd)
+        # Upload the service.
+        arcpy.UploadServiceDefinition_server(sd, outAGSName, service,
+                                             "", "", "", "", "OVERRIDE_DEFINITION", "SHARE_ONLINE",
+                                             "PUBLIC", "SHARE_ORGANIZATION", "")
+
+        print "Uploaded and overwrote service"
+    else:
+        # If the sddraft analysis contained errors, display them and quit.
+        print analysis['errors']
+
+
+##### Main Script
+if os.path.isdir(workSpace) == False:
+    print "Not valid path..."
 else:
-    print analysis['errors']
-
-
-# The follow 5 code pieces modify the SDDraft from a new MapService
-# with caching capabilities to a FeatureService with Query,Create,
-# Update,Delete,Uploads,Editing capabilities. The first two code
-# pieces handle overwriting an existing service. The last three pieces
-# change Map to Feature Service, disable caching and set appropriate
-# capabilities. You can customize the capabilities by removing items.
-# Note you cannot disable Query from a Feature Service.
-
-doc = DOM.parse(sddraft)
-tagsType = doc.getElementsByTagName('Type')
-for tagType in tagsType:
-    if tagType.parentNode.tagName == 'SVCManifest':
-        if tagType.hasChildNodes():
-            tagType.firstChild.data = "esriServiceDefinitionType_Replacement"
-
-tagsState = doc.getElementsByTagName('State')
-for tagState in tagsState:
-    if tagState.parentNode.tagName == 'SVCManifest':
-        if tagState.hasChildNodes():
-            tagState.firstChild.data = "esriSDState_Published"
-
-# Change service type from map service to feature service
-typeNames = doc.getElementsByTagName('TypeName')
-for typeName in typeNames:
-    if typeName.firstChild.data == "MapServer":
-        typeName.firstChild.data = "FeatureServer"
-
-# Turn off caching
-configProps = doc.getElementsByTagName('ConfigurationProperties')[0]
-propArray = configProps.firstChild
-propSets = propArray.childNodes
-for propSet in propSets:
-    keyValues = propSet.childNodes
-    for keyValue in keyValues:
-        if keyValue.tagName == 'Key':
-            if keyValue.firstChild.data == "isCached":
-                keyValue.nextSibling.firstChild.data = "false"
-
-# Turn on feature access capabilities
-configProps = doc.getElementsByTagName('Info')[0]
-propArray = configProps.firstChild
-propSets = propArray.childNodes
-for propSet in propSets:
-    keyValues = propSet.childNodes
-    for keyValue in keyValues:
-        if keyValue.tagName == 'Key':
-            if keyValue.firstChild.data == "WebCapabilities":
-                keyValue.nextSibling.firstChild.data = "Query,Create,Update,Delete,Uploads,Editing"
-
-# Write the new draft to disk
-f = open(newSDdraft, 'w')
-doc.writexml(f)
-f.close()
-
-# Analyze the service
-analysis = arcpy.mapping.AnalyzeForSD(newSDdraft)
-
-if analysis['errors'] == {}:
-    # Stage the service
-    arcpy.StageService_server(newSDdraft, SD)
-
-    # Upload the service. The OVERRIDE_DEFINITION parameter allows you to override the
-    # sharing properties set in the service definition with new values. In this case,
-    # the feature service will be shared to everyone on ArcGIS.com by specifying the
-    # SHARE_ONLINE and PUBLIC parameters. Optionally you can share to specific groups
-    # using the last parameter, in_groups.
-    arcpy.UploadServiceDefinition_server(SD, "My Hosted Services", serviceName,
-                                         "", "", "", "", "OVERRIDE_DEFINITION", "SHARE_ONLINE",
-                                         "PUBLIC", "SHARE_ORGANIZATION", "")
-
-    print "Uploaded and overwrote service"
-
-else:
-    # If the sddraft analysis contained errors, display them and quit.
-    print analysis['errors']
+    createAGSConnection(workSpace, outAGSName, serverUrl, username, password)
+    files = os.listdir(workSpace)
+    for f in files:
+        if f.endswith(".mxd"):
+            # mxdPath = os.path.join(workSpace, f)
+            print "publishing: " + f
+            publishingFeatureService(workSpace, f, outAGSName)
+        else:
+            continue

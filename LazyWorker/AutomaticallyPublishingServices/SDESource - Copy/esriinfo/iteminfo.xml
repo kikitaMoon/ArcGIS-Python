@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ESRI_ItemInformation Culture='zh-CN'>
+<name>SDESource</name>
+<guid>4F32B497-23F3-405D-A7AD-1BAED971C7D6</guid>
+<catalogpath></catalogpath>
+<snippet>Publishing Feature Service Using Python</snippet>
+<description>Publishing Feature Service Using Python</description>
+<summary>Publishing Feature Service Using Python</summary>
+<title>SDESource</title>
+<tags>python</tags>
+<type>Service Definition</type>
+<typekeywords>
+<typekeyword>SDE Feature Class</typekeyword>
+<typekeyword>ArcGIS</typekeyword>
+<typekeyword>Service Definition</typekeyword>
+<typekeyword>.sd</typekeyword>
+</typekeywords>
+<thumbnail>thumbnail/thumbnail.png</thumbnail>
+<documentation></documentation>
+<url></url>
+<datalastmodifiedtime></datalastmodifiedtime>
+<extent>
+<xmin>115.971003959908</xmin>
+<ymin>37.4793420008729</ymin>
+<xmax>117.196021417557</xmax>
+<ymax>40.3596631803357</ymax>
+</extent>
+<spatialreference>WGS_1984_World_Mercator</spatialreference>
+<accessinformation></accessinformation>
+<licenseinfo></licenseinfo>
+</ESRI_ItemInformation>

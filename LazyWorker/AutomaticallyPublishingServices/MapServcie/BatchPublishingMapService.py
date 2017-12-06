@@ -69,7 +69,7 @@ def publishingMapService(workSpace, mxdFile, outAGSName):
         print analysis['errors']
 
 
-
+##### Main Script
 if os.path.isdir(workSpace) == False:
     print "Not valid path..."
 else:

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="http://www.arcgisonline.com/home/pkinfostylesheet.xsl"?>
+<pkinfo Culture='zh-CN'>
+<ID>4F32B497-23F3-405D-A7AD-1BAED971C7D6</ID>
+<name>SDESource</name>
+<version>10.5</version>
+<size>-1</size>
+<created></created>
+<type>Service Definition</type>
+<servable>true</servable>
+<packagelocation></packagelocation>
+<pkinfolocation></pkinfolocation>
+<documenttypes>
+<documenttype>mxd</documenttype>
+</documenttypes>
+</pkinfo>
