@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>如何部署通过Portal管理的ArcGIS Pro Named User许可？ | kikita &amp; Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="License,Deployment" />
+    
+    <meta name="description" content="在开始如下部署之前，注意下版本对应的问题：
+ArcGIS Pro 1.4 – ArcGIS License Manager 10.5ArcGIS Pro 2.0 – ArcGIS License Manager 10.5.1。
+如下是我开始发布在ArcGIS知乎中的手册的一部分：
+如果您购买并已经部署了 Portal for ArcGIS，搭建了您的组织门户， 并且您希望在内网环境中通过 Name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何部署通过Portal管理的ArcGIS Pro Named User许可？">
+<meta property="og:url" content="http://www.kikitamap.com/2017/11/29/ProNamedUserforPortalUse/index.html">
+<meta property="og:site_name" content="kikita & Maps">
+<meta property="og:description" content="在开始如下部署之前，注意下版本对应的问题：
+ArcGIS Pro 1.4 – ArcGIS License Manager 10.5ArcGIS Pro 2.0 – ArcGIS License Manager 10.5.1。
+如下是我开始发布在ArcGIS知乎中的手册的一部分：
+如果您购买并已经部署了 Portal for ArcGIS，搭建了您的组织门户， 并且您希望在内网环境中通过 Name">
+<meta property="og:image" content="http://images.esrichina.com.cn/article/20170310/dbb2b70dea49a6649e5fed410bf1dc28.png">
+<meta property="og:updated_time" content="2017-12-07T07:56:32.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何部署通过Portal管理的ArcGIS Pro Named User许可？">
+<meta name="twitter:description" content="在开始如下部署之前，注意下版本对应的问题：
+ArcGIS Pro 1.4 – ArcGIS License Manager 10.5ArcGIS Pro 2.0 – ArcGIS License Manager 10.5.1。
+如下是我开始发布在ArcGIS知乎中的手册的一部分：
+如果您购买并已经部署了 Portal for ArcGIS，搭建了您的组织门户， 并且您希望在内网环境中通过 Name">
+<meta name="twitter:image" content="http://images.esrichina.com.cn/article/20170310/dbb2b70dea49a6649e5fed410bf1dc28.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/kikita.jpg" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74191197-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">For Tech and Fun</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/index.html">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/木工开物/">木工开物</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/相机里/">相机里</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/碎碎念/">碎碎念</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/木工开物/">木工开物</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-ProNamedUserforPortalUse" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        如何部署通过Portal管理的ArcGIS Pro Named User许可？
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2017/11/29/ProNamedUserforPortalUse/" class="article-date">
+    <time datetime="2017-11-29T03:50:45.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deployment/">Deployment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/License/">License</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>在开始如下部署之前，注意下版本对应的问题：</p>
+<p>ArcGIS Pro 1.4 – ArcGIS License Manager 10.5<br>ArcGIS Pro 2.0 – ArcGIS License Manager 10.5.1。</p>
+<p><strong><em>如下是我开始发布在ArcGIS知乎中的手册的一部分：</em></strong></p>
+<p>如果您购买并已经部署了 Portal for ArcGIS，搭建了您的组织门户， 并且您希望在内网环境中通过 Named User 方式使用 ArcGIS Pro，那么您可以选择通过Portal for ArcGIS为组织成员配置Named User许可的方式。</p>
+<p>##1 为组织配置 ArcGIS Pro 许可</p>
+<p><strong>1)</strong> 首先您需要确定哪个组织门户将用于管理ArcGIS Pro的许可（这个指定的组织门户称为“许可门户”）， 尤其当您的组织有多个门户的时候，请确保您指定的门户是您想要用来管理许可的那个门户。此种许可模式，需要安装ArcGIS License Server Administrator 程序。</p>
+<p><strong>2)</strong> 完成安装后，打开 ArcGIS License Server Administrator，并单击“计算机 ID…” 按钮。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/dbb2b70dea49a6649e5fed410bf1dc28.png" alt=""></p>
+<p><strong>3)</strong> 复制并保存计算机标识符对话框中的 MAC 地址 </p>
+<ul>
+<li>例如，005056a700c7（您需要向 My Esri 提供此信息）。 如果该对话框中存在两个 MAC 地址，则只复制其中之一。</li>
+</ul>
+<p><img src="http://images.esrichina.com.cn/article/20170310/0f5f97c5f0d6bebb6ced505533453c09.png" alt=""></p>
+<p>4) 请记录上一步中您的Mac地址，并且提供您以下信息之一（用户ID、合同编号、用户单位全称），致电易智瑞(中国)信息技术有限公司合同部，为您生成可用于配置许可门户的文件（*.lic）。<br>联系电话： 010-5673228，拨0，转合同部。</p>
+<p>5) 当您收到合同部发送的文件 (*.lic)之后， 将其保存到前面安装了 ArcGIS License Server Administrator 的计算机可访问的目录中。</p>
+<p>6) 打开 ArcGIS License Server Administrator 并启动许可服务（如果未运行）。 单击“授权”选项卡，选择“版本”下拉对话框中的“命名用户/Named User”并单击“立即授权”按钮。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/67fcfb6b847f3e84ce58d847e50735f9.png" alt=""></p>
+<p>7) 选择“我已收到来自 Esri 的授权文件，现在准备完成授权过程。”，然后浏览至许可 (.lic) 文件, 单击“打开”。</p>
+<p>8) 单击“下一步”。随即显示一个对话框，表明已应用Named User许可。单击“确定”。对话框可能会显示几秒钟，这表示正在重新读取许可。</p>
+<p>9) 单击“可用性”选项卡，并从右上角下拉对话框中选择“命名用户/Named User”。确认显示了预期授权。列出的总数将是Named User实际数量的3倍，这是因为每个Named User 最多允许同时在3个设备上运行 ArcGIS Pro 。</p>
+<p>10) 生成门户配置文件。单击“授权”选项卡，然后单击“生成…”，并将门户配置文件 (.json) 保存到对 Portal for ArcGIS 可见的位置。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/8b3564c329df10a6b1f3b1fbb5ffb00d.png" alt=""></p>
+<p>随即会显示一个对话框，表明已在您指定的位置生成了文件。单击“确定”并关闭 ArcGIS License Server Administrator。</p>
+<p>11) 打开Web浏览器, 并以组织中默认管理员角色成员的身份登录到 ArcGIS Portal Directory。URL 地址格式为: <a href="https://portal.domain.com:7443/arcgis/portaladmin" target="_blank" rel="external">https://portal.domain.com:7443/arcgis/portaladmin</a>  您登录的门户将成为组织的许可门户。</p>
+<p>12) 单击“系统” &gt; “许可” &gt; “导入授权”。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/99df556ff3f049041cfda22f60eb70e2.png" alt=""></p>
+<p>13) 单击“浏览”并选择先前生成的门户配置文件 (.json)。确保应用程序下拉菜单被设为 ArcGIS Pro。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/280e7ef674045acae19126fbc2f7bc3f.png" alt=""></p>
+<p>14）单击“导入”，您的组织现在已配置了 ArcGIS Pro 许可。</p>
+<p>##2 组织管理员配置ArcGIS Pro许可</p>
+<p>本节的配置方法与 ArcGIS Online 组织管理员配置 ArcGIS Pro 许可的方法相似。<br>注意：<br>从 ArcGIS 10.5 版本之后，您只能为达到成员资格级别 2 级的门户成员配置 ArcGIS Pro 许可。​</p>
+<p>##3 登录并使用ArcGIS Pro</p>
+<p>1) 启动 ArcGIS Pro。<br>如果 ArcGIS Pro 已打开，请登出，关闭程序，然后重新启动。只能在首次启动 ArcGIS Pro 时连接至许可门户。</p>
+<p>2) 在 ArcGIS Pro的启动界面中，点击“About ArcGIS Pro”。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/bbea712ccfa54d51dc456edb0218fa87.png" alt=""></p>
+<p>3) 在“Licensing”页面中，点击 “Configure your licensing options”。</p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/30bf8e51c3905c389cb36c6e2c93e7e0.png" alt=""></p>
+<p>4) 输入许可门户的 URL，如<a href="https://webadaptor.domain.com/arcgis。" target="_blank" rel="external">https://webadaptor.domain.com/arcgis。</a></p>
+<p><img src="http://images.esrichina.com.cn/article/20170310/1b4d6d77d4d9a10691794c2d24c5ddb7.png" alt=""></p>
+<p>5) 单击“OK”。稍后，在登录页面中输入账号密码登录并使用ArcGIS Pro。</p>
+<p><br></p>
+<p>原文地址：<a href="http://zhihu.esrichina.com.cn/article/471" target="_blank" rel="external">http://zhihu.esrichina.com.cn/article/471</a></p>
+
+        </div>
+        <footer class="article-footer">
+			<div>如果需要转载文章，请注明出处哦！
+			     <br/>
+				 <br/>
+			</div>
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/kikitamoon" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/kikitaMoon" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://zh-cn.facebook.com/people/Kikita-Moon/100002555057242" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/+%E6%85%95%E6%99%93%E7%87%95" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/11/14/tidyup/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">tidy up the code ...</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D/">3D</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS-Pro/">ArcGIS Pro</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcPad/">ArcPad</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CAD/">CAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CGA/">CGA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Certification/">Certification</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CityEngine/">CityEngine</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coordinate-System/">Coordinate System</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deployment/">Deployment</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geodata/">Geodata</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geoprocessing/">Geoprocessing</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/License/">License</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map-Story/">Map Story</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapping/">Mapping</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raster/">Raster</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Analyst/">Spatial Analyst</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spatial-Statistics/">Spatial Statistics</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://zhihu.esrichina.com.cn/">ArcGIS知乎</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://gishub.info/">Suwen&#39;s GISHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.newnaw.com/">菩提老王的葡萄架子</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://oopsliu.github.io/">OopsLiu</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://blog.csdn.net/kikitamoon">慕名ArcGIS_CSDN</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/3D/" style="font-size: 18.33px;">3D</a> <a href="/tags/ArcGIS-Pro/" style="font-size: 13.33px;">ArcGIS Pro</a> <a href="/tags/ArcPad/" style="font-size: 12.5px;">ArcPad</a> <a href="/tags/CAD/" style="font-size: 10px;">CAD</a> <a href="/tags/CGA/" style="font-size: 10.83px;">CGA</a> <a href="/tags/Certification/" style="font-size: 10.83px;">Certification</a> <a href="/tags/CityEngine/" style="font-size: 14.17px;">CityEngine</a> <a href="/tags/Coordinate-System/" style="font-size: 15px;">Coordinate System</a> <a href="/tags/Deployment/" style="font-size: 16.67px;">Deployment</a> <a href="/tags/Geodata/" style="font-size: 19.17px;">Geodata</a> <a href="/tags/Geoprocessing/" style="font-size: 20px;">Geoprocessing</a> <a href="/tags/License/" style="font-size: 13.33px;">License</a> <a href="/tags/Linux/" style="font-size: 11.67px;">Linux</a> <a href="/tags/Map-Story/" style="font-size: 10.83px;">Map Story</a> <a href="/tags/Mapping/" style="font-size: 15px;">Mapping</a> <a href="/tags/Performance/" style="font-size: 10.83px;">Performance</a> <a href="/tags/Python/" style="font-size: 15.83px;">Python</a> <a href="/tags/Raster/" style="font-size: 17.5px;">Raster</a> <a href="/tags/Spatial-Analyst/" style="font-size: 14.17px;">Spatial Analyst</a> <a href="/tags/Spatial-Statistics/" style="font-size: 13.33px;">Spatial Statistics</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Web/" style="font-size: 11.67px;">Web</a>
+        </div>
+    </div>
+
+
+            
+                <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1843681867&verifier=34cdc83d&dpc=1"></iframe>
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Xiaoyan Mu</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'kikitamap';
+    
+    
+    var disqus_url = 'http://www.kikitamap.com/2017/11/29/ProNamedUserforPortalUse/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+
+</body>
+</html>
