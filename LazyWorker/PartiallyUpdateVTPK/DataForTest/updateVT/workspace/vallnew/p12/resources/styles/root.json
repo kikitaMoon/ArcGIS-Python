@@ -1,1 +1,0 @@
-{"version":8,"sprite":"../sprites/sprite","glyphs":"../fonts/{fontstack}/{range}.pbf","sources":{"esri":{"type":"vector","url":"../../"}},"layers":[{"id":"gbouln","type":"line","source":"esri","source-layer":"gbouln","layout":{"line-cap":"round","line-join":"round"},"paint":{"line-color":"#FF0000","line-width":1.33333}}]}
