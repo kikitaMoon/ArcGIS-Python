@@ -3,6 +3,216 @@
 
 
     
+  <url>
+    <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
+    <lastmod>2017-12-22T06:51:02.443Z</lastmod>
+    <data>
+        <display>
+        <title>部署 ArcGIS Python API</title>
+        <pubTime>2016-10-17T00:03:35.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
+    <lastmod>2017-12-22T06:49:19.610Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Python API 功能一瞥</title>
+        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
+    <lastmod>2017-12-22T06:47:30.163Z</lastmod>
+    <data>
+        <display>
+        <title>Make Query Layer在Model Builder中的使用</title>
+        <pubTime>2016-06-30T10:11:33.000Z</pubTime>
+        
+        <tag>Geodata</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2015/05/08/LinuxArcGISServerDeployment/</loc>
+    <lastmod>2017-12-22T06:46:20.571Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 下安装 ArcGIS Server 前的准备工作备忘录</title>
+        <pubTime>2015-05-08T08:55:01.000Z</pubTime>
+        
+        <tag>Deployment</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/11/29/ProNamedUserforPortalUse/</loc>
+    <lastmod>2017-12-22T06:45:24.771Z</lastmod>
+    <data>
+        <display>
+        <title>如何部署通过Portal管理的ArcGIS Pro Named User许可？</title>
+        <pubTime>2017-11-29T03:50:45.000Z</pubTime>
+        
+        <tag>License</tag>
+         
+        <tag>Deployment</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/10/26/AGSDeskProCA/</loc>
+    <lastmod>2017-12-22T06:44:52.837Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Desktop Professional 10.5 Certification</title>
+        <pubTime>2017-10-26T01:41:48.000Z</pubTime>
+        
+        <tag>ArcGIS Pro</tag>
+         
+        <tag>Certification</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/11/01/AGSEntAdminCA/</loc>
+    <lastmod>2017-12-22T06:44:18.163Z</lastmod>
+    <data>
+        <display>
+        <title>ArcGIS Enterprise Administration 10.5 Certification</title>
+        <pubTime>2017-11-01T05:36:16.000Z</pubTime>
+        
+        <tag>Certification</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2016/01/17/ArcGISWeb3D/</loc>
+    <lastmod>2017-12-22T06:43:19.195Z</lastmod>
+    <data>
+        <display>
+        <title>实践 ArcGIS Web 3D</title>
+        <pubTime>2016-01-17T02:45:37.000Z</pubTime>
+        
+        <tag>3D</tag>
+         
+        <tag>Web</tag>
+         
+        <tag>ArcGIS Pro</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/12/19/AutoPublishingService/</loc>
+    <lastmod>2017-12-22T06:40:57.411Z</lastmod>
+    <data>
+        <display>
+        <title>通过arcpy自动发布服务</title>
+        <pubTime>2017-12-19T04:12:44.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://www.kikitamap.com/2017/12/13/AddLiveRe/</loc>
@@ -64,28 +274,6 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2017/11/29/ProNamedUserforPortalUse/</loc>
-    <lastmod>2017-12-07T07:56:32.962Z</lastmod>
-    <data>
-        <display>
-        <title>如何部署通过Portal管理的ArcGIS Pro Named User许可？</title>
-        <pubTime>2017-11-29T03:50:45.000Z</pubTime>
-        
-        <tag>License</tag>
-         
-        <tag>Deployment</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2017/01/23/CreateSplittedBuffer/</loc>
     <lastmod>2017-12-04T01:54:00.104Z</lastmod>
     <data>
@@ -98,46 +286,6 @@
         <tag>Python</tag>
          
         <tag>Geoprocessing</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2017/10/26/AGSDeskProCA/</loc>
-    <lastmod>2017-11-02T01:01:49.180Z</lastmod>
-    <data>
-        <display>
-        <title>ArcGIS Desktop Professional 10.5 Certification</title>
-        <pubTime>2017-10-26T01:41:48.000Z</pubTime>
-        
-        <tag>Certification</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2017/11/01/AGSEntAdminCA/</loc>
-    <lastmod>2017-11-02T01:01:47.130Z</lastmod>
-    <data>
-        <display>
-        <title>ArcGIS Enterprise Administration 10.5 Certification</title>
-        <pubTime>2017-11-01T05:36:16.000Z</pubTime>
-        
-        <tag>Certification</tag>
          
          
            
@@ -318,28 +466,6 @@
 
     
   <url>
-    <loc>http://www.kikitamap.com/2017/01/22/PythonAPIFunction1/</loc>
-    <lastmod>2017-02-07T01:10:37.239Z</lastmod>
-    <data>
-        <display>
-        <title>ArcGIS Python API 功能一瞥</title>
-        <pubTime>2017-01-22T10:55:38.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.kikitamap.com/2017/01/13/Painting/</loc>
     <lastmod>2017-01-23T09:28:35.166Z</lastmod>
     <data>
@@ -369,28 +495,6 @@
            
              
               <breadCrumb title="相机里" url="http://www.kikitamap.com/categories/%E7%9B%B8%E6%9C%BA%E9%87%8C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
-    <lastmod>2017-01-12T02:35:54.635Z</lastmod>
-    <data>
-        <display>
-        <title>部署 ArcGIS Python API</title>
-        <pubTime>2016-10-17T00:03:35.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
           
         </display>
     </data>
@@ -602,26 +706,6 @@
         <tag>License</tag>
          
         <tag>Deployment</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2016/06/30/QueryLayerResult/</loc>
-    <lastmod>2016-07-01T08:53:05.292Z</lastmod>
-    <data>
-        <display>
-        <title>Make Query Layer在Model Builder中的使用</title>
-        <pubTime>2016-06-30T10:11:33.000Z</pubTime>
-        
-        <tag>Geodata</tag>
          
          
            
@@ -2887,9 +2971,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>License</tag>
-         
         <tag>ArcGIS Pro</tag>
+         
+        <tag>License</tag>
          
          
            
@@ -2954,28 +3038,6 @@
         <tag>Raster</tag>
          
         <tag>Geodata</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2015/05/08/LinuxArcGISServerDeployment/</loc>
-    <lastmod>2016-03-07T03:43:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux 下安装 ArcGIS Server 前的准备工作备忘录</title>
-        <pubTime>2015-05-08T08:55:01.000Z</pubTime>
-        
-        <tag>Deployment</tag>
-         
-        <tag>Linux</tag>
          
          
            
@@ -3108,30 +3170,6 @@
         <pubTime>2015-06-09T03:07:58.000Z</pubTime>
         
         <tag>Mapping</tag>
-         
-        <tag>ArcGIS Pro</tag>
-         
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.kikitamap.com/2016/01/17/ArcGISWeb3D/</loc>
-    <lastmod>2016-03-07T02:50:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>实践 ArcGIS Web 3D</title>
-        <pubTime>2016-01-17T02:45:37.000Z</pubTime>
-        
-        <tag>3D</tag>
-         
-        <tag>Web</tag>
          
         <tag>ArcGIS Pro</tag>
          
