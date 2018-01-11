@@ -1,0 +1,314 @@
+pysmb-1.1.22, 17 Sep 2017
+========================
+- Fix bug in getAttributes() method which should return only the filename
+  instead of the entire path for the filename property for the return result.
+
+pysmb-1.1.21, 9 Sep 2017
+========================
+- Fix bug where timestamp values for SMB1 getAttributes() response are not
+  converted properly from FILETIME to epoch time values.
+
+pysmb-1.1.20, 13 Aug 2017
+=========================
+- Add getSecurity() method to support security descriptors query via SMB2
+- Improve retrieveFile() and retrieveFileFromOffset() methods to allow file
+  retrievals over SMB2 even when the file is being locked on the server.
+- Silently discards NMB SESSION_KEEPALIVE packets instead of raising warnings.
+- SMB sessionID will be sent in ECHO requests to conform to SMB2 specs.
+- Fix type errors for MD4 functions in python3.
+
+pysmb-1.1.19, 13 Nov 2016
+=========================
+- Ignore STATUS_PENDING during delete and file store operations
+
+pysmb-1.1.18, 9 Apr 2016
+========================
+
+- Rollback fixes to NTLMv2 response algorithm in pysmb 1.1.17. The fixes
+  fail to work with some servers.
+- Add missing errno imports in SMBConnection.py
+- Fix UnboundLocalError raised when using type() in SMBConnection.py
+
+pysmb-1.1.17, 11 Nov 2015
+=========================
+
+- Fix crashes in directory listing with keyerror 'support_dfs'
+- Fix bugs in NTLMv2 response algorithm.
+- Fix bugs where client domain is not included as part of the session negotiation.
+
+pysmb-1.1.16, 10 May 2015
+=========================
+
+- Fix typo errors in authentication error messages
+- Improve share listings on SMB2 protocol by ignoring interim STATUS_PENDING responses.
+
+pysmb-1.1.15, 15 Feb 2015
+=========================
+
+- Add new parameter to SMBConnection's storeFileFromOffset method to determine
+  whether the remote file is to be truncated before writing.
+
+pysmb-1.1.14, 1 Feb 2015
+========================
+
+- Add support for DFS shares in listPath()
+- Bug fix for python3's _listPath_SMB2 implementation
+
+pysmb-1.1.13, 18 Oct 2014
+=========================
+
+- Add missing methods and improve compatibility with python3
+- Fix bug in SMB2 rename implementation which fails to rename directory
+
+pysmb-1.1.12, 21 Sep 2014
+=========================
+
+- Fix syntax error for python3 NBNSProtocol implementation
+- Fix bug in SMB1 implementation which results in access denied errors with Samba 3.0
+
+pysmb-1.1.11, 13 Sep 2014
+=========================
+
+- Add support for unicode characters in domain, username and password.
+- Add storeFileFromOffset method to SMB API
+- Fix bug in getAttributes implementation for SMB1
+- Fix bug for NMB which uses broadcast flag for unicast queries
+- Update the Tree Connect Andx request implementation to MS-SMB 2.2.4.7.1 extensions
+
+pysmb-1.1.10, 29 Jun 2014
+=========================
+
+- Add getAttributes() method to SMBConnection and SMBProtocolFactory class
+- Add isReadOnly property to SharedFile class
+
+pysmb-1.1.9, 1 Jun 2014
+=======================
+
+- Add support for domains in smb:// URLs
+- Fix a bug which fails to test for the correct GSS security provider OID values
+
+pysmb-1.1.8, 21 Dec 2013
+========================
+
+- Fix a bug in storeFile() method when the destination file is not overwritten if
+  it exists in SMB1 communication
+- Fix a SMB1 authentication problem when extended negotation is not carried out
+  because the remote server has specified its support for extended security in the
+  payload, instead of in the message flags2.
+
+pysmb-1.1.7, 27 Sep 2013
+========================
+
+- Improve listShares() function which can fail with the listing response is
+  separated into multiple SMB packets for large number of shares.
+- Fix bug in python3 implementation where session connection can fail when
+  remote server supports message signing.
+
+pysmb-1.1.6, 16 Aug 2013
+========================
+
+- Fix bug where the status of the SMB_COM_NEGOTIATE reply is not checked for error
+  before allowing further processing.
+
+pysmb-1.1.5, 19 June 2013
+=========================
+
+- Adds support for Direct hosting of SMB over TCP/IP (TCP port: 445)
+
+pysmb-1.1.4, 31 May 2013
+========================
+
+- Improve query performance for query IP addresses for NetBIOS names in
+  NetBIOSProtocol.py
+- Fix bugs in SMBConnection when sending large data packets can result in
+  AssertionError.
+
+pysmb-1.1.3, 18 Mar 2013
+========================
+
+- Fix bug which results in endless loop in SMBConnection when remote CIFS
+  server closes the connection.
+
+pysmb-1.1.2, 28 Sep 2012
+========================
+
+- Improve queryIPForName() in nmb.NetBIOS and nmb.NBNSProtocol class to
+  return only server machine name and ignore workgroup names.
+
+pysmb-1.1.1, 9 June 2012
+========================
+
+- Adds support for Python3. Noted that the Python3 SMB/NMB protocol implementations
+  for Twisted are not well-tested as Twisted (as of v12.1) is not Python3 ready yet.
+- Adds support for retrieving list of shadow copies (also known as
+  "previous versions" in Windows). Note that not all Windows editions support shadow
+  copies.
+
+
+pysmb-1.1.0, 1 June 2012
+========================
+
+- Adds SMB2 protocol implementation with signing for outgoing SMB2 messages.
+  pysmb will utilize SMB2 protocol with servers that support SMB2
+  (eg. Windows Vista, Windows 7 and Samba 3).
+  If the remote server does not support SMB2, pysmb will fall back automatically
+  to using SMB1 protocol.
+
+
+pysmb-1.0.5, 7 May 2012
+=======================
+
+- Add supports for SMB message signing. pysmb will sign all SMB messages from
+  the CIFS client to the server, but it does not verify the signatures of the
+  SMB messages from the server.
+
+
+pysmb-1.0.4, 1 May 2012
+=======================
+
+- Adds support for "smb://" URL in urllib2 python packages to retrieve or upload
+  files from/to remote CIFS servers.
+- Improve documentation
+
+
+pysmb-1.0.3, 28 April 2012
+===========================
+
+- Fix a crash in SMB._storFile() method which occurs when the remote CIFS server
+  utilizes a max raw size larger than 65535 bytes. The bug was discovered with
+  Windows 7 Pro SP1.
+- Fix a bug in SMB._listPath() method where the files/folders time information are
+  not properly converted to Epoch time.
+- Add NBNSProtocol.queryIPForName() and NetBIOS.queryIPForName() methods to
+  query for a machine's NetBIOS name at the given IP address.
+- Add SMBProtocol.retrieveFileFromOffset() and SMBConnection.retrieveFileFromOffset()
+  methods for a finer control of file retrieval operation with read offset and write
+  limits.
+
+
+pysmb-1.0.2, 31 March 2012
+==========================
+
+- Fix a bug in SMB._handleSessionChallenge() method in base.py where the domain attribute
+  was not used to generate the corresponding NTLM authentication packets, resulting in
+  the default WORKGROUP domain for used for all subsequent authentications.
+
+pysmb-1.0.1, 25 Jan 2012
+========================
+
+- Fixes a bug in listPath() method which causes directory listing for
+  sub-directories to return an empty list.
+- Fixes an incorrect implementation of the TRANS2_FIND_FIRST2 and
+  TRANS2_FIND_NEXT2 request/response handling which causes directory listing
+  to crash when the remote directory contains a certain number of entries.
+
+
+pysmb-1.0.0, 25 Dec 2011
+========================
+
+- Completely rewrites pysmb. API is not compatible with previous pysmb-0.x.x
+- Supports NTLMv1 and NTLMv2 authentication
+- Adds in NMB/SMB protocol implementation for use with Twisted framework
+- Tested with Windows XP SP3, Windows Vista, Windows 7 and Samba 3.x
+- Requires Python 2.4.4 or later, and pyasn1. Not tested with Python3
+
+pysmb-0.4.5, 22 Jun 2009
+========================
+
+- Prevents pysmb from failing when there are too many files/folders to
+  be returned in a single SMB TRANS2 call. pysmb will "resume" requesting
+  for more files/folders information in subsequent SMB TRANS2 requests.
+
+pysmb-0.4.4, 12 Jan 2004
+========================
+
+- Add in support for AMK's Python Cryptography Toolkit which will be used
+  for DES password hashing. If AMK's pycrypto is found, it will be used
+  instead of mxCrypto.
+
+pysmb-0.4.3, 22 Feb 2003
+========================
+
+- Fix a bug which fails to close the socket in nmb.py on socket exception
+- Fix a bug which fails to close the NetBIOSSession in smb.py if the session
+  has not been properly established yet.
+
+pysmb-0.4.2, 03 Aug 2002
+========================
+
+- Add new methods to SharedFile instances, get_mtime_epoch, get_atime_epoch
+  and get_ctime_epoch. These methods will return the mtime, atime and ctime in
+  epoch time rather than SMB time.
+- Remove debugging printout in smb.py which has been released accidentally
+  with the last release.
+- Fix a bug in smbcp which causes to local to remote copy to fail
+
+pysmb-0.4.1, 22 Jun 2002
+========================
+
+- Fix a bug in smb.py which does not return the correct file size for files
+  with their archive bits turned off. This results in these files not being
+  retrieved or sent properly.
+- Fix some typo error in the documentations
+
+pysmb-0.4.0, 17 Apr 2002
+========================
+
+- Use NT LM0.12 dialect.
+- New smb.SMBMachine class
+- Add SMB.get_server_domain(), smb.get_server_os(), SMB.get_server_lanman()
+
+pysmb-0.3.1, 12 Nov 2001
+========================
+
+- Fix a problem with some Windows server where an UID is required when server is in share mode.
+  Now, pysmb calls login() with empty authentication information when server is in share mode.
+- Add TYPE_DOMAIN_MASTER constant and description to nmb.py.
+
+pysmb-0.3.0, 10 Nov 2001
+========================
+
+- Add support for services in share mode. Minor changes to smb.SMB class API.
+- Fix a bug in smb.py's __raw_retr_file which has failed to initialize the max_buf_size prior to usage.
+- Fix a bug in smblistshare which fails to print the correct NMB error message
+- Modify smb.py not throw AttributeError in the destructor when there is an error while creating a session
+  in the constructor
+
+pysmb-0.2.0, 04 Oct 2001
+========================
+
+- Add support for encrypted authentication using DES
+- Fix a bug(?) which treats all services and filenames as case-sensitive
+
+pysmb-0.1.3, 03 Sep 2001
+========================
+
+- Fix a bug in smblistshare and smbdu which fails to catch the nmb.NetBIOSError raised when session
+  setup fails.
+- Fix a bug in smb.SMB that arises from the change in nmb.NetBIOSSession which sends
+  the session port number as the remote host type.
+
+pysmb-0.1.2, 01 Sep 2001
+========================
+
+- Fix a bug in nmb.NetBIOSSession which specifies a TYPE_WORKSTATION for remote host instead of TYPE_SERVER.
+- Minor change to nmb.NetBIOSSession constructor API.
+- Fix a bug in smbdu which raises OverflowError when printing long file size values.
+- Fix a bug in smbcp which does not handle the destination path correctly when
+  the source file is copied to a different filename.
+
+pysmb-0.1.1, 25 Aug 2001
+========================
+
+- Change nmb's NetBIOS and NetBIOSSession class such that they raise a NetBIOSError
+  with a tuple of ( err_msg, err_class, err_code )
+- Add a function strerror() in both smb and nmb to return human readable messages
+  for error codes.
+- Fix a bug in smbcp which fails to print an error message and terminate when the
+  remote source path is not found.
+- Add in another utility, smblistshare.
+
+pysmb-0.1.0, 20 Aug 2001
+========================
+
+- First public release
