@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2018/01/11/ReadingPyScriptingforAGS/</loc>
+    <lastmod>2018-01-12T09:41:12.887Z</lastmod>
+    <data>
+        <display>
+        <title>《面向ArcGIS的Python脚本编程》读后</title>
+        <pubTime>2018-01-11T04:57:19.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.kikitamap.com/2017/12/13/AddLiveRe/</loc>
+    <lastmod>2018-01-03T03:10:49.818Z</lastmod>
+    <data>
+        <display>
+        <title>Add LiveRe Comments</title>
+        <pubTime>2017-12-13T01:58:58.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2016/10/17/UsingArcGISPythonAPI/</loc>
     <lastmod>2017-12-22T06:51:02.443Z</lastmod>
     <data>
@@ -13,9 +53,9 @@
         
         <tag>Web</tag>
          
-        <tag>Python</tag>
-         
         <tag>ArcGIS Enterprise</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -37,9 +77,9 @@
         
         <tag>Web</tag>
          
-        <tag>Python</tag>
-         
         <tag>ArcGIS Enterprise</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -81,11 +121,11 @@
         <title>Linux 下安装 ArcGIS Server 前的准备工作备忘录</title>
         <pubTime>2015-05-08T08:55:01.000Z</pubTime>
         
+        <tag>ArcGIS Enterprise</tag>
+         
         <tag>Deployment</tag>
          
         <tag>Linux</tag>
-         
-        <tag>ArcGIS Enterprise</tag>
          
          
            
@@ -105,11 +145,11 @@
         <title>如何部署通过Portal管理的ArcGIS Pro Named User许可？</title>
         <pubTime>2017-11-29T03:50:45.000Z</pubTime>
         
+        <tag>ArcGIS Enterprise</tag>
+         
         <tag>License</tag>
          
         <tag>Deployment</tag>
-         
-        <tag>ArcGIS Enterprise</tag>
          
          
            
@@ -151,9 +191,9 @@
         <title>ArcGIS Enterprise Administration 10.5 Certification</title>
         <pubTime>2017-11-01T05:36:16.000Z</pubTime>
         
-        <tag>Certification</tag>
-         
         <tag>ArcGIS Enterprise</tag>
+         
+        <tag>Certification</tag>
          
          
            
@@ -199,30 +239,9 @@
         <title>通过arcpy自动发布服务</title>
         <pubTime>2017-12-19T04:12:44.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>ArcGIS Enterprise</tag>
          
-         
-           
-             
-              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://www.kikitamap.com/2017/12/13/AddLiveRe/</loc>
-    <lastmod>2017-12-13T05:18:43.296Z</lastmod>
-    <data>
-        <display>
-        <title>Add LiveRe Comments</title>
-        <pubTime>2017-12-13T01:58:58.000Z</pubTime>
-        
-        <tag>Web</tag>
+        <tag>Python</tag>
          
          
            
@@ -233,6 +252,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://www.kikitamap.com/2017/11/14/books/</loc>
