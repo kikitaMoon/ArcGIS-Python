@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.kikitamap.com/2018/02/05/AlterXMLScheme/</loc>
+    <lastmod>2018-02-06T02:26:52.942Z</lastmod>
+    <data>
+        <display>
+        <title>解析xml修改切片原点绕开工具的坑</title>
+        <pubTime>2018-02-05T09:00:14.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>ArcGIS Pro</tag>
+         
+         
+           
+             
+              <breadCrumb title="木工开物" url="http://www.kikitamap.com/categories/%E6%9C%A8%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.kikitamap.com/2017/12/13/AddLiveRe/</loc>
     <lastmod>2018-01-03T03:10:49.818Z</lastmod>
     <data>
@@ -79,9 +101,9 @@
         <title>Make Query Layer在Model Builder中的使用</title>
         <pubTime>2016-06-30T10:11:33.000Z</pubTime>
         
-        <tag>ArcGIS Enterprise</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
          
          
            
@@ -101,9 +123,9 @@
         <title>Linux 下安装 ArcGIS Server 前的准备工作备忘录</title>
         <pubTime>2015-05-08T08:55:01.000Z</pubTime>
         
-        <tag>ArcGIS Enterprise</tag>
-         
         <tag>Deployment</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
          
         <tag>Linux</tag>
          
@@ -125,11 +147,11 @@
         <title>如何部署通过Portal管理的ArcGIS Pro Named User许可？</title>
         <pubTime>2017-11-29T03:50:45.000Z</pubTime>
         
-        <tag>ArcGIS Enterprise</tag>
-         
         <tag>License</tag>
          
         <tag>Deployment</tag>
+         
+        <tag>ArcGIS Enterprise</tag>
          
          
            
@@ -575,9 +597,9 @@
         <title>给自己做个地图故事——Trip to Greece</title>
         <pubTime>2015-09-30T10:23:16.000Z</pubTime>
         
-        <tag>Web</tag>
-         
         <tag>Mapping</tag>
+         
+        <tag>Web</tag>
          
         <tag>Map Story</tag>
          
@@ -1747,9 +1769,9 @@
         <title>不规则三角网（TIN）</title>
         <pubTime>2012-12-06T01:29:33.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1769,9 +1791,9 @@
         <title>ArcGIS Terrain Dataset</title>
         <pubTime>2012-12-13T08:23:24.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -1911,9 +1933,9 @@
         <title>3D数据互操作之认识Collada</title>
         <pubTime>2013-03-04T01:22:20.000Z</pubTime>
         
-        <tag>3D</tag>
-         
         <tag>Geodata</tag>
+         
+        <tag>3D</tag>
          
          
            
@@ -2971,9 +2993,9 @@
         <title>NEW！获取 ArcGIS Pro 与 ArcGIS Desktop 60天试用许可</title>
         <pubTime>2015-03-06T09:29:22.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>License</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -3147,9 +3169,9 @@
         <title>为Runner做一张有质感的图</title>
         <pubTime>2015-06-05T02:52:33.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Mapping</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
@@ -3169,9 +3191,9 @@
         <title>羽化效果的HeatMap</title>
         <pubTime>2015-06-09T03:07:58.000Z</pubTime>
         
-        <tag>ArcGIS Pro</tag>
-         
         <tag>Mapping</tag>
+         
+        <tag>ArcGIS Pro</tag>
          
          
            
