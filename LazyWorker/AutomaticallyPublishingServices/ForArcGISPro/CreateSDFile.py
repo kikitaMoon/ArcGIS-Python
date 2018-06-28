@@ -40,14 +40,14 @@ def multiPatch2ServerDefinition(dsFolder,mpName):
     result = arcpy.StageService_server(sddraftFile, sdFile)
     print('make SD file : ' + sdFile)
 
-    # #### GP Service
-    # arcpy.CreateGPSDDraft(result, os.path.join(sdFolder, "GPoutput2.sddraft"), "myGPservice22")
-    # print("GP Draft Done!")
-    # arcpy.StageService_server(os.path.join(sdFolder, "GPoutput2.sddraft"), os.path.join(sdFolder, "GPoutput22.sd") )
-    # print("GP SD Done!")
-    # # Fialed
-    # # arcpy.UploadServiceDefinition_server(os.path.join(sdFolder, "GPoutput22.sd"), 'My Hosted Services')
-    # # print('aaa')
+    #### GP Service
+    arcpy.CreateGPSDDraft(result, os.path.join(sdFolder, "GPoutput2.sddraft"), "myGPservice22")
+    print("GP Draft Done!")
+    arcpy.StageService_server(os.path.join(sdFolder, "GPoutput2.sddraft"), os.path.join(sdFolder, "GPoutput22.sd") )
+    print("GP SD Done!")
+    # Fialed
+    arcpy.UploadServiceDefinition_server(os.path.join(sdFolder, "GPoutput22.sd"), 'My Hosted Services')
+    print('aaa')
 
 
 if __name__ == '__main__':

@@ -17,3 +17,5 @@ w.record('Third','Point')
 w.record('Fourth','Point')
 
 w.save(u'D:\IncidentSupport2015\AllforTest\CodePagesTest\ChineseField\ExportShapefiles\pyshape')
+
+string = "中文"

@@ -39,6 +39,7 @@ class DownloadFeatureService(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
+        #param1.value = 'siteadmin'
 
         param2 = arcpy.Parameter(
             displayName="Password",
@@ -46,6 +47,7 @@ class DownloadFeatureService(object):
             datatype="GPStringHidden",
             parameterType="Required",
             direction="Input")
+        #param2.value = 'esri@123'
 
         param3 = arcpy.Parameter(
             displayName="OID Field",
@@ -53,7 +55,7 @@ class DownloadFeatureService(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
-        param3.value = 'objectid'
+        param3.value = 'OBJECTID'
 
         param4 = arcpy.Parameter(
         displayName="Output Feature Class Location",
@@ -62,7 +64,14 @@ class DownloadFeatureService(object):
         parameterType="Required",
         direction="Input")
 
-        params = [param0,param1,param2,param3,param4]
+        param5 = arcpy.Parameter(
+        displayName="Max Record Count per Request",
+        name="customizeMaxRecordCount",
+        datatype="GPString",
+        parameterType="Optional",
+        direction="Input")
+
+        params = [param0,param1,param2,param3,param4,param5]
         return params
 
     def isLicensed(self):
@@ -95,17 +104,18 @@ class DownloadFeatureService(object):
             httpConn.request("POST", tokenURL, params, headers)
             # Read response
             response = httpConn.getresponse()
-            arcpy.AddMessage(response.status)
+            arcpy.AddMessage("## Response Status: " + str(response.status))
             if (response.status != 200):
                 httpConn.close()
-                arcpy.AddMessage("Error while fetch tokens from admin URL. Please check the URL and try again.")
+                arcpy.AddError("!!! Error while fetch tokens from admin URL. Please check the URL and try again.")
                 return
             else:
                 data = response.read()
                 httpConn.close()
                 # Extract the token from it
                 token = json.loads(data)
-                arcpy.AddMessage(data)
+                arcpy.AddMessage("## " + data)
+                arcpy.AddMessage('## The token has been checked! ')
                 return token['token']
 
         ### Query the Total Count of the Feature Data
@@ -120,7 +130,9 @@ class DownloadFeatureService(object):
             CountData = CountResponse.read()
             # JSON Dictionary
             JSONCountObj = json.loads(CountData)
-            return(JSONCountObj['count'])
+            totalCountServer = JSONCountObj['count']
+            arcpy.AddMessage("## Total Data Count of Feature Service :" + str(totalCountServer))
+            return(totalCountServer)
 
         ### Query the Maximum Value of OBJECTID
         def GetMaxOBJECTID():
@@ -134,7 +146,9 @@ class DownloadFeatureService(object):
             CountData = CountResponse.read()
             # JSON Dictionary
             JSONCountObj = json.loads(CountData)
-            return(JSONCountObj['features'][0]['attributes']['Max_OID'])
+            maxOBJECTID = JSONCountObj['features'][0]['attributes']['Max_OID']
+            arcpy.AddMessage("## Max OBJECTID : " + str(maxOBJECTID))
+            return(maxOBJECTID)
 
         ### Query maxRecordCount
         def GetmaxRecordCount():
@@ -145,7 +159,9 @@ class DownloadFeatureService(object):
             MaxRCResponse = urllib.urlopen(MaxRCQueryURL)
             fsData = MaxRCResponse.read()
             MaxRCobj = json.loads(fsData)
-            return(MaxRCobj['maxRecordCount'])
+            maxRecordCount = MaxRCobj['maxRecordCount']
+            arcpy.AddMessage("## Max Record Count per Request of Service: " + str(maxRecordCount))
+            return(maxRecordCount)
 
         ### Request Feature Service JSON Object
         def FeatureServiceJSON(servicename, whereClause):
@@ -156,9 +172,11 @@ class DownloadFeatureService(object):
             GeometryQueryURL = baseURL + queryParam + tokenParam
             # Get response
             fsResponse = urllib.urlopen(GeometryQueryURL)
+            # arcpy.AddMessage(GeometryQueryURL)
             fsData = fsResponse.read()
             # JSON Dictionary
             JSONdataObj = json.loads(fsData)
+
             return(JSONdataObj)
 
         ### Create Local Feature Class
@@ -175,6 +193,7 @@ class DownloadFeatureService(object):
             fslayersr = fsdescription['extent']['spatialReference']['wkid']
             arcpy.CreateFeatureclass_management(location, fcname, geometry_type=geotype, spatial_reference=fslayersr )
             fields = fsdescription['fields']
+            # Schema Cooking
             cursorFields = []
             for field in fields:
                 if field['name'].upper() == 'OBJECTID':
@@ -183,15 +202,12 @@ class DownloadFeatureService(object):
                     fieldtype = 'DOUBLE'
                 else:
                     fieldtype = 'TEXT'
-                # 字段类型映射上目前简单处理，统一为字符串
-                # if field['type'][13:] == 'String':
-                #     fieldtype = 'TEXT'
-                # elif field['name'].upper() == 'OBJECTID':
-                #     continue
-                # else:
-                #     fieldtype = field['type'][13:].upper()
                 cursorFields.append(field['name'])
                 arcpy.AddField_management(in_table=fcname, field_name=field['name'], field_type=fieldtype, field_alias=field['alias'] )
+            cursorFields.sort()
+            cursorFields.append('SHAPE@JSON')
+            arcpy.AddMessage("## Local <{1}> Feature Class <{0}> has been created!".format(fcname,geotype))
+            arcpy.AddMessage('## Location : {0}'.format(location))
             return(cursorFields)
 
         ### Analyzing JSON Object， and Write the data to local Feature Class with
@@ -233,12 +249,13 @@ class DownloadFeatureService(object):
 
 
         if __name__ == "__main__":
-
+            ### Tool Parameters
             ServiceURL = parameters[0].valueAsText
             username = parameters[1].valueAsText
             passwords = parameters[2].valueAsText
             whereClauseField = parameters[3].valueAsText
             location = parameters[4].valueAsText
+            customizeMaxRecordCount = parameters[5].valueAsText
 
             ### Internal Parameters
             arcpy.env.workspace = location
@@ -248,42 +265,46 @@ class DownloadFeatureService(object):
             servicename = ServiceURL.split('/')[-3]
             LayerIndex = ServiceURL.split('/')[-1]
             fcname = servicename+"_"+str(LayerIndex)
-            arcpy.AddMessage('ArcGIS Server Name : {0} , Port : {1}.'.format(agsservername, serverport))
-            arcpy.AddMessage('The layer <{1}> of the Service <{0}> will be downloaded soon.'.format(servicename, LayerIndex))
+            arcpy.AddMessage('## ArcGIS Server Name : {0} , Port : {1}.'.format(agsservername, serverport))
+            arcpy.AddMessage('## The layer <{1}> of the Service <{0}> will be downloaded soon.'.format(servicename, LayerIndex))
+
 
             ### Started Here
-            # Clear Local Existing File ..
-            if arcpy.Exists(fcname):
-                arcpy.Delete_management(fcname)
+
             # Call GetToken Function
             myToken = GetToken(username, passwords, agsservername, serverport)
-            arcpy.AddMessage('The token has been checked! ')
-            # Creat Local Feature Class Skema
+            # Clear Local Existing File If exists
+            if arcpy.Exists(fcname):
+                arcpy.Delete_management(fcname)
+            # Creat Local Feature Class Schema
             cursorFields = CreateLocalFeatureClass(location, fcname)
-            cursorFields.sort()
-            cursorFields.append('SHAPE@JSON')
-            arcpy.AddMessage("Local <{1}> Feature Class <{0}> has been created!".format(fcname,geotype))
-            arcpy.AddMessage('Location : {0}'.format(location))
             # Write Local Feature Class
-            maxOID = GetMaxOBJECTID()
-            i = 0
             st = time.clock()
-            maxRecordCount = GetmaxRecordCount()
+            i = 0
+            maxOID = GetMaxOBJECTID()
+            # Choose Max Record Count
+            if customizeMaxRecordCount:
+                maxRecordCount = int(customizeMaxRecordCount)
+                arcpy.AddMessage("## Max Record Count per Request as Customized : " + customizeMaxRecordCount)
+            else:
+                maxRecordCount = GetmaxRecordCount()
+
+            ###  Fatal Error
             while i <= maxOID/maxRecordCount+1:
                 whereClause = whereClauseField+">="+str(i*maxRecordCount)+" and "+whereClauseField+"<"+str((i+1)*maxRecordCount)
+                ######### if OUT OF MEMORY , lower the Max record Count Manually
                 myJSON = FeatureServiceJSON(servicename, whereClause)
                 WriteLocalFC(myJSON, fcname, cursorFields)
-                arcpy.AddMessage(whereClauseField+'('+str(i*maxRecordCount)+'-'+str((i+1)*maxRecordCount)+')'+'  Done !')
+                arcpy.AddMessage('--## '+whereClauseField+'('+str(i*maxRecordCount)+'-'+str((i+1)*maxRecordCount)+')'+'  Done !')
                 i = i + 1
             et = time.clock()
             # Compare Service and Local File
-            totalCountServer = GetCount(servicename)
+            GetCount(servicename)
             result = arcpy.GetCount_management(fcname)
             localCount = int(result.getOutput(0))
-            arcpy.AddMessage("Service Total Data Count:"+str(totalCountServer))
-            arcpy.AddMessage("Max OBJECTID:"+str(maxOID))
-            arcpy.AddMessage("Actually Download:"+str(localCount))
-            print   str((time.clock() - st)) + " Seconds..."
+            arcpy.AddMessage("## Actually Download : " + str(localCount))
+
+            print("## " + str((time.clock() - st)) + " Seconds...")
 
         return
 
