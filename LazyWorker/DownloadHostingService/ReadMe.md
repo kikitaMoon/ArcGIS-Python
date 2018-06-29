@@ -8,3 +8,5 @@
 
 
 Version  ArcGIS Desktop  10.5.x and later.
+
+Update at version 10.6.
