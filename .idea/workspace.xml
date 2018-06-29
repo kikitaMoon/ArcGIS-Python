@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b002ce7c-64bb-4bf4-a4e4-02da726a866f" name="Default" comment="New release! Version 4.2">
+    <list default="true" id="b002ce7c-64bb-4bf4-a4e4-02da726a866f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ArcGIS-Python.iws" />
@@ -32,27 +32,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DownloadHostingService_PYT.pyt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LazyWorker/DownloadHostingService/DownloadHostingService_PYT.pyt">
+      <file leaf-file-name="1_ImageTransfer_JoinPath.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HexoBlogHelper/1_ImageTransfer_JoinPath.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="174" column="14" lean-forward="false" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
-              <folding>
-                <element signature="e#47#59#0" expanded="true" />
-                <element signature="e#150#440#0" expanded="false" />
-                <element signature="e#512#729#0" expanded="false" />
-                <element signature="e#771#2255#0" expanded="false" />
-                <element signature="e#2291#2357#0" expanded="false" />
-                <element signature="e#2411#2597#0" expanded="false" />
-                <element signature="e#2649#2803#0" expanded="false" />
-                <element signature="e#3017#4291#0" expanded="false" />
-                <element signature="e#4394#5034#0" expanded="false" />
-                <element signature="e#5126#5938#0" expanded="false" />
-                <element signature="e#6018#6518#0" expanded="false" />
-                <element signature="e#7302#8760#0" expanded="false" />
-                <element signature="e#8922#10566#0" expanded="false" />
-                <element signature="e#10616#13381#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="315">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,11 +125,11 @@
         <option value="$PROJECT_DIR$/LazyWorker/DBF_CodePage/testImportArcpy.py" />
         <option value="$USER_HOME$/Desktop/test (1)/test.py" />
         <option value="$PROJECT_DIR$/ForTempTest/TestExportingLayout/ExportingJPG.py" />
-        <option value="$PROJECT_DIR$/HexoBlogHelper/1_ImageTransfer_JoinPath.py" />
         <option value="$PROJECT_DIR$/LazyWorker/DownloadHostingServcie_4.2/DownloadHostingService_PYT.pyt" />
         <option value="$PROJECT_DIR$/LazyWorker/DownloadHostingServcie_4.1/DownloadHostingService_PYT.pyt" />
         <option value="$PROJECT_DIR$/LazyWorker/DownloadHostingService/ReadMe.md" />
         <option value="$PROJECT_DIR$/LazyWorker/DownloadHostingService/DownloadHostingService_PYT.pyt" />
+        <option value="$PROJECT_DIR$/HexoBlogHelper/1_ImageTransfer_JoinPath.py" />
       </list>
     </option>
   </component>
@@ -154,9 +139,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="623" />
-    <option name="y" value="49" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="2320" />
+    <option name="y" value="67" />
     <option name="width" value="992" />
     <option name="height" value="587" />
   </component>
@@ -218,7 +203,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,18 +213,13 @@
             <path>
               <item name="ArcGIS-Python" type="b2602c69:ProjectViewProjectNode" />
               <item name="ArcGIS-Python" type="462c0819:PsiDirectoryNode" />
-              <item name="LazyWorker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArcGIS-Python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArcGIS-Python" type="462c0819:PsiDirectoryNode" />
-              <item name="LazyWorker" type="462c0819:PsiDirectoryNode" />
-              <item name="DownloadHostingService" type="462c0819:PsiDirectoryNode" />
+              <item name="HexoBlogHelper" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -611,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530159248072</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="New release! Version 4.2">
+      <created>1530159290539</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1530159290539</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -624,18 +610,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
+    <frame x="1990" y="-8" width="1474" height="880" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.253406" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18941504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.53229165" sideWeight="0.5021716" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48645833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5322581" sideWeight="0.505571" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29301074" sideWeight="0.49782845" order="7" side_tool="false" content_ui="tabs" x="-50" y="467" width="1842" height="524" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5322581" sideWeight="0.49442896" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36041668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39895698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39895698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -798,33 +784,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HexoBlogHelper/1_ImageTransfer_JoinPath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LazyWorker/DownloadHostingServcie_4.2/DownloadHostingService_PYT.pyt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-845">
-          <caret line="207" column="33" lean-forward="true" selection-start-line="207" selection-start-column="33" selection-end-line="207" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/LazyWorker/DownloadHostingServcie_4.2/DownloadHostingService_PYT.pyt" />
     <entry file="file://$PROJECT_DIR$/LazyWorker/DownloadHostingService/ReadMe.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LazyWorker/DownloadHostingService/DownloadHostingService_PYT.pyt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
+        <state relative-caret-position="21">
           <caret line="174" column="14" lean-forward="false" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
           <folding>
             <element signature="e#47#59#0" expanded="true" />
@@ -842,6 +812,14 @@
             <element signature="e#8922#10566#0" expanded="false" />
             <element signature="e#10616#13381#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HexoBlogHelper/1_ImageTransfer_JoinPath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
