@@ -110,9 +110,9 @@ def oss_upload_bundles(bucket,filepath,bucket_path):
 
 # execute method for OSS
 def upload_bundle_In_OSS(filePath, bucketPath):
-    access_key_id = 'LTAI95MbCPCvRXjZ'
-    access_key_secret = '1bZNmbZzT9v8sUUqXC65VlfNeQVcRn'
-    bucket_name = 'zhoun'
+    access_key_id = '***'
+    access_key_secret = '***'
+    bucket_name = '***'
     endpoint = 'http://oss-cn-shanghai.aliyuncs.com'
 
     bucket = connect_OSS(access_key_id, access_key_secret, bucket_name, endpoint)
