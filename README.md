@@ -7,10 +7,6 @@ Have fun!
 
 
 
-Welcome to [kikita's blog](http://kikitamap.com)
-
-![Who's kikita?](http://kikitamap.com/images/kikitaHD.jpg)
-
-
+Welcome to [kikita's blog](http://kikitamap.com) for more.
 
 by Xiaoyan Mu
